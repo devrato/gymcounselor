@@ -34,11 +34,31 @@
   	color: white;
 }
 
+.login__button{
+	font-family: 'Comfortaa', cursive;
+	height: 50px;
+	margin: 10px 40px;
+	padding: 2px 40px;
+	text-decoration: none;
+	border-radius: 30px;
+	line-height: 45px;
+	color: #FFF;
+	background: #F02D3A;
+	border: 2px solid #fff;
+	-webkit-transition: all 0.30s ease-in-out;
+  	-moz-transition: all 0.30s ease-in-out;
+  	-ms-transition: all 0.30s ease-in-out;
+  	-o-transition: all 0.30s ease-in-out;
+}
+
+.login__button:hover{
+	background-color: rgba(240, 45, 58,0.5);
+	color: #d83d3d;
+}
+
 @media only screen and (max-width: 768px) {
 
-	.google{
-		margin-top: 20px;
-	}
+	
 	
 }
 
@@ -96,10 +116,11 @@
 </nav>
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-            <form action="" method="POST" style = "padding-top: 0px" class="fh5co-form animate-box" data-animate-effect="fadeIn">{% csrf_token %}
+		<div class="col-md-4 col-md-offset-4">
+            <form action="" method="POST" class="fh5co-form animate-box" data-animate-effect="fadeIn">{% csrf_token %}
                 <div class="text-center">
-					<img src = "{% static 'images/logo.png' %}" width = "150px"> <h2 style ="font-size: 4vh; font-weight: bolder; color: #d23a3a">LOGIN - GYMCOUNSELOR</h2>
+					{% comment %} <img src = "{% static 'images/logo1.png' %}" width = "150px">  {% endcomment %}
+					<h2 style ="font-size: 6vh; font-weight: bolder; color: #d23a3a; font-family: 'Comfortaa', cursive;">LOGIN</h2>
 				</div>	
 				{% if error %}
 					<div class="error">
@@ -107,27 +128,22 @@
 					</div>
 				{% endif %}
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Username" name="username" id="username" required="required">
+					<input type="text" class="form-control" placeholder="Email" name="username" id="username" required="required">
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control" placeholder="Password" name="password" id="password" required="required">
 				</div>
 				<input type="hidden" name="next" value="{{ request.GET.next }}">
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block">Log in</button>
+				<div class="form-group text-center">
+					<button type="submit" class="login__button">Log in</button>
 				</div>
 				<div class="row">
-				<div class="col-md-6 text-center">
-					<a href="{% url 'social:begin' 'facebook' %}" class="fb btn"><i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
-				</div>
-				<div class="col-md-6 text-center">
-					<a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn"><i class="fa fa-google fa-fw"></i> Login with Google</a>
-				</div>
-				</div>
-				<div class="col-12">
-					<div class="form-group text-center" style = "margin: 20px auto 5px auto;">
-						<label for="remember"><input type="checkbox" id="remember"> Remember Me</label>
-					</div>	
+					<div class="col-xs-6 text-center">
+						<a href="{% url 'social:begin' 'facebook' %}" class="fb btn"><i class="fa fa-facebook fa-fw"></i>Facebook</a>
+					</div>
+					<div class="col-xs-6 text-center">
+						<a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn"><i class="fa fa-google fa-fw"></i>&nbsp;Google&nbsp;</a>
+					</div>
 				</div>
 				<div class="col-12">
 					<div class="form-group text-center" style = "margin: 20px auto 5px auto;">

@@ -14,14 +14,67 @@
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
     <link rel="stylesheet" href="{% static 'CSS/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'CSS/owl.theme.default.min.css' %}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 {#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">#}
     <title>{{ title }}</title>
-    {% block extra_head %}{% endblock %}
+    {% block extra_head %}
+    
+    {% endblock %}
 </head>
 <body>
+
+    
     {% block content %}
 
-    {% endblock content %}
+    {% endblock %}
+
+    <footer id="fh5co-footer" role="contentinfo">
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-4 fh5co-widget">
+					<h3>A Little About Gymcounselor.</h3>
+					<p>We as GymCounselor work with Scientific Principles and Data Backed methodologies to help you see the results that you may have never seen.</p>
+					<p><a class="btn btn-primary btn-outline with-arrow" href="/about">Learn More <i class="icon-arrow-right"></i></a></p>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+					<ul class="fh5co-footer-links">
+						<li><a href="/about">About</a></li>
+						<li><a href="/contact">Help</a></li>
+						<li><a href="#">Terms</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Shop</a></li>
+						<li><a href="#">Privacy</a></li>
+						<li><a href="#">Testimonials</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p>
+						<small class="block">&copy; 2020 gymcounselor.com<br> All Rights Reserved.</small>
+					</p>
+					<p>
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+							<li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+							<li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+							<li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+    
+    
 <!-- jQuery -->
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 {#	<!-- jQuery Easing -->#}
@@ -38,8 +91,9 @@
 	<script src="{% static 'js/main.js' %}"></script>
 {#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>#}
     {% block extra_foot %}
-
-    {% endblock extra_foot %}
+        
+    {% endblock %}
+    
 
 </body>
 </html>
