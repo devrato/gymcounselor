@@ -15,10 +15,14 @@ def login_view(request):
         'valuenext': valuenext,
     }
     if request.method == "POST":
-        user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+        user = auth.authenticate(
+            username=request.POST['username'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
-            return redirect(valuenext)
+            if valuenext != '':
+                return redirect(valuenext)
+            else:
+                return redirect('home')
         else:
             return render(request, "user/login.html", {"error": "Invalid Login Credentials."})
     else:
@@ -38,7 +42,8 @@ def register_view(request):
         confirm_password = request.POST.get('confirm_password')
         if password == confirm_password:
             try:
-                check_user = User.objects.get(username=request.POST['username'])
+                check_user = User.objects.get(
+                    username=request.POST['username'])
                 if check_user is not None:
                     return render(request, 'user/register.html', {'error': 'Username is already taken.'})
             except:
@@ -46,8 +51,9 @@ def register_view(request):
                                                 email=request.POST['username'], first_name=request.POST['first_name'],
                                                 last_name=request.POST['last_name'])
                 user.save()
-                ExtendedUser(user=user, ph_no=request.POST['phone']).save()
-                user = authenticate(request, username=request.POST.get('username'), password=password)
+                # ExtendedUser(user=user, ph_no=request.POST['phone']).save()
+                user = authenticate(request, username=request.POST.get(
+                    'username'), password=password)
                 if user is not None:
                     login(request, user)
                     return redirect(valuenext)
