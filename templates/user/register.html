@@ -73,7 +73,7 @@
 	.signup__button__div{
 		order: -1;
 	}
-	
+
 	.new_social__button{
 		margin-top: 0px;
 	}
@@ -153,13 +153,13 @@
 						<div class="form-group">
 							<label class="sr-only">First Name</label>
 							<input required type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" autocomplete="on">
-						</div>	
+						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="sr-only">Last Name</label>
 							<input required type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" autocomplete="on">
-						</div>	
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -167,13 +167,13 @@
 						<div class="form-group">
 							<label class="sr-only">Email</label>
 							<input required type="email" class="form-control" id="email" name="username" placeholder="Email Address" autocomplete="on">
-						</div>	
+						</div>
 					</div>
 					{% comment %} <div class="col-md-6">
 						<div class="form-group">
 							<label class="sr-only">Telephone</label>
 							<input required type="tel" class="form-control" id="phone" name="phone" placeholder="Telephone" autocomplete="on">
-						</div>	
+						</div>
 					</div> {% endcomment %}
 				</div>
 				<div class="row">
@@ -181,13 +181,13 @@
 						<div class="form-group">
 							<label class="sr-only">Password</label>
 							<input required type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="off">
-						</div>	
+						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="sr-only">Re-type Password</label>
 							<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" autocomplete="off">
-						</div>	
+						</div>
 					</div>
 				</div>
 				<input type="hidden" name="next" value="{{ request.GET.next }}">
@@ -197,7 +197,7 @@
 						<input type="submit" class="btn signup__button" value="Sign Up">
 					</div>
 				</div>
-				 
+
 				<div class="row new_social__button">
 					<div class="col-xs-6 text-center">
 						<a href="{% url 'social:begin' 'facebook' %}" class="fb btn"><i class="fa fa-facebook fa-fw"></i>Facebook</a>
@@ -221,7 +221,7 @@
 					<div class="col">
 						<div class="form-group">
 							<p class = "text-center">Already registered? <a href="{% url 'login' %}?next={{request.path}}"><span style = "color: #F02D3A">Sign In</span></a></p>
-						</div>	
+						</div>
 					</div>
 				</div>
 			</form>
