@@ -5,7 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet" href="{% static 'css/style1.css'%}">
+
+<style>
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+
 {% endblock %}
+
+
 {% block content %}
 <title>{{ product.name }}</title>
 <div class="fh5co-loader"></div>
@@ -97,7 +114,7 @@
 
 
 
-	<div id="fh5co-services" class="fh5co-bg-section">
+	{% comment %} <div id="fh5co-services" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -105,10 +122,11 @@
 					<!--<p>We at GymCounselor work with scientific principles and data backed methodologies to help you see the results that you may have never seen.</p>-->
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="test">
+			<div class="row" >
+				<div class="col-md-6 text-center"  style = "margin: 50px auto;">
+					<div class="test" >
 						<img class="img-responsive" src="../../media/{{ product.img_main }}" alt="test">
+						<iframe width="300" height="550" src="https://www.youtube.com/embed/FoMlSB6ftQg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -140,21 +158,80 @@
 								<p>{{ product.desc3 }}</p>
 							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			{% if request.user.is_authenticated %}
+			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p>
+			{% else %}
+			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
+			{% endif %}
+		</div>
+	</div> {% endcomment %}
 
+
+	
+	<div id="fh5co-services" class="fh5co-bg-section">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>How it Works New</h2>
+					<!--<p>We at GymCounselor work with scientific principles and data backed methodologies to help you see the results that you may have never seen.</p>-->
+				</div>
+			</div>
+			<div class="row" >
+				<div class="col-12 text-center">
+					<div class="test embed-responsive embed-responsive-16by9" >
+						{% comment %} <img class="img-responsive" src="../../media/{{ product.img_main }}" alt="test"> {% endcomment %}
+						<iframe class = "embed-responsive-item" src="https://www.youtube.com/embed/EdExFF05FGc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="container">
+					<div class="col-12">
+						<div class="row services-inner">
+							<div class="col-md-4 col-sm-12">
+								<div class="feature-center animate-box" data-animate-effect="fadeIn">
+									<span class="icon">
+										<i class="icon-search"></i>
+									</span>
+									<h3>{{ product.head1 }}</h3>
+									<p>{{ product.desc1 }}</p>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="feature-center animate-box" data-animate-effect="fadeIn">
+									<span class="icon">
+										<i class="icon-bowl"></i>
+									</span>
+									<h3>{{ product.head2 }}</h3>
+									<p>{{ product.desc2 }}</p>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="feature-center animate-box" data-animate-effect="fadeIn">
+									<span class="icon">
+										<i class="icon-heart"></i>
+									</span>
+									<h3>{{ product.head3 }}</h3>
+									<p>{{ product.desc3 }}</p>
+								</div>
+							</div>
 						</div>
 					</div>
-
 				</div>
-					<br>
-						{% if request.user.is_authenticated %}
-					<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p>
-                    {% else %}
-                    <p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
-                    {% endif %}
-
+				
 			</div>
+			<br>
+			{% if request.user.is_authenticated %}
+			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p>
+			{% else %}
+			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
+			{% endif %}
 		</div>
-		<div id="fh5co-testimonial" class="fh5co-bg-section">
+	</div>
+	
+	<div id="fh5co-testimonial" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -170,15 +247,10 @@
 						<p>Passionate about nutrition and an expert in evaluating the dietary needs of a client Lakshmi has an inclination towards empowering others by understanding their symptoms, their bodies, and how even small diet and lifestyle changes can yield a more healthful, vibrant life in time. She is highly skilled in various fields of diet planning, nutrition counseling, management, public speaking, and healthcare.</p>
 					</div>
 				</div>
-
+			</div>
 		</div>
 	</div>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	<div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#F2F2F2">
 		<div class="container">
 			<div class="row">
@@ -188,7 +260,10 @@
 			</div>
 			<div class="row text-center">
 				<div class="col-md-4" style = "margin-bottom: 20px">
-					<iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+					<a data-toggle="modal" href="#myModal1" data-backdrop="static">
+						<img src="{% static 'images/trialvideothumb.png' %}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="video3"> 
+					</a>
+					{% comment %} <iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  {% endcomment %}
 					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Comfortaa', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
 						Dhruv Kothari
 						<br>
@@ -204,7 +279,10 @@
 					</p>
 				</div>
 				<div class="col-md-4" style = "margin-bottom: 20px">
-					<iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/EdExFF05FGc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+					<a data-toggle="modal" href="#myModal2" data-backdrop="static">
+						<img src="{% static 'images/trialvideothumb.png' %}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="video3"> 
+					</a>
+					{% comment %} <iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/EdExFF05FGc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  {% endcomment %}
 					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Comfortaa', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px;" class = "text-left">
 						Dhruv Kothari
 						<br>
@@ -220,7 +298,9 @@
 					</p>
 				</div>
 				<div class="col-md-4" style = "margin-bottom: 20px">
-					<iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+					<a data-toggle="modal" href="#myModal3" data-backdrop="static" >
+						<img src="{% static 'images/trialvideothumb.png' %}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="video3"> 
+					</a>
 					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Comfortaa', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
 						Dhruv Kothari
 						<br>
@@ -238,14 +318,101 @@
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
+	
+	<!-- Button trigger modal -->
+  {% comment %} <a data-toggle="modal" href="#myModal1" class="btn btn-primary btn-lg">Launch demo modal</a> {% endcomment %}
+
+  <!-- Modal video 1 -->
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo1()">×</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body text-center" style = "padding-top: 66.66%;">
+			<iframe id ="video1" class = "responsive-iframe" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
+		</div>
+         {% comment %} <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeVideo1()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> {% endcomment %}
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal video 2 -->
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo2()">×</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body text-center"  style = "padding-top: 66.66%;">
+			<iframe id ="video2" class = "responsive-iframe" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
+		</div>
+         {% comment %} <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeVideo1()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> {% endcomment %}
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal video 3 -->
+  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo3()">×</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body text-center" style = "padding-top: 66.66%;">
+			<iframe id ="video3" class = "responsive-iframe" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
+		</div>
+        {% comment %} <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeVideo1()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> {% endcomment %}
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<script>
+  var closeVideo1 = function(){
+	  $("#video1").each(function () {
+				console.log("Happened");
+				let vidurl = $(this).attr("src");
+				console.log(vidurl);
+                $(this).attr("src", '');
+                $(this).attr("src", vidurl);
+            });
+  };
+
+   var closeVideo2 = function(){
+	  $("#video2").each(function () {
+				console.log("Happened2");
+				let vidurl = $(this).attr("src");
+				console.log(vidurl);
+                $(this).attr("src", '');
+                $(this).attr("src", vidurl);
+            });
+  };
+
+   var closeVideo3 = function(){
+	  $("#video3").each(function () {
+				console.log("Happened3");
+				let vidurl = $(this).attr("src");
+				console.log(vidurl);
+                $(this).attr("src", '');
+                $(this).attr("src", vidurl);
+            });
+  };
+</script>
+	{% comment %} <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -294,7 +461,21 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> {% endcomment %}
 </div>
 </div>
+
 {% endblock %}
+
+ {% block extra_foot %}
+  
+$("#modalclose1").on("click", function (e) {
+			console.log("Happened");
+            $("iframe").each(function () {
+				console.log("Happened");
+                $(this).attr("src", '');
+            });
+        });
+
+{% endblock %}
+    

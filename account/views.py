@@ -39,27 +39,29 @@ def register_view(request):
     }
     if request.method == "POST":
         password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-        if password == confirm_password:
-            try:
-                check_user = User.objects.get(
-                    username=request.POST['username'])
-                if check_user is not None:
-                    return render(request, 'user/register.html', {'error': 'Username is already taken.'})
-            except:
-                user = User.objects.create_user(username=request.POST['username'], password=password,
-                                                email=request.POST['username'], first_name=request.POST['first_name'],
-                                                last_name=request.POST['last_name'])
-                user.save()
-                # ExtendedUser(user=user, ph_no=request.POST['phone']).save()
-                user = authenticate(request, username=request.POST.get(
-                    'username'), password=password)
-                if user is not None:
-                    login(request, user)
-                    return redirect(valuenext)
+        # confirm_password = request.POST.get('confirm_password')
+        # if password == confirm_password:
+        try:
+            check_user = User.objects.get(
+                username=request.POST['username'])
+            if check_user is not None:
+                return render(request, 'user/register.html', {'error': 'Username is already taken.'})
+        except:
+            # user = User.objects.create_user(username=request.POST['username'], password=password,
+            #                                 email=request.POST['username'], first_name=request.POST['first_name'],
+            #                                 last_name=request.POST['last_name'])
+            user = User.objects.create_user(username=request.POST['username'], password=password,
+                                            email=request.POST['username'])
+            user.save()
+            # ExtendedUser(user=user, ph_no=request.POST['phone']).save()
+            user = authenticate(request, username=request.POST.get(
+                'username'), password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(valuenext)
 
-        else:
-            print("Password Not Matched")
-            return render(request, 'user/register.html', {'error': 'Passwords dont match'})
+        # else:
+        #     print("Password Not Matched")
+        #     return render(request, 'user/register.html', {'error': 'Passwords dont match'})
     else:
         return render(request, 'user/register.html', context)
