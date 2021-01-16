@@ -37,7 +37,7 @@
 }
 
 .login__button{
-	font-family: 'Comfortaa', cursive;
+<!--	font-family: 'Comfortaa', cursive;-->
 	height: 50px;
 	margin: 10px 40px;
 	padding: 2px 40px;
@@ -131,11 +131,11 @@
 				{% endif %}
 				<div class="row">
 					<div class="col-xs-12 text-center">
-						<a href="{% url 'social:begin' 'facebook' %}" class="fb btn"><i class="fa fa-facebook fa-fw"></i> <span style = "font-family: 'Comfortaa', cursive; font-size: 2.5vh;"> Login with Facebook</span></a>
+						<a href="{% url 'social:begin' 'facebook' %}" class="fb btn"><i class="fa fa-facebook fa-fw"></i> <span style = "font-size: 2.5vh;"> Login with Facebook</span></a>
 					</div>
 					
 					<div style = "margin-top: 15px;" class="col-xs-12 text-center">
-						<a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn" style = "font-family: 'Comfortaa', cursive; font-size: 2.5vh;"><i class="fa fa-google fa-fw"></i>&nbsp;Login with Google&nbsp;</a>
+						<a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn" style = " font-size: 2.5vh;"><i class="fa fa-google fa-fw"></i>&nbsp;Login with Google&nbsp;</a>
 					</div>
 				</div>
 				<br>
