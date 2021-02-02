@@ -1,8 +1,206 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extra_head %}
-    <link rel="stylesheet" href="{% static 'CSS/dash.css' %}">
+  
+<style>
+
+.order_card{
+	background-color: white;
+	border-radius: 5px;
+	padding-right: 0px;
+	padding-left: 0px;
+	box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
+	-webkit-box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
+	-moz-box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
+}
+
+.order__title{
+	font-size: 3vh;
+	color: black;
+	padding: 10px 0px 0px 20px; 
+}
+
+.order__desc{
+	padding: 0px 20px;
+	{% comment %} font-size: 2vh; {% endcomment %}
+	font-size: 13px;
+}
+
+.order__status{
+	font-family: 'Poppins';
+	color: white;
+	font-size: 3.2vh; 
+	background-color: #F02D3A;
+	border-radius: 0px 5px 5px 0px;
+	writing-mode: vertical-rl !important;
+	padding: 20px 15px;
+}
+
+.order__options{
+	padding-left: 15px;
+	height: 100%;
+	width: 100%;
+}
+
+.card-wrapper {
+	background-color: white;
+  width: 620px;
+  border-radius: 10px;
+  box-shadow: #d8dde5 0px 0px 2px;
+  overflow: hidden;
+  margin: 10px auto;
+  box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
+	-webkit-box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
+	-moz-box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
+}
+
+.card-wrapper__bg {
+  height: 100px;
+  background-image: linear-gradient(to right, #f02d3a, #c4212c, #9a1520, #710a13, #4c0202);
+  {% comment %} // background: #f02d3A url("https://images.unsplash.com/photo-1536338701933-9fb6ce505c48?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80") no-repeat; {% endcomment %}
+  background-position: 100% 100%;
+  position: relative;
+  
+}
+
+.card-wrapper__cover-bg {
+  height: 100%;
+  text-align: center;
+  img {
+    height: 100%;
+  }
+}
+
+.card-wrapper__profile-pic {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 100px;
+  left: 50%;
+  margin-left: -50px;
+  top: 30px;
+  overflow: hidden;
+  padding: 10px;
+  
+  img {
+    width: 150% !important;
+    height: 150% !important;
+    display: block !important;
+    margin-left: -25px !important;
+    margin-top: -25px !important;
+  }
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+.card-wrapper__details {
+  padding-top: 65px;
+  padding-bottom: 20px;
+}
+
+.card-wrapper__user-name a {
+  color: #1085E0;
+  text-decoration: none;
+  font-size: 26px;
+}
+
+.card-wrapper__user-detail {
+  font-size: 16px;
+  color: #707070;
+}
+
+.card-wrapper__user-contact-info {
+  padding-top: 20px;
+  
+  .card-wrapper__user-contact-info-label {
+    font-size: 16px;
+    color: #707070;
+  }
+  
+  .card-wrapper__user-contact-info-value,
+  .card-wrapper__user-contact-info-value a{
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.dash_user_details{
+	font-size: 20px;
+}
+
+.dash__user__image{
+
+	border: 7px solid #F02d3a; 
+	border-radius: 30px;
+	margin-top: -100px; 
+	width: 220px; 
+	height:220px;
+}
+
+.dash__button{
+	height: 50px;
+	margin: 10px 40px;
+	padding: 2px 40px;
+	text-decoration: none;
+	border-radius: 30px;
+	line-height: 45px;
+	color: #FFF;
+	background: #F02D3A;
+	border: 2px solid #fff;
+	-webkit-transition: all 0.30s ease-in-out;
+  	-moz-transition: all 0.30s ease-in-out;
+  	-ms-transition: all 0.30s ease-in-out;
+  	-o-transition: all 0.30s ease-in-out;
+}
+
+
+@media only screen and (max-width: 767px) {
+
+	.order__desc{
+		padding: 0px 20px;
+		font-size: 2vh;
+	}
+
+	.order__status{
+		writing-mode: horizontal-tb !important;
+		border-radius: 0px 0px 5px 5px;
+		text-align: center;
+	}
+
+	.card-wrapper {
+		width: 100%;
+	}
+	
+	.dash__name{
+		font-size: 4.5vh !important;
+	}
+	
+	.dash_user_details{
+		font-size: 2.2vh !important;
+	}
+
+	.dash__user__image{
+
+	border: 7px solid #F02d3a; 
+	border-radius: 30px;
+	margin-top: -100px; 
+	width: 170px; 
+	height:170px;
+}
+
+}
+
+
+
+</style>
+
 {% endblock extra_head %}
+
 {% block content %}
     <nav class="fh5co-nav" style="background-color: #5D5B95; position: initial !important;" role="navigation">
 		<div class="top-menu">
@@ -21,7 +219,291 @@
 			</div>
 		</div>
 	</nav>
-    <div class="user_info">
-        <h2>Hello, {{ user.first_name }}</h2>
+	
+    <div class="user_info" style = "background: linear-gradient(to right, #d3cce3, #e9e4f0);">
+	
+	<div class="row">
+		<div class="col" style="margin-bottom: 0px;border-style: none;border-right-style: none;border-radius: 0px;background-color: #f02d3a;background-size: cover, auto;height:250px;"></div>
+	</div>
+	<div class="row text-center">
+		<div class="col" style="border-radius: 50px;background-color: #fff; width: 80%; margin: -50px auto 0 auto;">
+			<img class="img-fluid dash__user__image"  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dhruv" loading="auto">
+			<br>
+			<br>
+			<h1 class  = "dash__name" style = "font-family: 'Poppins'; font-weight: 600; color: #F02d3a; font-size: 5vw;">Sajal Sajal</h1>
+			<div class="row dash_user_details">
+				<div class="col-sm-6 col-xs-12">
+					<p>
+						<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-envelope"></i> Email: </span> kotharidhruv25@gmail.com 
+					</p>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<p>
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-phone"></i> Mobile: </span> +91-7339904294 
+					</p>
+				</div>	
+			</div>
+			<div class="row dash_user_details">
+				<div class="col-sm-6 col-xs-12">
+					<p>
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-weight"></i> Weight: </span> 45 kgs. 
+					</p>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<p>
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-ruler-vertical"></i> Height: </span> 5.7 ft 
+					</p>
+				</div>	
+			</div>
+		<br>
+		{% comment %} <button class = "btn dash__button">Update Profile</button> {% endcomment %}
+		<a data-toggle="modal" class = "btn dash__button" href="#myModal1" data-backdrop="static">
+						Update Profile 
+					</a>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo1()">×</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body text-center" >
+				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+			
+		</div>
+         <div class="modal-footer">
+          <button type="button" class="btn dash__button">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		
+		<br>
+		{% comment %} <h2>Hello, {{ user.first_name }}</h2> {% endcomment %}
+		<div class="container" style = "width: 80%">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<div class="row" >
+				<div class="card-wrapper"> 
+					<div class="card-wrapper__bg">
+						<div class="card-wrapper__cover-bg">
+						</div>
+						<div class="card-wrapper__profile-pic">
+						<img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" style = "width: 130px; height: 130px; margin: -25px 0px 0px -25px; "> 
+						</div>
+					</div>
+					<div class="card-wrapper__details">
+						<div class="card-wrapper__user-details">
+							<div class="text-center card-wrapper__user-name" style = "color: #F02d3a; font-weight: 800; font-size: 30px">
+								Dhruv Kothari
+							</div>
+							<div class="text-center card-wrapper__designation card-wrapper__user-detail">
+								Web Developer
+							</div>
+							<div class="text-center card-wrapper__company  card-wrapper__user-detail" style = "color: #F02d3a; font-weight: 600">
+								Gymcounselor
+							</div>
+						</div>
+					<div class="card-wrapper__user-contact-info-wrapper text-center">
+						<div class="card-wrapper__user-contact-info card-wrapper__user-contact-info--email">
+							<div class="card-wrapper__user-contact-info-label" style = "color: #F02d3a; font-weight: 600">
+							Email
+							</div>
+							<div class="card-wrapper__user-contact-info-value">
+								kotharidhruv25@gmail.com
+							</div>
+						</div>
+						<div class="card-wrapper__user-contact-info card-wrapper__user-contact-info--email">
+							<div class="card-wrapper__user-contact-info-label" style = "color: #F02d3a; font-weight: 600">
+								Mobile
+							</div>
+							<div class="card-wrapper__user-contact-info-value">
+								+91 - 98435 77765
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
+					<div class="col-sm-11 col-xs-12">
+						<div class="row order__title">
+							PCOS Free ME
+						</div>
+						<div class="row order__desc">
+							<p>
+								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
+							</p>
+						</div>
+						<div class="row order__options">
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
+							</p>
+							</div>
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
+							</p>
+							</div>	
+						</div>
+						
+					</div>
+					<div class="col-sm-1 col-xs-12 order__status" style = "background: #4BB543"> On Going </div>
+				</div>
+			</div>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
+					<div class="col-sm-11 col-xs-12">
+						<div class="row order__title">
+							PCOS Free ME
+						</div>
+						<div class="row order__desc">
+							<p>
+								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
+							</p>
+						</div>
+						<div class="row order__options">
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
+							</p>
+							</div>
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
+							</p>
+							</div>	
+						</div>
+						
+					</div>
+					<div class="col-sm-1 col-xs-12 order__status"> Completed </div>
+				</div>
+			</div>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
+					<div class="col-sm-11 col-xs-12">
+						<div class="row order__title">
+							PCOS Free ME
+						</div>
+						<div class="row order__desc">
+							<p>
+								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
+							</p>
+						</div>
+						<div class="row order__options">
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
+							</p>
+							</div>
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
+							</p>
+							</div>	
+						</div>
+						
+					</div>
+					<div class="col-sm-1 col-xs-12 order__status"> Purchased </div>
+				</div>
+			</div>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
+					<div class="col-sm-11 col-xs-12">
+						<div class="row order__title">
+							PCOS Free ME
+						</div>
+						<div class="row order__desc">
+							<p>
+								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
+							</p>
+						</div>
+						<div class="row order__options">
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
+							</p>
+							</div>
+							<div class="col-sm-6 col-xs-12">
+							<p>
+								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
+							</p>
+							</div>	
+						</div>
+						
+					</div>
+					<div class="col-sm-1 col-xs-12 order__status"> Purchased </div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
     </div>
 {% endblock %}

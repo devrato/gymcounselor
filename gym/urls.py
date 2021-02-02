@@ -9,7 +9,7 @@ from services.views import service_view
 from home.views import home_view, about_view, work_view, contact_view
 from account.views import login_view, register_view
 from dashboard.views import dash_view
-from products.views import prod_view
+from products.views import prod_view, order_success, order_successmodal
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,11 +22,12 @@ urlpatterns = [
     path('services/', service_view, name='services'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('dashboard/', dash_view, name='dashboard'),
+    path('myorders/', dash_view, name='myorders'),
     path('product/<slug>', prod_view, name='prod_detail'),
+    path('ordersuccess', order_success, name='order_success'),
+    path('order_successmodal', order_successmodal, name='order_successmodal'),
     url('social-auth/', include('social_django.urls', namespace='social')),
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-
-
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
