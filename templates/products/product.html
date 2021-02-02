@@ -18,6 +18,54 @@
   height: 100%;
 }
 
+.heading__content{
+	padding-left: 180px; 
+	padding-top: 70px; 
+}
+
+.razorpay-payment-button{
+	font-family: 'Comfortaa', cursive;
+	height: 50px;
+	margin: 10px 40px;
+	padding: 2px 40px;
+	text-decoration: none;
+	border-radius: 30px;
+	line-height: 45px;
+	color: #FFF;
+	background: #F02D3A;
+	border: 2px solid #fff;
+	-webkit-transition: all 0.30s ease-in-out;
+  	-moz-transition: all 0.30s ease-in-out;
+  	-ms-transition: all 0.30s ease-in-out;
+  	-o-transition: all 0.30s ease-in-out;
+}
+
+.razorpay-payment-button:hover{
+	background-color: rgba(240, 45, 58,0.5);
+	color: #d83d3d;
+}
+
+@media only screen and (max-width: 767px) {
+	
+	.heading__content{
+		padding-left: 10px; 
+		padding-top: 50px; 
+	}
+	.heading__content__desc{
+		font-size: 12px !important;
+		margin: 0px !important; 
+	}
+	.btn-lg.product__button{
+		font-size: 12px !important;
+		padding: 10px 20px !important;
+	}
+	.heading__image{
+		width: 167px;
+		height: 283px;
+		margin-top: 32px;
+	}
+}
+
 </style>
 
 {% endblock %}
@@ -79,24 +127,23 @@
 		</div>
 	</nav>
 
-    <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm hero flex items-center"role="banner" data-stellar-background-ratio="0.5">
+    {% comment %} <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm hero flex items-center"role="banner" data-stellar-background-ratio="0.5">
          <div class="container">
-                        <br>
-                    <div class="display-tc animate-box">
-                            <h1 style="color:#fff; font-size: x-large;">{{ product.name }}</h1>
-                            <p style="color:#fff; width:50%">{{ product.des }}</p>
-                            {% if request.user.is_authenticated %}
-        					<p><a class="btn btn-default btn-lg" href="{{ product.buyLink }}" style="background-color : #F02D3A;">Get your Custom Plan</a></p>
-                            {% else %}
-                            <p><a class="btn btn-default btn-lg" href="{% url 'register' %}?next={{request.path}}" style="background-color : #F02D3A;">Get a Custom Plan</a></p>
-                            {% endif %}
-                    </div>
-                        <div class="hero-image">
-                            <img src="../../media/{{ product.img_first }}" alt="">
-                        </div>
-
-
-        </div>
+			<br>
+			<div class="display-tc animate-box">
+				<h1 style="color:#fff; font-size: x-large;">{{ product.name }}</h1>
+				<p style="color:#fff; width:50%">{{ product.des }}</p>
+				{% if request.user.is_authenticated %}
+				<p><a class="btn btn-default btn-lg" href="{{ product.buyLink }}" style="background-color : #F02D3A;">Get your Custom Plan</a></p>
+				{% else %}
+				<p><a class="btn btn-default btn-lg" href="{% url 'register' %}?next={{request.path}}" style="background-color : #F02D3A;">Get a Custom Plan</a></p>
+				{% endif %}
+			</div>
+			<div class="hero-image">
+				<!-- <img src="../../media/{{ product.img_first }}" alt=""> -->
+				<img src="../../media/bg_1.png" alt="">
+			</div>
+        </div> 
 	<!--	<div class="overlay" style="background-image: url('../../media/{{ product.img_first }}'); background-repeat: no-repeat; shape-rendering: geometricprecision;"></div>-->
 	<!--	<div class="container">-->
 	<!--		<div class="row">-->
@@ -110,9 +157,27 @@
 	<!--			</div>-->
 	<!--		</div>-->
 	<!--	</div>-->
-	</header>
+	</header> {% endcomment %}
 
-
+		<div class="container-fluid" style = "background-color: #F02d3a">
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="display-tc animate-box heading__content">
+						<h1 style="color:#fff; font-size: x-large; font-weight: 600">{{ product.name }}</h1>
+						<p class = "heading__content__desc" style="color:#fff">{{ product.des }}</p>
+						<br>
+						{% if request.user.is_authenticated %}
+						<p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="background-color : #F02D3A; color: white;">Get your Custom Plan</a></p>
+						{% else %}
+						<p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{request.path}}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-xs-6 text-center">
+					<img src="../../media/bg_1.png" class = "heading__image" alt="product_heading_image">
+				</div>
+			</div>
+		</div>
 
 	{% comment %} <div id="fh5co-services" class="fh5co-bg-section">
 		<div class="container">
@@ -224,13 +289,51 @@
 			</div>
 			<br>
 			{% if request.user.is_authenticated %}
-			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p>
+			{% comment %} <p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p> {% endcomment %}
+			<div style="text-align:center;">
+				<form action="/order_successmodal"  method="POST">
+				{% csrf_token %}
+					<script
+						src="https://checkout.razorpay.com/v1/checkout.js"
+						data-key="rzp_test_2GM0584mxsjPdZ"
+						data-amount="2993"
+						data-currency="INR"
+						data-order_id = "{{payment.id}}"
+						data-buttontext="Pay Online"
+						data-name="GymCounselor"
+						data-description="Fitness and healthcare"
+						data-image="{% static 'images/logo1.png' %}"
+						data-prefill.name="Sajal"
+						data-prefill.email="sajal.kumar@example.com"
+						data-theme.color="#F02D3A"
+					></script>
+					<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+				</form>
+			</div>
 			{% else %}
 			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
 			{% endif %}
 		</div>
 	</div>
 	
+	{% comment %} <form action="/order_successmodal"  method="POST">
+	{% csrf_token %}
+		<script
+			src="https://checkout.razorpay.com/v1/checkout.js"
+			data-key="rzp_test_2GM0584mxsjPdZ"
+			data-amount="29935"
+			data-currency="INR"
+			data-order_id = "{{payment.id}}"
+			data-buttontext="Pay Online"
+			data-name="GymCounselor"
+			data-description="Fitness and healthcare"
+			data-image="{% static 'images/logo1.png' %}"
+			data-prefill.name="Sajal"
+			data-prefill.email="sajal.kumar@example.com"
+			data-theme.color="#F02D3A"
+		></script>
+		<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+	</form> {% endcomment %}
 	<div id="fh5co-testimonial" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">

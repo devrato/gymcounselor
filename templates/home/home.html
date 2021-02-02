@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load custom_tags %}
 {% load static %}
 
 {% block content %}
@@ -25,7 +25,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+						<div id="fh5co-logo" style = "font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -44,6 +44,8 @@
 							{% if request.user.is_authenticated %}
                             <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
 									<ul class="dropdown">
+										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
+										<li><a href="{% url 'myorders' %}">My Orders</a></li>
 										<li><a href="{% url 'logout' %}">Logout</a></li>
 									</ul>
 							</li>
@@ -64,9 +66,9 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="display-t">
-						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1>Making the Future of Fitness Easy and Accessible</h1>
-							<p><a href="{% url 'register' %}?next={{request.path}}" class="btn btn-default btn-lg">Get Free Consultation</a></p>
+						<div class="display-tc animate-box" >
+							<h1 style = "font-family: 'Poppins', sans-serif; font-weight: 600;">Making the Future of Fitness Easy and Accessible</h1>
+							<p><a href="{% url 'register' %}?next={{request.path}}" class="btn btn-default btn-lg" style = "font-family: 'Poppins', sans-serif;">Get Free Consultation</a></p>
 						</div>
 					</div>
 				</div>
@@ -197,4 +199,16 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		if( {{context|hash:'order_successmodal'}} === 1)
+		{
+			console.log("Hello")
+			swal("Thank You!", "Your order is successful!", "success");
+		}
+		else{
+			console.log({{context|hash:'order_successmodal'}})
+		}
+	</script>
 {% endblock %}
