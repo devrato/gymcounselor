@@ -21,8 +21,6 @@ def prod_view(request, slug):
     payment = client.order.create({'amount': order_amount, 'currency': 'INR',
                                    'payment_capture': '1'})
 
-    print(payment)
-
     context = {
         'title': service.name,
         'product': service,
@@ -41,9 +39,8 @@ def order_successmodal(request):
 
         # data needed
         razorpay_payment_id = request.POST['razorpay_payment_id']
-        print(request.user.email)
         customer_email = request.user.email
-
+        print("Happened")
         digits = "0123456789"
         order_id = "GC" + random.choice(digits) + random.choice(
             digits) + random.choice(digits) + random.choice(digits)

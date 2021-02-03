@@ -3,9 +3,9 @@
 {% block content %}
 <div class="fh5co-loader"></div>
 
-	<div id="page">
+<div id="page">
 	<nav class="fh5co-nav" role="navigation">
- <div class="top">
+	    <div class="top">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 text-right">
@@ -23,7 +23,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+						<div id="fh5co-logo" style = "font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -34,7 +34,7 @@
 						    <li class="has-dropdown"><a>Services</a>
 							{% for s in service %}
 							   <ul class="dropdown">
-							        <li><a href="{% url 'prod_detail' s.id %}">{{ s.name }}</a></li>
+							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
 							   </ul>
 							   {% endfor %}
 							</li>
@@ -42,11 +42,13 @@
 							{% if request.user.is_authenticated %}
                             <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
 									<ul class="dropdown">
+										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
+										<li><a href="{% url 'myorders' %}">My Orders</a></li>
 										<li><a href="{% url 'logout' %}">Logout</a></li>
 									</ul>
 							</li>
 							{% else %}
-                                <li class="btn-cta"><a href="{% url 'login' %}"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="{% url 'login' %}?next={{request.path}}"><span>Login</span></a></li>
                             {% endif %}
                         </ul>
 					</div>

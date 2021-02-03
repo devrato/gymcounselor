@@ -39,8 +39,6 @@ def register_view(request):
     }
     if request.method == "POST":
         password = request.POST.get('password')
-        # confirm_password = request.POST.get('confirm_password')
-        # if password == confirm_password:
         try:
             check_user = User.objects.get(
                 username=request.POST['username'])
@@ -53,7 +51,7 @@ def register_view(request):
             user = User.objects.create_user(username=request.POST['username'], password=password,
                                             email=request.POST['username'])
             user.save()
-            # ExtendedUser(user=user, ph_no=request.POST['phone']).save()
+            ExtendedUser(user=user).save()
             user = authenticate(request, username=request.POST.get(
                 'username'), password=password)
             if user is not None:

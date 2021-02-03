@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block extra_head %}
   
 <style>
@@ -202,7 +203,58 @@
 {% endblock extra_head %}
 
 {% block content %}
-    <nav class="fh5co-nav" style="background-color: #5D5B95; position: initial !important;" role="navigation">
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+	    <div class="top">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 text-right">
+						<ul class="fh5co-social">
+							<li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+							<li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+							<li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+							<li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo" style = "font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li><a href="{% url 'about' %}">About</a></li>
+							<li><a href="{% url 'contact' %}">Contact</a></li>
+							<li class="has-dropdown"><a>Services</a>
+							{% for s in props|hash:'services' %}
+								<ul class="dropdown">
+									<li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+								</ul>
+							{% endfor %}
+							</li>
+							{% if request.user.is_authenticated %}
+                            <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+								<ul class="dropdown">
+									<li><a href="{% url 'dashboard' %}">My Profile</a></li>
+									<li><a href="{% url 'myorders' %}">My Orders</a></li>
+									<li><a href="{% url 'logout' %}">Logout</a></li>
+								</ul>
+							</li>
+							{% else %}
+							<li class="btn-cta"><a href="{% url 'login' %}?next={{request.path}}"><span>Login</span></a></li>
+                            {% endif %}
+                        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+    {% comment %} <nav class="fh5co-nav" style="background-color: #5D5B95; position: initial !important;" role="navigation">
 		<div class="top-menu">
 			<div class="container">
 				<div class="row">
@@ -211,127 +263,114 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-{#							<li style="color: #ffffff">{{ user.first_name }} {{ user.last_name }}</li>#}
-                            <li><a href="{% url 'logout' %}">Logout</a></li>
+							<li><a href="{% url 'logout' %}">Logout</a></li>
 					</div>
 				</div>
-
 			</div>
 		</div>
-	</nav>
+	</nav> {% endcomment %}
 	
     <div class="user_info" style = "background: linear-gradient(to right, #d3cce3, #e9e4f0);">
-	
-	<div class="row">
-		<div class="col" style="margin-bottom: 0px;border-style: none;border-right-style: none;border-radius: 0px;background-color: #f02d3a;background-size: cover, auto;height:250px;"></div>
+	<div class="row" style = "margin: 0">
+		<div class="col" style="margin-bottom: 0px;border-style: none;border-right-style: none;border-radius: 0px;background-color: #f02d3a;background-size: cover, auto;height:300px; ">
+			<br>
+			<br>
+			<br>
+		</div>
 	</div>
-	<div class="row text-center">
+	<div class="row text-center" style = "margin: 0">
 		<div class="col" style="border-radius: 50px;background-color: #fff; width: 80%; margin: -50px auto 0 auto;">
 			<img class="img-fluid dash__user__image"  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dhruv" loading="auto">
 			<br>
 			<br>
-			<h1 class  = "dash__name" style = "font-family: 'Poppins'; font-weight: 600; color: #F02d3a; font-size: 5vw;">Sajal Sajal</h1>
+			<h1 class  = "dash__name" style = "font-family: 'Poppins'; font-weight: 600; color: #F02d3a; font-size: 5vw;">{{request.user.first_name }} {{ request.user.last_name}}</h1>
 			<div class="row dash_user_details">
+			{% for customer in props|hash:'user' %}
 				<div class="col-sm-6 col-xs-12">
 					<p>
-						<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-envelope"></i> Email: </span> kotharidhruv25@gmail.com 
+						<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-envelope"></i> Email: </span> {{ request.user.email }}
 					</p>
 				</div>
 				<div class="col-sm-6 col-xs-12">
 					<p>
-						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-phone"></i> Mobile: </span> +91-7339904294 
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-phone"></i> Mobile: </span> {{ customer.ph_no }}
 					</p>
 				</div>	
 			</div>
 			<div class="row dash_user_details">
 				<div class="col-sm-6 col-xs-12">
 					<p>
-						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-weight"></i> Weight: </span> 45 kgs. 
+					
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-weight"></i> Weight: </span> {{ customer.weight }} Kgs 
 					</p>
+					
 				</div>
 				<div class="col-sm-6 col-xs-12">
 					<p>
-						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-ruler-vertical"></i> Height: </span> 5.7 ft 
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-ruler-vertical"></i> Height: </span> {{ customer.height }} cms
 					</p>
-				</div>	
+				</div>
+				{% endfor %}	
 			</div>
 		<br>
-		{% comment %} <button class = "btn dash__button">Update Profile</button> {% endcomment %}
-		<a data-toggle="modal" class = "btn dash__button" href="#myModal1" data-backdrop="static">
-						Update Profile 
-					</a>
+			{% comment %} <button class = "btn dash__button">Update Profile</button> {% endcomment %}
+			<a data-toggle="modal" class = "btn dash__button" href="#myModal1" data-backdrop="static" style = "font-family: 'Poppins';">
+				Update Profile 
+			</a>
 		</div>
 	</div>
 
 
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo1()">×</button>
-          <h4 class="modal-title">Modal title</h4>
-        </div>
-        <div class="modal-body text-center" >
-				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-				<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-			
-		</div>
-         <div class="modal-footer">
-          <button type="button" class="btn dash__button">Save changes</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-		<br>
-		<br>
-		<br>
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo1()">×</button>
+					<h4 class="modal-title">Update Detials</h4>
+				</div>
+				<form action="/updateuserdetails" method="post">
+         	 	{% csrf_token %}
+					<div class="modal-body" >
+						<div class="row">
+							<div class="col-md-6 col-xs-12">
+								<label> First Name: </label>
+								<input type="text" class="form-control" name = "first_name" id = "first_name" placeholder="Enter your first name" aria-describedby="basic-addon1" required>	
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<label> Last Name: </label>
+								<input type="text" class="form-control" name = "last_name" id = "last_name" placeholder="Enter your first name" aria-describedby="basic-addon1" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<label> Mobile Number: </label>
+								<input type="text" class="form-control" name = "ph_no" id = "ph_no" placeholder="Enter your mobile number" aria-describedby="basic-addon1" required>	
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-xs-12">
+								<label> Weight: </label>
+								<input type="text" class="form-control" name = "weight" id = "weight" placeholder="Enter weight in Kgs." aria-describedby="basic-addon1" required>	
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<label> Height: </label>
+								<input type="text" class="form-control" name = "height" id = "height" placeholder="Enter height in cms." aria-describedby="basic-addon1" required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn dash__button">Save changes</button>
+					</div>
+				</form>
+      		</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+  	</div><!-- /.modal -->
 		<br>
 		<br>
 		<br>
 		
-		<br>
 		{% comment %} <h2>Hello, {{ user.first_name }}</h2> {% endcomment %}
-		<div class="container" style = "width: 80%">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+		{% comment %} <div class="container" style = "width: 80%">	
 			<div class="row" >
 				<div class="card-wrapper"> 
 					<div class="card-wrapper__bg">
@@ -374,133 +413,43 @@
 				</div>
 			</div>
 			
-		</div>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+		</div> {% endcomment %}
 			
-			<br>
-			<div class="row justify-content-center">
-				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
-					<div class="col-sm-11 col-xs-12">
-						<div class="row order__title">
-							PCOS Free ME
-						</div>
-						<div class="row order__desc">
-							<p>
-								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
-							</p>
-						</div>
-						<div class="row order__options">
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
-							</p>
-							</div>
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
-							</p>
-							</div>	
-						</div>
-						
-					</div>
-					<div class="col-sm-1 col-xs-12 order__status" style = "background: #4BB543"> On Going </div>
-				</div>
+			
+
+			<div class="text-center" >
+				<h1 style = "font-size: 40px; font-family: 'Poppins'; font-weight: 800; color: #F02D3A;">My Orders</h1>
 			</div>
-			<br>
-			<div class="row justify-content-center">
-				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
-					<div class="col-sm-11 col-xs-12">
-						<div class="row order__title">
-							PCOS Free ME
-						</div>
-						<div class="row order__desc">
-							<p>
-								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
-							</p>
-						</div>
-						<div class="row order__options">
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
-							</p>
+			{% for order in props|hash:'orders' reversed %}
+				<div class="row justify-content-center" style="margin: 0; padding: 30px">
+					<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
+						<div class="col-sm-11 col-xs-12">
+							<div class="row order__title"> {{order.service_name}} </div>
+							<div class="row order__desc">
+								<p> Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that.. </p>
 							</div>
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
-							</p>
-							</div>	
-						</div>
-						
-					</div>
-					<div class="col-sm-1 col-xs-12 order__status"> Completed </div>
-				</div>
-			</div>
-			<br>
-			<div class="row justify-content-center">
-				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
-					<div class="col-sm-11 col-xs-12">
-						<div class="row order__title">
-							PCOS Free ME
-						</div>
-						<div class="row order__desc">
-							<p>
-								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
-							</p>
-						</div>
-						<div class="row order__options">
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
-							</p>
+							<div class="row order__options">
+								<div class="col-sm-4 col-xs-12">
+									<p> <span style="color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> {{order.order_id}} </p>
+								</div>
+								<div class="col-sm-4 col-xs-12">
+									<p> <span style="color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> {{order.oder_date|date:"d-M-Y"}} </p>
+								</div>
+								<div class="col-sm-4 col-xs-12">
+									<p> <span style="color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Expiry Date: </span> {{order.expiry_date|date:"d-M-Y"}} </p>
+								</div>
 							</div>
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
-							</p>
-							</div>	
 						</div>
-						
+						{% now "Y-m-d" as todays_date %}
+						{% if todays_date < order.expiry_date|date:"Y-m-d" %}
+							<div class="col-sm-1 col-xs-12 order__status" style="background: #4BB543"> On Going </div>
+						{% else %}
+							<div class="col-sm-1 col-xs-12 order__status"> Completed </div>
+						{% endif %}						
 					</div>
-					<div class="col-sm-1 col-xs-12 order__status"> Purchased </div>
 				</div>
-			</div>
-			<br>
-			<div class="row justify-content-center">
-				<div class="col-md-8 col-md-offset-2 col-xs-12 order_card">
-					<div class="col-sm-11 col-xs-12">
-						<div class="row order__title">
-							PCOS Free ME
-						</div>
-						<div class="row order__desc">
-							<p>
-								Do you want to finally reverse your PCOS symptoms? Then you need to fix the root of your PCOS. Let my team and I send you some evidence-backed information to do just that..
-							</p>
-						</div>
-						<div class="row order__options">
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
-							</p>
-							</div>
-							<div class="col-sm-6 col-xs-12">
-							<p>
-								<span style = "color: #F02D3A; font-weight: 600"><i class="far fa-calendar-alt"></i> Order Date: </span> 25-April-2021 
-							</p>
-							</div>	
-						</div>
-						
-					</div>
-					<div class="col-sm-1 col-xs-12 order__status"> Purchased </div>
-				</div>
-			</div>
-			<br>
-			<br>
-			<br>
+				<br>
+			{% endfor %}
 			<br>
 			<br>
 			<br>

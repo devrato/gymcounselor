@@ -8,7 +8,7 @@ from django.conf import settings
 from services.views import service_view
 from home.views import home_view, about_view, work_view, contact_view
 from account.views import login_view, register_view
-from dashboard.views import dash_view
+from dashboard.views import dash_view, updateuserdetails
 from products.views import prod_view, order_success, order_successmodal
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     path('product/<slug>', prod_view, name='prod_detail'),
     path('ordersuccess', order_success, name='order_success'),
     path('order_successmodal', order_successmodal, name='order_successmodal'),
+    path('updateuserdetails', updateuserdetails, name='updateuserdetails'),
     url('social-auth/', include('social_django.urls', namespace='social')),
 ]
 
