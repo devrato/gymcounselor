@@ -8,18 +8,20 @@ def home_view(request):
     user = request.user
 
     context = {
-            'title': 'Home',
-            'users': user,
-            'service': service,
-        }
+        'title': 'Home',
+        'users': user,
+        'service': service,
+    }
     return render(request, 'home/home.html', context)
 
 
 def about_view(request):
+    service = Service.objects.all()
     user = request.user
     context = {
         'title': 'About',
         'users': user,
+        'service': service,
     }
     return render(request, 'home/about.html', context)
 
@@ -34,9 +36,11 @@ def work_view(request):
 
 
 def contact_view(request):
+    service = Service.objects.all()
     user = request.user
     context = {
         'title': 'Contact Us',
         'users': user,
+        'service': service,
     }
     return render(request, 'home/contact.html', context)

@@ -33,7 +33,7 @@
 							<li><a href="{% url 'about' %}">About</a></li>
 							<li><a href="{% url 'contact' %}">Contact</a></li>
 
-						    <li class="has-dropdown"><a>Services</a>
+						    <li class="has-dropdown"><a href = "/product/PCOS">Services</a>
 							{% for s in service %}
 							   <ul class="dropdown">
 							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
@@ -42,7 +42,7 @@
 							</li>
 
 							{% if request.user.is_authenticated %}
-                            <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+                            <li class="has-dropdown"><a  href="{% url 'dashboard' %}"> Hey, {{ user.first_name }}</a>
 									<ul class="dropdown">
 										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
 										<li><a href="{% url 'myorders' %}">My Orders</a></li>
@@ -108,7 +108,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="test">
-						<img class="img-responsive" src="{% static 'images/home2.jpg' %}" >
+						<img class="img-responsive" src="{% static 'images/home2.jpg' %}" alt = "home_image" >
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -170,7 +170,7 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
 					<div class="fh5co-staff">
-						<img src="{% static 'images/lakshmi.jpg' %}" >
+						<img src="{% static 'images/lakshmi.jpg' %}" alt = "home_image" >
 						<h3>Lakshmi</h3>
 						<strong class="role">M.Sc(Clinical Nutrition),<br> Specializes in long term weight management.</strong>
 						<p>Passionate about nutrition and an expert in evaluating the dietary needs of a client Lakshmi has an inclination towards empowering others by understanding their symptoms, their bodies, and how even small diet and lifestyle changes can yield a more healthful, vibrant life in time. She is highly skilled in various fields of diet planning, nutrition counseling, management, public speaking, and healthcare.</p>
@@ -178,7 +178,7 @@
 				</div>
 				<div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
 					<div class="fh5co-staff">
-						<img src="{% static 'images/Siddharth.png' %}">
+						<img src="{% static 'images/Siddharth.png' %}" alt = "home_image">
 						<h3>Dr. Siddharth baidya</h3>
 						<strong class="role">Orthopedic Surgeon,<br>Specialty Sports Injury</strong>
 						<p>Co-founder of GymCounselor, Dr. Sidharth Baidya holds a Specialization in Sport Injury from MGMC&H, WEST BENGAL. In his vast experience of 8 years in the Fields of Medical and Orthopedics Sidharth has worked with multiple clients and patients and has taught several courses in places like Korea and India to name a few.</p>
@@ -186,7 +186,7 @@
 				</div>
 				<div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
 					<div class="fh5co-staff">
-						<img src="{% static 'images/rajnish.jpg' %}" >
+						<img src="{% static 'images/rajnish.jpg' %}" alt = "home_image" >
 						<h3>Rajnish</h3>
 						<strong class="role">Chief Of Exercise Sciences,<br>Certified Fitness and Nutrition Consultant (CPT)</strong>
 						<p>A Fitness and Nutrition Consultant certified by Scientific Training Fitness Academy and Currently one of the Faculty Members. I have worked on individual clients and have successfully helped them achieve their goals. Along with tailor made diet plan and customized exercise schedule, my clients reach their goals faster and in healthier fashion.</p>
