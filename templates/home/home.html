@@ -42,7 +42,7 @@
 							</li>
 
 							{% if request.user.is_authenticated %}
-                            <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+                            <li class="has-dropdown"><a  href="{% url 'dashboard' %}"> Hey, {{ user.first_name }}</a>
 									<ul class="dropdown">
 										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
 										<li><a href="{% url 'myorders' %}">My Orders</a></li>

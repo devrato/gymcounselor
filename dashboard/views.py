@@ -25,13 +25,14 @@ def dash_view(request):
 
 def updateuserdetails(request):
     if request.method == 'POST':
+        service = Service.objects.all()
         extended_user = ExtendedUser.objects.get(user=request.user)
         user = request.user
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         extended_user.ph_no = request.POST['ph_no']
-        extended_user.weight = request.POST['weight']
-        extended_user.height = request.POST['height']
+        extended_user.weight = int(request.POST['weight'])
+        extended_user.height = int(request.POST['height'])
         user.save()
         extended_user.save()
         print(extended_user)
@@ -41,4 +42,5 @@ def updateuserdetails(request):
         props['title'] = 'Dashboard'
         props['user'] = extended_user
         props['orders'] = orders
+        props['services'] = service
         return render(request, 'dashboard/dash.html', {'props': props})
