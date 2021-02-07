@@ -30,11 +30,11 @@ def prod_view(request, slug):
     return render(request, 'products/product.html', context)
 
 
+# def order_success(request):
+#     return render(request, 'products/thank.html')
+
+
 def order_success(request):
-    return render(request, 'products/thank.html')
-
-
-def order_successmodal(request):
     if request.method == 'POST':
 
         # data needed
@@ -64,7 +64,7 @@ def order_successmodal(request):
             'title': 'Home',
             'users': request.user,
             'service': service,
-            'order_successmodal': 1
+            'order_success': 1
         }
         return render(request, 'home/home.html', {'context': context})
     else:
@@ -73,6 +73,6 @@ def order_successmodal(request):
             'title': 'Home',
             'users': request.user,
             'service': service,
-            'order_successmodal': 0
+            'order_success': 0
         }
         return render(request, 'home/home.html', {'context': context})

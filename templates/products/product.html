@@ -4,8 +4,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-<link rel="stylesheet" href="{% static 'css/style1.css'%}">
-
 <style>
 
 .responsive-iframe {
@@ -19,12 +17,12 @@
 }
 
 .heading__content{
-	padding-left: 180px; 
-	padding-top: 70px; 
+	padding-left: 180px;
+	padding-top: 70px;
 }
 
 .razorpay-payment-button{
-	font-family: 'Comfortaa', cursive;
+	font-family: 'Poppins', sans-serif;
 	height: 50px;
 	margin: 10px 40px;
 	padding: 2px 40px;
@@ -46,14 +44,14 @@
 }
 
 @media only screen and (max-width: 767px) {
-	
+
 	.heading__content{
-		padding-left: 10px; 
-		padding-top: 50px; 
+		padding-left: 10px;
+		padding-top: 50px;
 	}
 	.heading__content__desc{
 		font-size: 12px !important;
-		margin: 0px !important; 
+		margin: 0px !important;
 	}
 	.btn-lg.product__button{
 		font-size: 12px !important;
@@ -114,7 +112,6 @@
                             <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
 									<ul class="dropdown">
 										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
-										<li><a href="{% url 'myorders' %}">My Orders</a></li>
 										<li><a href="{% url 'logout' %}">Logout</a></li>
 									</ul>
 							</li>
@@ -145,7 +142,7 @@
 				<!-- <img src="../../media/{{ product.img_first }}" alt=""> -->
 				<img src="../../media/bg_1.png" alt="">
 			</div>
-        </div> 
+        </div>
 	<!--	<div class="overlay" style="background-image: url('../../media/{{ product.img_first }}'); background-repeat: no-repeat; shape-rendering: geometricprecision;"></div>-->
 	<!--	<div class="container">-->
 	<!--		<div class="row">-->
@@ -181,7 +178,7 @@
 			</div>
 		</div>
 
-	{% comment %} <div id="fh5co-services" class="fh5co-bg-section">
+	<div id="fh5co-services" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -190,68 +187,9 @@
 				</div>
 			</div>
 			<div class="row" >
-				<div class="col-md-6 text-center"  style = "margin: 50px auto;">
-					<div class="test" >
-						<img class="img-responsive" src="../../media/{{ product.img_main }}" alt="test">
-						<iframe width="300" height="550" src="https://www.youtube.com/embed/FoMlSB6ftQg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="row services-inner">
-						<div class="col-md-12 col-sm-12">
-							<div class="feature-center animate-box" data-animate-effect="fadeIn">
-								<span class="icon">
-									<i class="icon-search"></i>
-								</span>
-								<h3>{{ product.head1 }}</h3>
-								<p>{{ product.desc1 }}</p>
-							</div>
-						</div>
-						<div class="col-md-12 col-sm-12">
-							<div class="feature-center animate-box" data-animate-effect="fadeIn">
-								<span class="icon">
-									<i class="icon-bowl"></i>
-								</span>
-								<h3>{{ product.head2 }}</h3>
-								<p>{{ product.desc2 }}</p>
-							</div>
-						</div>
-						<div class="col-md-12 col-sm-12">
-							<div class="feature-center animate-box" data-animate-effect="fadeIn">
-								<span class="icon">
-									<i class="icon-heart"></i>
-								</span>
-								<h3>{{ product.head3 }}</h3>
-								<p>{{ product.desc3 }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br>
-			{% if request.user.is_authenticated %}
-			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p>
-			{% else %}
-			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
-			{% endif %}
-		</div>
-	</div> {% endcomment %}
-
-
-	
-	<div id="fh5co-services" class="fh5co-bg-section">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>How it Works New</h2>
-					<!--<p>We at GymCounselor work with scientific principles and data backed methodologies to help you see the results that you may have never seen.</p>-->
-				</div>
-			</div>
-			<div class="row" >
 				<div class="col-12 text-center">
 					<div class="test embed-responsive embed-responsive-16by9" >
-						{% comment %} <img class="img-responsive" src="../../media/{{ product.img_main }}" alt="test"> {% endcomment %}
-						<iframe class = "embed-responsive-item" src="https://www.youtube.com/embed/EdExFF05FGc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<iframe class = "embed-responsive-item" src={{ product.feat_l }} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
 				</div>
 				<div class="container">
@@ -287,7 +225,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			<br>
 			{% if request.user.is_authenticated %}
@@ -297,16 +235,16 @@
 				{% csrf_token %}
 					<script
 						src="https://checkout.razorpay.com/v1/checkout.js"
-						data-key="rzp_test_2GM0584mxsjPdZ"
-						data-amount="2993"
+						data-key="rzp_live_7yyyG6noQKFiNW"
+						data-amount="{{ product.price }}"
 						data-currency="INR"
 						data-order_id = "{{payment.id}}"
 						data-buttontext="Pay Online"
-						data-name="GymCounselor"
+						data-name="gymCounselor"
 						data-description="Fitness and healthcare"
 						data-image="{% static 'images/logo1.png' %}"
-						data-prefill.name="Sajal"
-						data-prefill.email="sajal.kumar@example.com"
+						data-prefill.name="User"
+						data-prefill.email="example.kumar@example.com"
 						data-theme.color="#F02D3A"
 					></script>
 					<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
@@ -317,7 +255,7 @@
 			{% endif %}
 		</div>
 	</div>
-	
+
 	{% comment %} <form action="/order_successmodal"  method="POST">
 	{% csrf_token %}
 		<script
@@ -355,22 +293,23 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#F2F2F2">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2 style = "color: black; font-family: 'Comfortaa'; font-size: 8vh;">Happy Clients</h2>
+					<h2 style = " font-size: 8vh;">Happy Clients</h2>
 				</div>
 			</div>
 			<div class="row text-center">
 				<div class="col-md-4" style = "margin-bottom: 20px">
 					<a data-toggle="modal" href="#myModal1" data-backdrop="static">
-						<img src="{% static 'images/trialvideothumb.png' %}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="video3"> 
+						<img src="../../media/{{ product.thumb1 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test1">
 					</a>
 					{% comment %} <iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  {% endcomment %}
-					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Comfortaa', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
-						Dhruv Kothari
+					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
+						<br>
+						{{ product.test_n1 }}
 						<br>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
@@ -378,18 +317,19 @@
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
 						<br>
-						<span style = "font-size: 1.5vh"; class = "text-left">
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione ullam repudiandae quas! Maiores ad ex, dolor delectus modi earum eligendi doloremque iste. Iure, optio laboriosam nostrum doloribus repellendus libero asperiores, sunt veniam, dolores porro sed autem reiciendis culpa sint architecto neque enim laborum totam.
-						</span>
+						<span style = "font-size: 1.5vh" class = "text-left">
+						  {{ product.test_d1 }}
+						  </span>
 					</p>
 				</div>
 				<div class="col-md-4" style = "margin-bottom: 20px">
 					<a data-toggle="modal" href="#myModal2" data-backdrop="static">
-						<img src="{% static 'images/trialvideothumb.png' %}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="video3"> 
+						<img src="../../media/{{ product.thumb2 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test2">
 					</a>
 					{% comment %} <iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/EdExFF05FGc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  {% endcomment %}
-					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Comfortaa', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px;" class = "text-left">
-						Dhruv Kothari
+					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px;" class = "text-left">
+						<br>
+						{{ product.test_n2 }}
 						<br>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
@@ -397,17 +337,18 @@
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
 						<br>
-						<span style = "font-size: 1.5vh"; class = "text-left">
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione ullam repudiandae quas! Maiores ad ex, dolor delectus modi earum eligendi doloremque iste. Iure, optio laboriosam nostrum doloribus repellendus libero asperiores, sunt veniam, dolores porro sed autem reiciendis culpa sint architecto neque enim laborum totam.
+						<span style = "font-size: 1.5vh" class = "text-left">
+						    {{ product.test_d2 }}
 						</span>
 					</p>
 				</div>
 				<div class="col-md-4" style = "margin-bottom: 20px">
 					<a data-toggle="modal" href="#myModal3" data-backdrop="static" >
-						<img src="{% static 'images/trialvideothumb.png' %}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="video3"> 
+						<img src="../../media/{{ product.thumb3 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test3">
 					</a>
-					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Comfortaa', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
-						Dhruv Kothari
+					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
+						<br>
+						{{ product.test_n3 }}
 						<br>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
@@ -415,15 +356,15 @@
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
 						<br>
-						<span style = "font-size: 1.5vh"; class = "text-left">
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione ullam repudiandae quas! Maiores ad ex, dolor delectus modi earum eligendi doloremque iste. Iure, optio laboriosam nostrum doloribus repellendus libero asperiores, sunt veniam, dolores porro sed autem reiciendis culpa sint architecto neque enim laborum totam.
-						</span>
+						<span style = "font-size: 1.5vh"     class = "text-left">
+                            {{ product.test_d3 }}
+                        </span>
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Button trigger modal -->
   {% comment %} <a data-toggle="modal" href="#myModal1" class="btn btn-primary btn-lg">Launch demo modal</a> {% endcomment %}
 
@@ -436,7 +377,7 @@
           <h4 class="modal-title">Modal title</h4>
         </div>
         <div class="modal-body text-center" style = "padding-top: 66.66%;">
-			<iframe id ="video1" class = "responsive-iframe" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+			<iframe id ="video1" class = "responsive-iframe" src="{{ product.test_l1 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
 		</div>
          {% comment %} <div class="modal-footer">
@@ -456,7 +397,7 @@
           <h4 class="modal-title">Modal title</h4>
         </div>
         <div class="modal-body text-center"  style = "padding-top: 66.66%;">
-			<iframe id ="video2" class = "responsive-iframe" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+			<iframe id ="video2" class = "responsive-iframe" src="{{ product.test_l2 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
 		</div>
          {% comment %} <div class="modal-footer">
@@ -476,7 +417,7 @@
           <h4 class="modal-title">Modal title</h4>
         </div>
         <div class="modal-body text-center" style = "padding-top: 66.66%;">
-			<iframe id ="video3" class = "responsive-iframe" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+			<iframe id ="video3" class = "responsive-iframe" src="{{ product.test_l3 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
 		</div>
         {% comment %} <div class="modal-footer">
@@ -572,8 +513,5 @@
 
 {% endblock %}
 
-  
 
 
-{% endblock %}
-    

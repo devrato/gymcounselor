@@ -4,7 +4,7 @@ from django.db import models
 
 class ExtendedUser(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    ph_no = models.CharField(max_length=10, blank=True, null=True)
+    ph_no = models.IntegerField(blank=True, null=True, default=1234567891)
     height = models.IntegerField(blank=True, default=176)
     weight = models.IntegerField(blank=True, default=65)
 

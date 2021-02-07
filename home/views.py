@@ -8,7 +8,7 @@ def home_view(request):
     user = request.user
 
     context = {
-        'title': 'Home',
+        'title': 'home',
         'users': user,
         'service': service,
     }
