@@ -134,22 +134,60 @@
 {% endblock extra_head %}
 
 {% block content %}
-<nav class="fh5co-nav" style="background-color: #5D5B95; position: initial !important;" role="navigation">
-    <div class="top-menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-2">
-                    <div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
-                </div>
-                <div class="col-xs-10 text-right menu-1">
-                    <ul>
-                    {#	<li style="color: #ffffff">{{ user.first_name }} {{ user.last_name }}</li>#}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
+<div class="fh5co-loader"></div>
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+	    <div class="top">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 text-right">
+						<ul class="fh5co-social">
+							<li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+							<li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+							<li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+							<li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo" style = "font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<!--<li><a href="{% url 'work' %}">Work</a></li>-->
+							<li><a href="{% url 'about' %}">About</a></li>
+							<li><a href="{% url 'contact' %}">Contact</a></li>
+
+						    <li class="has-dropdown"><a href = "/product/PCOS">Services</a>
+							{% for s in service %}
+							   <ul class="dropdown">
+							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+							   </ul>
+							   {% endfor %}
+							</li>
+
+							{% if request.user.is_authenticated %}
+                            <li class="has-dropdown"><a  href="{% url 'dashboard' %}"> Hey, {{ user.first_name }}</a>
+									<ul class="dropdown">
+										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
+										<li><a href="{% url 'logout' %}">Logout</a></li>
+									</ul>
+							</li>
+							{% else %}
+                                <li class="btn-cta"><a href="{% url 'login' %}?next={{request.path}}"><span>Login</span></a></li>
+                            {% endif %}
+                        </ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</nav>
 
 <div class="div" style = "background-color: #EFF6EE;">
     <div class="container text-center">
@@ -206,4 +244,14 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		if( {{context|hash:'order_successmodal'}} === 1)
+		{
+			swal("Thank You!", "Your order is successful!", "success");
+		}
+		else{
+			console.log({{context|hash:'order_successmodal'}})
+		}
+	</script>
 {% endblock %}

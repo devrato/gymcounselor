@@ -85,12 +85,25 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
+    'django.core.mail.backends.smtp.EmailBackend',
 )
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+EMAIL_HOST = 'smtp.gymcounselor.com'
+
+EMAIL_USE_TLS = True
+
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = 'sajal.deyasi@gymcounselor.com'
+
+EMAIL_HOST_PASSWORD = 'gymcounselor.com100'
+
 
 
 WSGI_APPLICATION = 'gym.wsgi.application'

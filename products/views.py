@@ -13,7 +13,7 @@ def prod_view(request, slug):
         service = None
     allService = Service.objects.all()
 
-    order_amount = 50000
+    order_amount = 499
     order_currency = 'INR'
     order_receipt = 'order_rcptid_11'
     client = razorpay.Client(
@@ -34,7 +34,7 @@ def prod_view(request, slug):
 #     return render(request, 'products/thank.html')
 
 
-def order_success(request):
+def order_successmodal (request):
     if request.method == 'POST':
 
         # data needed
@@ -64,15 +64,16 @@ def order_success(request):
             'title': 'Home',
             'users': request.user,
             'service': service,
-            'order_success': 1
+            'order_successmodal': 1
         }
-        return render(request, 'home/home.html', {'context': context})
+        return render(request, 'products/thank.html', {'context': context})
     else:
         service = Service.objects.all()
         context = {
             'title': 'Home',
             'users': request.user,
             'service': service,
-            'order_success': 0
+            'order_successmodal': 0
         }
-        return render(request, 'home/home.html', {'context': context})
+        return render(request, 'products/thank.html', {'context': context})
+

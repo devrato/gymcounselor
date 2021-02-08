@@ -9,7 +9,7 @@ from services.views import service_view
 from home.views import home_view, about_view, work_view, contact_view
 from account.views import login_view, register_view
 from dashboard.views import dash_view, updateuserdetails
-from products.views import prod_view, order_success
+from products.views import prod_view, order_successmodal
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,8 +24,8 @@ urlpatterns = [
     path('dashboard/', dash_view, name='dashboard'),
     path('myorders/', dash_view, name='myorders'),
     path('product/<slug>', prod_view, name='prod_detail'),
-    path('ordersuccess', order_success, name='order_success'),
-    path('order_success', order_success, name='order_successmodal'),
+    # path('ordersuccess', order_success, name='order_success'),
+    path('order_successmodal', order_successmodal, name='order_successmodal'),
     path('updateuserdetails', updateuserdetails, name='updateuserdetails'),
     url('social-auth/', include('social_django.urls', namespace='social')),
 ]
