@@ -85,25 +85,13 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
-    'django.core.mail.backends.smtp.EmailBackend',
+
 )
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
-
-
-EMAIL_HOST = 'smtp.gymcounselor.com'
-
-EMAIL_USE_TLS = True
-
-EMAIL_PORT = 465
-
-EMAIL_HOST_USER = 'sajal.deyasi@gymcounselor.com'
-
-EMAIL_HOST_PASSWORD = 'gymcounselor.com100'
-
 
 
 WSGI_APPLICATION = 'gym.wsgi.application'
@@ -178,3 +166,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL = '/media/'
 
 # LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_USE_TLS = True
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'devaratoroy001@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'qwerty1234@'

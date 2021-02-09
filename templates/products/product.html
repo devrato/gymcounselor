@@ -126,38 +126,6 @@
 		</div>
 	</nav>
 
-    {% comment %} <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm hero flex items-center"role="banner" data-stellar-background-ratio="0.5">
-         <div class="container">
-			<br>
-			<div class="display-tc animate-box">
-				<h1 style="color:#fff; font-size: x-large;">{{ product.name }}</h1>
-				<p style="color:#fff; width:50%">{{ product.des }}</p>
-				{% if request.user.is_authenticated %}
-				<p><a class="btn btn-default btn-lg" href="{{ product.buyLink }}" style="background-color : #F02D3A;">Get your Custom Plan</a></p>
-				{% else %}
-				<p><a class="btn btn-default btn-lg" href="{% url 'register' %}?next={{request.path}}" style="background-color : #F02D3A;">Get a Custom Plan</a></p>
-				{% endif %}
-			</div>
-			<div class="hero-image">
-				<!-- <img src="../../media/{{ product.img_first }}" alt=""> -->
-				<img src="../../media/bg_1.png" alt="">
-			</div>
-        </div>
-	<!--	<div class="overlay" style="background-image: url('../../media/{{ product.img_first }}'); background-repeat: no-repeat; shape-rendering: geometricprecision;"></div>-->
-	<!--	<div class="container">-->
-	<!--		<div class="row">-->
-	<!--			<div class="col-md-8 col-md-offset-2 text-center">-->
-	<!--				<div class="display-t">-->
-	<!--					<div class="display-tc animate-box" data-animate-effect="fadeIn">-->
-							<!--<h1>{{ product.name }}</h1>-->
-							<!--<h2>{{ product.des }}</h2>-->
-	<!--					</div>-->
-	<!--				</div>-->
-	<!--			</div>-->
-	<!--		</div>-->
-	<!--	</div>-->
-	</header> {% endcomment %}
-
 		<div class="container-fluid" style = "background-color: #F02d3a">
 			<div class="row">
 				<div class="col-xs-6">
@@ -231,12 +199,12 @@
 			{% if request.user.is_authenticated %}
 			{% comment %} <p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p> {% endcomment %}
 			<div style="text-align:center;">
-				<form action="/order_successmodal"  method="POST">
+				<form action="/ordersuccess"  method="POST">
 				{% csrf_token %}
 					<script
 						src="https://checkout.razorpay.com/v1/checkout.js"
-						data-key="rzp_live_7yyyG6noQKFiNW"
-						data-amount="{{ product.price }}"
+						data-key="rzp_test_V2KMUMI2Ommcj1"
+						data-amount= {{ product.price }}
 						data-currency="INR"
 						data-order_id = "{{payment.id}}"
 						data-buttontext="Pay Online"

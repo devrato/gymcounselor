@@ -136,8 +136,8 @@
 {% block content %}
 <div class="fh5co-loader"></div>
 	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
-	    <div class="top">
+    <nav class="fh5co-nav" style="background-color: #F02D3A; position: initial !important;" role="navigation">
+		<div class="top">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 text-right">
@@ -155,7 +155,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo" style = "font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+						<div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -163,8 +163,8 @@
 							<li><a href="{% url 'about' %}">About</a></li>
 							<li><a href="{% url 'contact' %}">Contact</a></li>
 
-						    <li class="has-dropdown"><a href = "/product/PCOS">Services</a>
-							{% for s in service %}
+						    <li class="has-dropdown"><a>Services</a>
+							{% for s in allService %}
 							   <ul class="dropdown">
 							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
 							   </ul>
@@ -172,7 +172,7 @@
 							</li>
 
 							{% if request.user.is_authenticated %}
-                            <li class="has-dropdown"><a  href="{% url 'dashboard' %}"> Hey, {{ user.first_name }}</a>
+                            <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
 									<ul class="dropdown">
 										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
 										<li><a href="{% url 'logout' %}">Logout</a></li>
@@ -244,15 +244,5 @@
         </div>
     </div>
 </div>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script>
-		if( {{context|hash:'order_successmodal'}} === 1)
-		{
-			swal("Thank You!", "Your order is successful!", "success");
-		}
-		else{
-			console.log({{context|hash:'order_successmodal'}})
-		}
-	</script>
     </div>
 {% endblock %}
