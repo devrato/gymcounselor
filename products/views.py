@@ -76,18 +76,6 @@ def order_success(request):
         }
         return render(request, 'products/thank.html', {'context': context})
 
-#
-# def email_trigger():
-#     message = 'Test email'
-#     subject = 'Hey'
-#     to = ['joythegoodboy@gmail.com']
-#     send_mail(
-#         subject,
-#         message,
-#         EMAIL_HOST_USER,
-#         to,
-#     )
-
 # def order_successmodal(request):
 #     if request.method == 'POST':
 

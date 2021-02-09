@@ -175,6 +175,6 @@ EMAIL_USE_TLS = True
 
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'devaratoroy001@gmail.com'
+EMAIL_HOST_USER = 'pcosfreeme@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'qwerty1234@'
+EMAIL_HOST_PASSWORD = 'pcf@2020'
