@@ -14,7 +14,6 @@ def prod_view(request, slug):
     except:
         service = None
     allService = Service.objects.all()
-
     order_amount = 50000
     order_currency = 'INR'
     order_receipt = 'order_rcptid_11'
@@ -22,14 +21,15 @@ def prod_view(request, slug):
         auth=('rzp_test_V2KMUMI2Ommcj1', 'YzemijL2imRE9yxKep1c0ydD'))
     payment = client.order.create({'amount': order_amount, 'currency': 'INR',
                                    'payment_capture': '1'})
-
     context = {
         'title': service.name,
         'product': service,
         'allService': allService,
         'users': user,
     }
+
     return render(request, 'products/product.html', context)
+
 
 
 def order_success(request):
@@ -75,6 +75,42 @@ def order_success(request):
             'service': service,
         }
         return render(request, 'products/thank.html', {'context': context})
+
+
+def trial(request, slug):
+    user = request.user
+    try:
+        service = Service.objects.get(slug=slug)
+    except:
+        service = None
+    allService = Service.objects.all()
+    #
+    # order_amount = 50000
+    # order_currency = 'INR'
+    # order_receipt = 'order_rcptid_11'
+    # client = razorpay.Client(
+    #     auth=('rzp_test_V2KMUMI2Ommcj1', 'YzemijL2imRE9yxKep1c0ydD'))
+    # payment = client.order.create({'amount': order_amount, 'currency': 'INR',
+    #                                'payment_capture': '1'})
+
+    context = {
+        'title': service,
+        'product': service,
+        'allService': allService,
+        'users': user,
+    }
+    return render(request, 'products/blank.html', context)
+
+
+
+# def pcosblank(request):
+#     service = Service.objects.all()
+#     context = {
+#         'title': 'Home',
+#         'users': request.user,
+#         'service': service,
+#     }
+#     return render(request, 'products/blank.html', {'context': context})
 
 # def order_successmodal(request):
 #     if request.method == 'POST':

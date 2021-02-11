@@ -20,7 +20,7 @@ def login_view(request):
         if user is not None:
             auth.login(request, user)
             if valuenext != '':
-                return redirect(valuenext)
+                return redirect('home')
             else:
                 return redirect('home')
         else:
@@ -43,7 +43,7 @@ def register_view(request):
             check_user = User.objects.get(
                 username=request.POST['username'])
             if check_user is not None:
-                return render(request, 'user/register.html', {'error': 'Username is already taken.'})
+                return render(request, 'user/register.html', {'error': 'Email is already taken.'})
         except:
             # user = User.objects.create_user(username=request.POST['username'], password=password,
             #                                 email=request.POST['username'], first_name=request.POST['first_name'],

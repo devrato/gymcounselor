@@ -10,6 +10,7 @@ from home.views import home_view, about_view, work_view, contact_view
 from account.views import login_view, register_view
 from dashboard.views import dash_view, updateuserdetails
 from products.views import prod_view, order_success
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
@@ -23,7 +24,7 @@ urlpatterns = [
     path('dashboard/', dash_view, name='dashboard'),
     path('myorders/', dash_view, name='myorders'),
     path('product/<slug>', prod_view, name='prod_detail'),
-    # path('email/', email_trigger(),name=email_trigger()),
+    # path('trial/<slug>', trial, name='trial'),
     path('ordersuccess', order_success, name='order_success'),
     # path('order_successmodal', order_successmodal, name='order_successmodal'),
     path('updateuserdetails', updateuserdetails, name='updateuserdetails'),
