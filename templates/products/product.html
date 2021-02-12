@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
 
 .responsive-iframe {
@@ -199,7 +200,7 @@
 		</div>
 
 		  <div class="row" style = "background: #FFF; padding: 20px";>
-    <br>
+ 		  	<br>
         <div class="col-md-8 col-xs-12">
             <h5 class = "trialheading">Heading One</h5>
             <hr class = "heading__hr" style = "border: none; background: #F02D3A; height: 5px; border-radius: 15px;">
@@ -263,9 +264,9 @@
         </div>
     </div>
 		{% else %}
-		<div class="container-fluid" style = "background-color: #EFF6EE; font-family: 'Alegreya Sans', sans-serif;">
+		<div class="container-fluid" style = "font-family: 'Alegreya Sans', sans-serif; background-color: #eff6ee">
 			<div class="row">
-				<div class="col-xs-6">
+				<div class="col-xs-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
 					<div class="display-tc animate-box heading__content">
 						<h1 style="font-family: 'Alegreya Sans', sans-serif; color: #F2F2F; font-size: x-large; font-weight: 600">{{ product.name }}</h1>
 						<p class = "heading__content__desc" style="color: #F2F2F;">{{ product.des }}</p>
@@ -277,14 +278,14 @@
 						{% endif %}
 					</div>
 				</div>
-				<div class="col-xs-6 text-center">
+				<div class="col-xs-6 text-center" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
 					<img src="../../media/bg_1.png" class = "heading__image" alt="product_heading_image">
 				</div>
 			</div>
 		</div>
 
-	<div id="fh5co-services" class="fh5co-bg-section">
-		<div class="container">
+	<div id="fh5co-services" class="fh5co-bg-section"style ="background-color: #EFF6EE">
+		<div class="container" >
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>How it Works</h2>
@@ -380,7 +381,7 @@
 <!--		></script>-->
 <!--		<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">-->
 <!--	</form> {% endcomment %}-->
-	<div id="fh5co-testimonial" class="fh5co-bg-section">
+	<div id="fh5co-testimonial" class="fh5co-bg-section"style = "background-color:#EFF6EE">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -400,7 +401,7 @@
 		</div>
 	</div>
 		{% endif %}
-	<div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#F2F2F2">
+	<div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -472,8 +473,6 @@
 	</div>
 
 	<!-- Button trigger modal -->
-  {% comment %} <a data-toggle="modal" href="#myModal1" class="btn btn-primary btn-lg">Launch demo modal</a> {% endcomment %}
-
   <!-- Modal video 1 -->
   <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -564,59 +563,12 @@
             });
   };
 </script>
-	{% comment %} <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Happy Clients</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="row animate-box">
-						<div class="owl-carousel owl-carousel-fullwidth">
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<figure>
-										<img src="{% static 'images/rev1.jpeg' %}" >
-									</figure>
-									<span>Smita Sahu</span>
-									<blockquote>
-										<p>&ldquo;I decided to get in shape and started my weight loss journey. My coach Prasanna Reddy and my fitness coach from GC helped me immensely to achieve the same.&rdquo;</p>
-									</blockquote>
-								</div>
-							</div>
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<figure>
-										<img src="{% static 'images/rev2.jpg' %}" alt="user">
-									</figure>
-									<span>Anchal Gupta</span>
-									<blockquote>
-										<p>&ldquo;He used to correct my posture and helped me understand the purpose behind each and every movement. My work out routine includes cardio, strength training and functional training.&rdquo;</p>
-									</blockquote>
-								</div>
-							</div>
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<figure>
-										<img src="{% static 'images/rev3.jpeg' %}" alt="user">
-									</figure>
-									<span>Harshita Roy</span>
-									<blockquote>
-										<p>&ldquo;When I decided to seek guidance from my brother, who had successfully lost weight, he redirected me to Gymcounselor's and I enrolled in the PCOS diet plan and they gave me more information about food planning, eating pattern, and the importance of vitamins and minerals. And i was in the best shape of my life in no time&rdquo;</p>
-									</blockquote>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> {% endcomment %}
 </div>
 </div>
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 {% endblock %}
 
 
