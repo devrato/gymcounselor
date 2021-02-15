@@ -86,13 +86,13 @@
 		<div class="project-content">
 			{% for s in service %}
                 <div class="col-forth">
-                        <div class="project animate-box" style="background-image: url('../../media/{{ s.img_card }}')">
+                        <div class="project animate-box" style="background-image: url('../../media/{{ s.img_card }}')" >
                                 <a href="{% url 'prod_detail' s.slug %}" class="desc">
                                  <span>Get the Results you always Wanted</span>
                                  <h3>{{ s.name }}</h3>
                                 </a>
-                            </div>
-                <p style="text-align:center;" ><a class="btn btn-primary btn-outline " href="{% url 'prod_detail' s.slug %}">Start a Free Trial</a></p>
+                          	  </div>
+                <p style="text-align:center;" ><a class="btn btn-primary  " href="{% url 'prod_detail' s.slug %}">Start a Free Trial</a></p>
                 </div>
             {% endfor %}
 		</div>

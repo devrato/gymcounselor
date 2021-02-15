@@ -8,7 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
-
+.home__desc{
+	font-family: 'Poppins', sans-serif !important;
+	font-weight: 600 !important;
+	font-size: 55px !important;
+	padding-left: 8px !important;
+	margin-top: 10% !important;
+}
 .responsive-iframe {
   position: absolute;
   top: 0;
@@ -45,14 +51,38 @@
 	background-color: rgba(240, 45, 58,0.5);
 	color: #d83d3d;
 }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: 20px auto;
+  text-align: left;
+  float: left;
 
+}
+.center {
+  height: 50%;
+  display: flex;
+  flex-directon: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.center2{
+	margin: 10px auto;
+}
 @media only screen and (max-width: 767px) {
-
+	.desktop__only{
+	display : none;
+	}
+	.home__desc{
+		font-size: 28px !important;
+		padding-left: 8px !important;
+	}
 	.heading__content{
 		padding-left: 10px;
 		padding-top: 50px;
 	}
-	.heading__content__desc{
+	.heading_content_desc{
 		font-size: 12px !important;
 		margin: 0px !important;
 	}
@@ -65,6 +95,9 @@
 		height: 283px;
 		margin-top: 32px;
 	}
+	.center{
+	display: absolute;
+	}
 }
 
 
@@ -74,22 +107,23 @@
 }
 
 .trialheading{
-  padding: 20px 0 0 50px;
+  padding: 20px 0 0 20px;
   color: #F02D3A;
-  font-size: 50px;
+  font-size: 18px;
   font-weight: 700;
   font-family: 'Poppins';
+  margin-bottom: 0px !important;
 }
 
 .trialheading_desc{
-  padding: 10px 0 0 50px;
-  font-size: 18px;
+  padding: 0 0 0 10px;
+  margin-bottom: 5px !important;
+  font-size: 13px;
   font-weight: 300;
   font-family: 'Poppins';
 }
 
 .heading__hr{
-
     margin: 0;
     padding: 0px;
     margin-left: 50px;
@@ -98,15 +132,14 @@
 
 @media only screen and (max-width: 767px) {
   .trialheading{
-    padding-left: 0px;
-    text-align: center;
-    font-size: 40px;
+    padding-left: 20px;
+    font-size: 21px;
+	margin-bottom: 0px !important;
   }
 
   .trialheading_desc{
-    text-align: center;
     padding-left: 0px;
-    font-size: 15px;
+    font-size: 12px;
     width: 90%;
     margin: auto;
   }
@@ -183,112 +216,154 @@
 			</div>
 		</div>
 	</nav>
-		{% if request.user.is_authenticated %}
-		<div class="container-fluid" style = "background-color: #F02D3A; font-family: 'Alegreya Sans', sans-serif;">
+	   {% if request.user.is_authenticated %}
+		<div class="container-fluid" style = "background-color: #F02D3A">
 			<div class="row">
-				<div class="col-md-8 col-xs-12">
-					<h3 class = "trialheading" style ="text-align: right;color: #FFF">{{ product.name }}</h3>
-					<hr class = "heading__hr" style = "border: none; background: #F02D3A; height: 5px; border-radius: 15px;">
+					<h3 class = "prod_head" style ="text-align: centre;color: #FFF">{{ product.name }}</h3>
 					<br>
-       		 	</div>
 			</div>
 		</div>
-		<div class="row" style = "background: #FFF; padding: 20px";>
+		<div class="row" style = "background: #EFF6EE; padding: 20px">
     		<br>
-				<p class = "trialheading_desc"style="text-align:center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga accusantium provident voluptatem. Eligendi placeat ex possimus harum consequatur, deserunt quia.</p>
-				<p style="text-align:center;font-family: Poppins"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}"><strong>IN &#8377; 499 /month</strong><i class="icon-arrow-right"></i></a></p>
-		</div>
+				<p class = "trialheading_desc" style="font-size :3vh; text-align :center; padding: 20px;">Your Plan for <br> <strong><span style = "font-size : 5vh">{{product.name}}</span></strong></p>
 
-		  <div class="row" style = "background: #FFF; padding: 20px";>
- 		  	<br>
-        <div class="col-md-8 col-xs-12">
-            <h5 class = "trialheading">Heading One</h5>
-            <hr class = "heading__hr" style = "border: none; background: #F02D3A; height: 5px; border-radius: 15px;">
-            <br>
-            <p class = "trialheading_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga accusantium provident voluptatem. Eligendi placeat ex possimus harum consequatur, deserunt quia. Vel exercitationem quibusdam dicta cupiditate?</p>
-        </div>
-        <div class="col-md-4 col-xs-12">
-            <div class="text-center" style = "padding: 20px">
-            <img class = "trialheading__image" src="{% static 'images/head1.png' %}" alt="image1">
-            </div>
-        </div>
-    </div>
-
-    <div class="row" style = "background: #FFF; padding: 20px">
-    <br>
-        <div class="col-md-4 col-xs-12">
-            <div class="text-center" style = "padding: 20px">
-            <img class = "trialheading__image" src="{% static 'images/head2.png' %}" alt="image1">
-            </div>
-        </div>
-        <div class="col-md-8 col-xs-12">
-            <h3 class = "trialheading">Heading Two</h3>
-            <hr class = "heading__hr" style = "border: none; background: #F02D3A; height: 5px; border-radius: 15px;">
-            <br>
-            <p class = "trialheading_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga accusantium provident voluptatem. Eligendi placeat ex possimus harum consequatur, deserunt quia. Vel exercitationem quibusdam dicta cupiditate?</p>
-        </div>
-    </div>
-
-    <div class="row" style = "background: #FFF; padding: 20px">
-    <br>
-        <div class="col-md-8 col-xs-12">
-            <h3 class = "trialheading">Heading Three</h3>
-            <hr class = "heading__hr" style = "border: none; background: #F02D3A; height: 5px; border-radius: 15px;">
-            <br>
-            <p class = "trialheading_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga accusantium provident voluptatem. Eligendi placeat ex possimus harum consequatur, deserunt quia. Vel exercitationem quibusdam dicta cupiditate?</p><!--				<form action="/ordersuccess"  method="POST">-->
 			<div style="text-align:center;">
-				<form action="/ordersuccess"  method="POST">
+			    <form action="/ordersuccess"  method="POST">
 				{% csrf_token %}
 					<script
 						src="https://checkout.razorpay.com/v1/checkout.js"
 						data-key="rzp_test_V2KMUMI2Ommcj1"
-						data-amount= {{ product.price }}
+						data-amount="{{ product.price }}"
 						data-currency="INR"
 						data-order_id = "{{payment.id}}"
-						data-buttontext="Pay Online"
-						data-name="gymCounselor"
+						data-buttontext="IN &#8377; {{ product.price }}"
+						data-name="GYMCOUNSELOR"
 						data-description="Fitness and healthcare"
 						data-image="{% static 'images/logo1.png' %}"
 						data-prefill.name="User"
 						data-prefill.email="example.kumar@example.com"
 						data-theme.color="#F02D3A"
 					></script>
+					<input class="btn btn-primary btn-outline with-arrow" style="text-align:center;font-family: Poppins; margin: 0; position: absolute; top: 50%; left: 50%;" type="hidden" custom="Hidden Element" name="hidden">
+					<!--<p style="text-align:center;font-family: Poppins"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}"><strong>IN &#8377; {{ product.price }} /month</strong><i class="icon-arrow-right"></i></a></p>-->
+				</form>
+		</div>
+        </div>
+		<div class ="row" style = "background: #EFF6EE;">
+		<div class="container">
+			<div class="center2">
+				<div class="col-sm-4 col-xs-12">
+					<div class = "card" style = "background: #FFF;">
+						<img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
+						<br>
+						<h5 class = "trialheading">1. EXPERT GUIDANCE</h5>
+						<ul style = "padding: 10px" style = "padding: 10px">
+							<li>
+		                    <p class = "trialheading_desc">&#8226; 1:1 personal live session daily</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226; Coaches that motivate you and track your progress.</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226; Regular sessions with clinical nutritionists.</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226;  24/7 expert’s support.</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class = "card" style = "background: #FFF;">
+						<img src="{% static 'images/head2.png' %}" alt="Photo" style="width:100%">
+						<br>
+						<h5 class = "trialheading">2. CUSTOMIZED DIET PLAN</h5>
+						<ul style = "padding: 10px">
+							<li>
+								<p class = "trialheading_desc">&#8226; Indian diet plan with easy-to-follow recipes as per your preferences.</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226; Curated by PCOS expert Nutritionist.</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226; Complete care of your daily nutritional requirements to re-balance your hormones' functionality.</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class = "card" style = "background: #FFF;">
+						<img src="{% static 'images/head3.png' %}" alt="Photo" style="width:100%">
+						<br>
+						<h5 class = "trialheading">3. INDIAN PCOS RECIPE BOOK </h5>
+						<ul style = "padding: 10px">
+							<li>
+								<p class = "trialheading_desc">&#8226; 30+ Easy to make PCOS Friendly INDIAN recipes.</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226; Detailed nutritional chart and pictorial representation.</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226; Wide variety of options to choose from recipes from all over INDIA.</p>
+							</li>
+							<li>
+								<p class = "trialheading_desc">&#8226; Clear Cooking Instructions</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div style="text-align:center; background: #EFF6EE;">
+			<br><br>
+				<form action="/ordersuccess"  method="POST">
+				{% csrf_token %}
+					<script
+						src="https://checkout.razorpay.com/v1/checkout.js"
+						data-key="rzp_test_V2KMUMI2Ommcj1"
+						data-amount="{{ product.price }}"
+						data-currency="INR"
+						data-order_id = "{{payment.id}}"
+						data-buttontext="Pay Online"
+						data-name="GYMCOUNSELOR"
+						data-description="{{ product.name }}"
+						data-image="{% static 'images/logo1.png' %}"
+						data-prefill.name="{{ user.name }}"
+						data-prefill.email="{{ user.email }}"
+						data-theme.color="#F02D3A"
+					></script>
 					<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
 				</form>
-			</div>
-        </div>
-        <div class="col-md-4 col-xs-12">
-            <div class="text-center" style = "padding: 20px">
-            <img class = "trialheading__image" src="{% static 'images/head3.png' %}" alt="image1">
-            </div>
-        </div>
-    </div>
+			<br><br>
+		</div>
 		{% else %}
-		<div class="container-fluid" style = "font-family: 'Alegreya Sans', sans-serif; background-color: #eff6ee">
+		<div class="container-fluid" style = "background-color: #EFF6EE">
 			<div class="row">
-				<div class="col-xs-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+				<div class="col-sm-6 col-xs-12">
 					<div class="display-tc animate-box heading__content">
-						<h1 style="font-family: 'Alegreya Sans', sans-serif; color: #F2F2F; font-size: x-large; font-weight: 600">{{ product.name }}</h1>
-						<p class = "heading__content__desc" style="color: #F2F2F;">{{ product.des }}</p>
+						<h1 style="color: #F02D3A" class = "home__desc ">{{ product.name }}</h1>
+						<p class = "heading_content_desc" style="color:#F2F2F">&nbsp;&nbsp;&nbsp;{{ product.des }}</p>
 						<br>
 						{% if request.user.is_authenticated %}
-						<p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="font-family: 'Alegreya Sans', sans-serif; background-color : #F02D3A; color: white;">Get your Custom Plan</a></p>
+						<p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="background-color : #F02D3A; color: white;">Get your Custom Plan</a></p>
 						{% else %}
 						<p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{request.path}}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
 						{% endif %}
 					</div>
 				</div>
-				<div class="col-xs-6 text-center" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+				<div class="col-xs-6 text-center desktop__only" >
 					<img src="../../media/bg_1.png" class = "heading__image" alt="product_heading_image">
 				</div>
 			</div>
 		</div>
 
-	<div id="fh5co-services" class="fh5co-bg-section"style ="background-color: #EFF6EE">
-		<div class="container" >
+	<div id="fh5co-services" class="fh5co-bg-section" style = "background-color: rgba(240, 45, 58, 0.2)">
+		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>How it Works</h2>
+					<h2 class = "section__header">How it Works</h2>
 					<!--<p>We at GymCounselor work with scientific principles and data backed methodologies to help you see the results that you may have never seen.</p>-->
 				</div>
 			</div>
@@ -322,7 +397,7 @@
 							<div class="col-md-4 col-sm-12">
 								<div class="feature-center animate-box" data-animate-effect="fadeIn">
 									<span class="icon">
-										<i class="icon-heart"></i>
+										<i class="icon-open-book"></i>
 									</span>
 									<h3>{{ product.head3 }}</h3>
 									<p>{{ product.desc3 }}</p>
@@ -334,58 +409,20 @@
 
 			</div>
 			<br>
-				<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
-<!--			{% if request.user.is_authenticated %}-->
-<!--			{% comment %} <p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{{ product.buyLink }}">Get your Custom Plan<i class="icon-arrow-right"></i></a></p> {% endcomment %}-->
-<!--			<div style="text-align:center;">-->
-<!--				<form action="/ordersuccess"  method="POST">-->
-<!--				{% csrf_token %}-->
-<!--					<script-->
-<!--						src="https://checkout.razorpay.com/v1/checkout.js"-->
-<!--						data-key="rzp_test_V2KMUMI2Ommcj1"-->
-<!--						data-amount= {{ product.price }}-->
-<!--						data-currency="INR"-->
-<!--						data-order_id = "{{payment.id}}"-->
-<!--						data-buttontext="Pay Online"-->
-<!--						data-name="gymCounselor"-->
-<!--						data-description="Fitness and healthcare"-->
-<!--						data-image="{% static 'images/logo1.png' %}"-->
-<!--						data-prefill.name="User"-->
-<!--						data-prefill.email="example.kumar@example.com"-->
-<!--						data-theme.color="#F02D3A"-->
-<!--					></script>-->
-<!--					<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">-->
-<!--				</form>-->
-<!--			</div>-->
-<!--			{% else %}-->
-<!--			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>-->
-<!--			{% endif %}-->
-<!--		</div>-->
+
+			{% if request.user.is_authenticated %}
+			{% else %}
+			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
+			{% endif %}
+		</div>
 	</div>
 
-<!--	{% comment %} <form action="/order_success"  method="POST">-->
-<!--	{% csrf_token %}-->
-<!--		<script-->
-<!--			src="https://checkout.razorpay.com/v1/checkout.js"-->
-<!--			data-key="rzp_test_2GM0584mxsjPdZ"-->
-<!--			data-amount="29935"-->
-<!--			data-currency="INR"-->
-<!--			data-order_id = "{{payment.id}}"-->
-<!--			data-buttontext="Pay Online"-->
-<!--			data-name="GymCounselor"-->
-<!--			data-description="Fitness and healthcare"-->
-<!--			data-image="{% static 'images/logo1.png' %}"-->
-<!--			data-prefill.name="Sajal"-->
-<!--			data-prefill.email="sajal.kumar@example.com"-->
-<!--			data-theme.color="#F02D3A"-->
-<!--		></script>-->
-<!--		<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">-->
-<!--	</form> {% endcomment %}-->
-	<div id="fh5co-testimonial" class="fh5co-bg-section"style = "background-color:#EFF6EE">
+
+	<div id="fh5co-testimonial" class="fh5co-bg-section" style = "background-color: #EFF6EE">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Our Expert</h2>
+					<h2 class = "section__header">Our Expert</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -400,12 +437,12 @@
 			</div>
 		</div>
 	</div>
-		{% endif %}
-	<div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
+	{% endif %}
+	<div id="fh5co-testimonial" class="fh5co-bg-section" style = "background-color: rgba(240, 45, 58, 0.2)">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2 style = " font-size: 8vh;">Happy Clients</h2>
+					<h2 class="section__header">Happy Clients</h2>
 				</div>
 			</div>
 			<div class="row text-center">
@@ -413,66 +450,69 @@
 					<a data-toggle="modal" href="#myModal1" data-backdrop="static">
 						<img src="../../media/{{ product.thumb1 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test1">
 					</a>
-					{% comment %} <iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/A-LMsArLW8o" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  {% endcomment %}
-					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
+					<div style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
 						<br>
-						{{ product.test_n1 }}
+						<span style = "padding-left: 10px; font-size: 3vh;">{{ product.test_n1 }}</span>
 						<br>
+						&nbsp;
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
 						<br>
-						<span style = "font-size: 1.5vh" class = "text-left">
+						<p  style= "padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class = "text-left">
 						  {{ product.test_d1 }}
-						  </span>
-					</p>
+						  </p>
+					</div>
 				</div>
 				<div class="col-md-4" style = "margin-bottom: 20px">
 					<a data-toggle="modal" href="#myModal2" data-backdrop="static">
 						<img src="../../media/{{ product.thumb2 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test2">
 					</a>
-					{% comment %} <iframe style = "border-radius: 20px 20px 0px 0px;" width="350" height="197" src="https://www.youtube.com/embed/EdExFF05FGc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  {% endcomment %}
-					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px;" class = "text-left">
+					<div style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
 						<br>
-						{{ product.test_n2 }}
+						<span style = "padding-left: 10px; font-size: 3vh;">{{ product.test_n2 }}</span>
 						<br>
+						&nbsp;
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
 						<br>
-						<span style = "font-size: 1.5vh" class = "text-left">
-						    {{ product.test_d2 }}
-						</span>
-					</p>
+						<p  style= "padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class = "text-left">
+						  {{ product.test_d2 }}
+						  </p>
+					</div>
 				</div>
 				<div class="col-md-4" style = "margin-bottom: 20px">
 					<a data-toggle="modal" href="#myModal3" data-backdrop="static" >
 						<img src="../../media/{{ product.thumb3 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test3">
 					</a>
-					<p style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #F7EDE2; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
+					<div style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
 						<br>
-						{{ product.test_n3 }}
+						<span style = "padding-left: 10px; font-size: 3vh;">{{ product.test_n3 }}</span>
 						<br>
+						&nbsp;
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
 						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
 						<br>
-						<span style = "font-size: 1.5vh"     class = "text-left">
-                            {{ product.test_d3 }}
-                        </span>
-					</p>
+						<p  style= "padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class = "text-left">
+						  {{ product.test_d3 }}
+						  </p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Button trigger modal -->
+  {% comment %} <a data-toggle="modal" href="#myModal1" class="btn btn-primary btn-lg">Launch demo modal</a> {% endcomment %}
+
   <!-- Modal video 1 -->
   <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -563,13 +603,57 @@
             });
   };
 </script>
+	{% comment %} <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Happy Clients</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="row animate-box">
+						<div class="owl-carousel owl-carousel-fullwidth">
+							<div class="item">
+								<div class="testimony-slide active text-center">
+									<figure>
+										<img src="{% static 'images/rev1.jpeg' %}" >
+									</figure>
+									<span>Smita Sahu</span>
+									<blockquote>
+										<p>&ldquo;I decided to get in shape and started my weight loss journey. My coach Prasanna Reddy and my fitness coach from GC helped me immensely to achieve the same.&rdquo;</p>
+									</blockquote>
+								</div>
+							</div>
+							<div class="item">
+								<div class="testimony-slide active text-center">
+									<figure>
+										<img src="{% static 'images/rev2.jpg' %}" alt="user">
+									</figure>
+									<span>Anchal Gupta</span>
+									<blockquote>
+										<p>&ldquo;He used to correct my posture and helped me understand the purpose behind each and every movement. My work out routine includes cardio, strength training and functional training.&rdquo;</p>
+									</blockquote>
+								</div>
+							</div>
+							<div class="item">
+								<div class="testimony-slide active text-center">
+									<figure>
+										<img src="{% static 'images/rev3.jpeg' %}" alt="user">
+									</figure>
+									<span>Harshita Roy</span>
+									<blockquote>
+										<p>&ldquo;When I decided to seek guidance from my brother, who had successfully lost weight, he redirected me to Gymcounselor's and I enrolled in the PCOS diet plan and they gave me more information about food planning, eating pattern, and the importance of vitamins and minerals. And i was in the best shape of my life in no time&rdquo;</p>
+									</blockquote>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> {% endcomment %}
 </div>
 </div>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+
 {% endblock %}
-
-
-
