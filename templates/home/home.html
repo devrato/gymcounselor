@@ -1,6 +1,30 @@
 {% extends 'base/base.html' %}
 {% load custom_tags %}
 {% load static %}
+{% block extra_head %}
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: 20px auto;
+  text-align: left;
+  float: left;
+
+}
+.center2{
+	margin: 10px auto;
+	position: relative;
+}
+.center {
+  height: 50%;
+  display: flex;
+  flex-directon: row;
+  justify-content: center;
+  align-items: center;
+}
+
+</style>
+{% endblock %}
 
 {% block content %}
     <title>Gymcounselor</title>
@@ -74,6 +98,51 @@
 			</div>
 		</div>
 	</header>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Our Services</h2>
+				</div>
+			</div>
+			<div class ="row">
+				{% for s in service %}
+				<div class="center2">
+					<div class="col-sm-4 col-xs-12">
+						<div class = "card" style = "background: #FFF;">
+							<img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
+							<br>
+							<a href="{% url 'prod_detail' s.slug %}" ><h3>{{ s.name }}</h3></a>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+
+			</div>
+		</div>
+		</div>
+
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+
+
 	<div id="fh5co-project">
 		<div class="container">
 			<div class="row animate-box">
@@ -97,6 +166,8 @@
             {% endfor %}
 		</div>
 	</div>
+
+
 		<div id="fh5co-services" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
@@ -195,6 +266,7 @@
 		</div>
 	</div>
 </div>
+
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
