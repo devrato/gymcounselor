@@ -1,609 +1,619 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extra_head %}
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<style>
-.home__desc{
-	font-family: 'Poppins', sans-serif !important;
-	font-weight: 600 !important;
-	font-size: 55px !important;
-	padding-left: 8px !important;
-	margin-top: 10% !important;
-}
-.responsive-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .home__desc {
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 55px !important;
+            padding-left: 8px !important;
+            margin-top: 10% !important;
+        }
 
-.heading__content{
-	padding-left: 180px;
-	padding-top: 70px;
-}
+        .responsive-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-.razorpay-payment-button{
-	font-family: 'Poppins', cursive;
-	height: 50px;
-	margin: 10px 40px;
-	padding: 2px 40px;
-	text-decoration: none;
-	border-radius: 30px;
-	line-height: 45px;
-	color: #FFF;
-	background: #F02D3A;
-	border: 2px solid #fff;
-	-webkit-transition: all 0.30s ease-in-out;
-  	-moz-transition: all 0.30s ease-in-out;
-  	-ms-transition: all 0.30s ease-in-out;
-  	-o-transition: all 0.30s ease-in-out;
-}
+        .heading__content {
+            padding-left: 180px;
+            padding-top: 70px;
+        }
 
-.razorpay-payment-button:hover{
-	background-color: rgba(240, 45, 58,0.5);
-	color: #d83d3d;
-}
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: 20px auto;
-  text-align: left;
-  float: left;
+        .razorpay-payment-button {
+            font-family: 'Poppins', cursive;
+            height: 50px;
+            margin: 10px 40px;
+            padding: 2px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            line-height: 45px;
+            color: #FFF;
+            background: #F02D3A;
+            border: 2px solid #fff;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+        }
 
-}
-.center {
-  height: 50%;
-  display: flex;
-  flex-directon: row;
-  justify-content: center;
-  align-items: center;
-}
+        .razorpay-payment-button:hover {
+            background-color: rgba(240, 45, 58, 0.5);
+            color: #d83d3d;
+        }
 
-.center2{
-	margin: 10px auto;
-}
-@media only screen and (max-width: 767px) {
-	.desktop__only{
-	display : none;
-	}
-	.home__desc{
-		font-size: 28px !important;
-		padding-left: 8px !important;
-	}
-	.heading__content{
-		padding-left: 10px;
-		padding-top: 50px;
-	}
-	.heading_content_desc{
-		font-size: 12px !important;
-		margin: 0px !important;
-	}
-	.btn-lg.product__button{
-		font-size: 12px !important;
-		padding: 10px 20px !important;
-	}
-	.heading__image{
-		width: 167px;
-		height: 283px;
-		margin-top: 32px;
-	}
-	.center{
-	display: absolute;
-	}
-}
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: 20px auto;
+            text-align: left;
+            /* float: left; */
 
+        }
 
-.trialheading__image{
-  height: 300px;
-  width: 300px;
-}
+        .center {
+            height: 50%;
+            display: flex;
+            flex-directon: row;
+            justify-content: center;
+            align-items: center;
+        }
 
-.trialheading{
-  padding: 20px 0 0 20px;
-  color: #F02D3A;
-  font-size: 18px;
-  font-weight: 700;
-  font-family: 'Poppins';
-  margin-bottom: 0px !important;
-}
+        .center2 {
+            margin: 10px auto;
+        }
 
-.trialheading_desc{
-  padding: 0 0 0 10px;
-  margin-bottom: 5px !important;
-  font-size: 13px;
-  font-weight: 300;
-  font-family: 'Poppins';
-}
+        @media only screen and (max-width: 767px) {
+            .desktop__only {
+                display: none;
+            }
 
-.heading__hr{
-    margin: 0;
-    padding: 0px;
-    margin-left: 50px;
-    width: 50%;
-}
+            .home__desc {
+                font-size: 28px !important;
+                padding-left: 8px !important;
+            }
 
-@media only screen and (max-width: 767px) {
-  .trialheading{
-    padding-left: 20px;
-    font-size: 21px;
-	margin-bottom: 0px !important;
-  }
+            .heading__content {
+                padding-left: 10px;
+                padding-top: 50px;
+            }
 
-  .trialheading_desc{
-    padding-left: 0px;
-    font-size: 12px;
-    width: 90%;
-    margin: auto;
-  }
+            .heading_content_desc {
+                font-size: 12px !important;
+                margin: 0px !important;
+            }
 
-  .trialheading__image{
-    height: 90%;
-    width: 90%;
-  }
+            .btn-lg.product__button {
+                font-size: 12px !important;
+                padding: 10px 20px !important;
+            }
 
-    .heading__hr{
-        margin: auto;
-        width: 80%;
-}
-}
+            .heading__image {
+                width: 167px;
+                height: 283px;
+                margin-top: 32px;
+            }
+
+            .center {
+                display: absolute;
+            }
+        }
 
 
-</style>
+        .trialheading__image {
+            height: 300px;
+            width: 300px;
+        }
+
+        .trialheading {
+            padding: 20px 0 0 20px;
+            color: #F02D3A;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Poppins';
+            margin-bottom: 0px !important;
+        }
+
+        .trialheading_desc {
+            padding: 0 0 0 10px;
+            margin-bottom: 5px !important;
+            font-size: 13px;
+            font-weight: 300;
+            font-family: 'Poppins';
+        }
+
+        .heading__hr {
+            margin: 0;
+            padding: 0px;
+            margin-left: 50px;
+            width: 50%;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .trialheading {
+                padding-left: 20px;
+                font-size: 21px;
+                margin-bottom: 0px !important;
+            }
+
+            .trialheading_desc {
+                padding-left: 0px;
+                font-size: 12px;
+                width: 90%;
+                margin: auto;
+            }
+
+            .trialheading__image {
+                height: 90%;
+                width: 90%;
+            }
+
+            .heading__hr {
+                margin: auto;
+                width: 80%;
+            }
+        }
+
+
+    </style>
 {% endblock %}
 
 
 {% block content %}
-<title>{{ product.name }}</title>
-<div class="fh5co-loader"></div>
-	<div id="page">
-    <nav class="fh5co-nav" style="background-color: #F02D3A; position: initial !important;" role="navigation">
-		<div class="top">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 text-right">
-						<ul class="fh5co-social">
-							<li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
-							<li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
-							<li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
-							<li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="top-menu" style = "font-family: 'Alegreya Sans', sans-serif;">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-2">
-						<div id="fh5co-logo" style = "font-family: 'Alegreya Sans', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
-					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<!--<li><a href="{% url 'work' %}">Work</a></li>-->
-							<li><a href="{% url 'about' %}">About</a></li>
-							<li><a href="{% url 'contact' %}">Contact</a></li>
+    <title>{{ product.name }}</title>
+    <div class="fh5co-loader"></div>
+    <div id="page">
+        <nav class="fh5co-nav" style="background-color: #F02D3A; position: initial !important;" role="navigation">
+            <div class="top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <ul class="fh5co-social">
+                                <li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+                                <li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-menu" style="font-family: 'Alegreya Sans', sans-serif;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="fh5co-logo" style="font-family: 'Alegreya Sans', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <!--<li><a href="{% url 'work' %}">Work</a></li>-->
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
 
-						    <li class="has-dropdown"><a>Services</a>
-							{% for s in allService %}
-							   <ul class="dropdown">
-							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
-							   </ul>
-							   {% endfor %}
-							</li>
+                                <li class="has-dropdown"><a>Services</a>
+                                    {% for s in allService %}
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+                                        </ul>
+                                    {% endfor %}
+                                </li>
 
-							{% if request.user.is_authenticated %}
-                            <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
-									<ul class="dropdown">
-										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
-										<li><a href="{% url 'logout' %}">Logout</a></li>
-									</ul>
-							</li>
-							{% else %}
-                                <li class="btn-cta"><a href="{% url 'login' %}?next={{request.path}}"><span>Login</span></a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'dashboard' %}">My Profile</a></li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="btn-cta"><a href="{% url 'login' %}?next={{ request.path }}"><span>Login</span></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+        {% if request.user.is_authenticated %}
+            <div class="container-fluid" style="background-color: #F02D3A">
+                <div class="row">
+                    <h3 class="prod_head" style="text-align: centre;color: #FFF">{{ product.name }}</h3>
+                    <br>
+                </div>
+            </div>
+            <div class="row" style="background: #EFF6EE; padding: 20px">
+                <br>
+                <p class="trialheading_desc" style="font-size :3vh; text-align :center; padding: 20px;">Your Plan for <br> <strong><span style="font-size : 5vh">{{ product.name }}</span></strong></p>
+
+                <div style="text-align:center;">
+                    <form action="/ordersuccess" method="POST">
+                        {% csrf_token %}
+                        <script
+                                src="https://checkout.razorpay.com/v1/checkout.js"
+                                data-key="rzp_test_V2KMUMI2Ommcj1"
+                                data-amount="{{ product.price }}"
+                                data-currency="INR"
+                                data-order_id="{{ payment.id }}"
+                                data-buttontext="IN &#8377; {{ product.price }}"
+                                data-name="GYMCOUNSELOR"
+                                data-description="Fitness and healthcare"
+                                data-image="{% static 'images/logo1.png' %}"
+                                data-prefill.name="User"
+                                data-prefill.email="example.kumar@example.com"
+                                data-theme.color="#F02D3A"
+                        ></script>
+                        <input class="btn btn-primary btn-outline with-arrow" style="text-align:center;font-family: Poppins; margin: 0; position: absolute; top: 50%; left: 50%;" type="hidden" custom="Hidden Element" name="hidden">
+                        <!--<p style="text-align:center;font-family: Poppins"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}"><strong>IN &#8377; {{ product.price }} /month</strong><i class="icon-arrow-right"></i></a></p>-->
+                    </form>
+                </div>
+            </div>
+            <div class="row" style="background: #EFF6EE;">
+                <div class="container">
+                    <div class="center2">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="card" style="background: #FFF;">
+                                <img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
+                                <br>
+                                <h5 class="trialheading">1. EXPERT GUIDANCE</h5>
+                                <ul style="padding: 10px" style="padding: 10px">
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; 1:1 personal live session daily</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Coaches that motivate you and track your progress.</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Regular sessions with clinical nutritionists.</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; 24/7 expert’s support.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="card" style="background: #FFF;">
+                                <img src="{% static 'images/head2.png' %}" alt="Photo" style="width:100%">
+                                <br>
+                                <h5 class="trialheading">2. CUSTOMIZED DIET PLAN</h5>
+                                <ul style="padding: 10px">
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Indian diet plan with easy-to-follow recipes as per your preferences.</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Curated by PCOS expert Nutritionist.</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Complete care of your daily nutritional requirements to re-balance your hormones' functionality.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="card" style="background: #FFF;">
+                                <img src="{% static 'images/head3.png' %}" alt="Photo" style="width:100%">
+                                <br>
+                                <h5 class="trialheading">3. INDIAN PCOS RECIPE BOOK </h5>
+                                <ul style="padding: 10px">
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; 30+ Easy to make PCOS Friendly INDIAN recipes.</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Detailed nutritional chart and pictorial representation.</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Wide variety of options to choose from recipes from all over INDIA.</p>
+                                    </li>
+                                    <li>
+                                        <p class="trialheading_desc">&#8226; Clear Cooking Instructions</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center; background: #EFF6EE;">
+                <br><br>
+                <form action="/ordersuccess" method="POST">
+                    {% csrf_token %}
+                    <script
+                            src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="rzp_test_V2KMUMI2Ommcj1"
+                            data-amount="{{ product.price }}"
+                            data-currency="INR"
+                            data-order_id="{{ payment.id }}"
+                            data-buttontext="Pay Online"
+                            data-name="GYMCOUNSELOR"
+                            data-description="{{ product.name }}"
+                            data-image="{% static 'images/logo1.png' %}"
+                            data-prefill.name="{{ user.name }}"
+                            data-prefill.email="{{ user.email }}"
+                            data-theme.color="#F02D3A"
+                    ></script>
+                    <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+                </form>
+                <br><br>
+            </div>
+        {% else %}
+            <div class="container-fluid" style="background-color: #EFF6EE">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="display-tc animate-box heading__content">
+                            <h1 style="color: #F02D3A" class="home__desc ">{{ product.name }}</h1>
+                            <p class="heading_content_desc" style="color:#F2F2F">&nbsp;&nbsp;&nbsp;{{ product.des }}</p>
+                            <br>
+                            {% if request.user.is_authenticated %}
+                                <p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="background-color : #F02D3A; color: white;">Get your Custom Plan</a></p>
+                            {% else %}
+                                <p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{ request.path }}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
                             {% endif %}
-                        </ul>
-					</div>
-				</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 text-center desktop__only">
+                        <img src="../../media/bg_1.png" class="heading__image" alt="product_heading_image">
+                    </div>
+                </div>
+            </div>
 
-			</div>
-		</div>
-	</nav>
-	   {% if request.user.is_authenticated %}
-		<div class="container-fluid" style = "background-color: #F02D3A">
-			<div class="row">
-					<h3 class = "prod_head" style ="text-align: centre;color: #FFF">{{ product.name }}</h3>
-					<br>
-			</div>
-		</div>
-		<div class="row" style = "background: #EFF6EE; padding: 20px">
-    		<br>
-				<p class = "trialheading_desc" style="font-size :3vh; text-align :center; padding: 20px;">Your Plan for <br> <strong><span style = "font-size : 5vh">{{product.name}}</span></strong></p>
-
-			<div style="text-align:center;">
-			    <form action="/ordersuccess"  method="POST">
-				{% csrf_token %}
-					<script
-						src="https://checkout.razorpay.com/v1/checkout.js"
-						data-key="rzp_test_V2KMUMI2Ommcj1"
-						data-amount="{{ product.price }}"
-						data-currency="INR"
-						data-order_id = "{{payment.id}}"
-						data-buttontext="IN &#8377; {{ product.price }}"
-						data-name="GYMCOUNSELOR"
-						data-description="Fitness and healthcare"
-						data-image="{% static 'images/logo1.png' %}"
-						data-prefill.name="User"
-						data-prefill.email="example.kumar@example.com"
-						data-theme.color="#F02D3A"
-					></script>
-					<input class="btn btn-primary btn-outline with-arrow" style="text-align:center;font-family: Poppins; margin: 0; position: absolute; top: 50%; left: 50%;" type="hidden" custom="Hidden Element" name="hidden">
-					<!--<p style="text-align:center;font-family: Poppins"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}"><strong>IN &#8377; {{ product.price }} /month</strong><i class="icon-arrow-right"></i></a></p>-->
-				</form>
-		</div>
-        </div>
-		<div class ="row" style = "background: #EFF6EE;">
-		<div class="container">
-			<div class="center2">
-				<div class="col-sm-4 col-xs-12">
-					<div class = "card" style = "background: #FFF;">
-						<img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
-						<br>
-						<h5 class = "trialheading">1. EXPERT GUIDANCE</h5>
-						<ul style = "padding: 10px" style = "padding: 10px">
-							<li>
-		                    <p class = "trialheading_desc">&#8226; 1:1 personal live session daily</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226; Coaches that motivate you and track your progress.</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226; Regular sessions with clinical nutritionists.</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226;  24/7 expert’s support.</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<div class = "card" style = "background: #FFF;">
-						<img src="{% static 'images/head2.png' %}" alt="Photo" style="width:100%">
-						<br>
-						<h5 class = "trialheading">2. CUSTOMIZED DIET PLAN</h5>
-						<ul style = "padding: 10px">
-							<li>
-								<p class = "trialheading_desc">&#8226; Indian diet plan with easy-to-follow recipes as per your preferences.</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226; Curated by PCOS expert Nutritionist.</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226; Complete care of your daily nutritional requirements to re-balance your hormones' functionality.</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<div class = "card" style = "background: #FFF;">
-						<img src="{% static 'images/head3.png' %}" alt="Photo" style="width:100%">
-						<br>
-						<h5 class = "trialheading">3. INDIAN PCOS RECIPE BOOK </h5>
-						<ul style = "padding: 10px">
-							<li>
-								<p class = "trialheading_desc">&#8226; 30+ Easy to make PCOS Friendly INDIAN recipes.</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226; Detailed nutritional chart and pictorial representation.</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226; Wide variety of options to choose from recipes from all over INDIA.</p>
-							</li>
-							<li>
-								<p class = "trialheading_desc">&#8226; Clear Cooking Instructions</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-
-		<div style="text-align:center; background: #EFF6EE;">
-			<br><br>
-				<form action="/ordersuccess"  method="POST">
-				{% csrf_token %}
-					<script
-						src="https://checkout.razorpay.com/v1/checkout.js"
-						data-key="rzp_test_V2KMUMI2Ommcj1"
-						data-amount="{{ product.price }}"
-						data-currency="INR"
-						data-order_id = "{{payment.id}}"
-						data-buttontext="Pay Online"
-						data-name="GYMCOUNSELOR"
-						data-description="{{ product.name }}"
-						data-image="{% static 'images/logo1.png' %}"
-						data-prefill.name="{{ user.name }}"
-						data-prefill.email="{{ user.email }}"
-						data-theme.color="#F02D3A"
-					></script>
-					<input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-				</form>
-			<br><br>
-		</div>
-		{% else %}
-		<div class="container-fluid" style = "background-color: #EFF6EE">
-			<div class="row">
-				<div class="col-sm-6 col-xs-12">
-					<div class="display-tc animate-box heading__content">
-						<h1 style="color: #F02D3A" class = "home__desc ">{{ product.name }}</h1>
-						<p class = "heading_content_desc" style="color:#F2F2F">&nbsp;&nbsp;&nbsp;{{ product.des }}</p>
-						<br>
-						{% if request.user.is_authenticated %}
-						<p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="background-color : #F02D3A; color: white;">Get your Custom Plan</a></p>
-						{% else %}
-						<p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{request.path}}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
-						{% endif %}
-					</div>
-				</div>
-				<div class="col-xs-6 text-center desktop__only" >
-					<img src="../../media/bg_1.png" class = "heading__image" alt="product_heading_image">
-				</div>
-			</div>
-		</div>
-
-	<div id="fh5co-services" class="fh5co-bg-section" style = "background-color: rgba(240, 45, 58, 0.2)">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2 class = "section__header">How it Works</h2>
-					<!--<p>We at GymCounselor work with scientific principles and data backed methodologies to help you see the results that you may have never seen.</p>-->
-				</div>
-			</div>
-			<div class="row" >
-				<div class="col-12 text-center">
-					<div class="test embed-responsive embed-responsive-16by9" >
-						<iframe class = "embed-responsive-item" src={{ product.feat_l }} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					</div>
-				</div>
-				<div class="container">
-					<div class="col-12">
-						<div class="row services-inner">
-							<div class="col-md-4 col-sm-12">
-								<div class="feature-center animate-box" data-animate-effect="fadeIn">
+            <div id="fh5co-services" class="fh5co-bg-section" style="background-color: rgba(240, 45, 58, 0.2)">
+                <div class="container">
+                    <div class="row animate-box">
+                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                            <h2 class="section__header">How it Works</h2>
+                            <!--<p>We at GymCounselor work with scientific principles and data backed methodologies to help you see the results that you may have never seen.</p>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="test embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src={{ product.feat_l }} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="col-12">
+                                <div class="row services-inner">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="feature-center animate-box" data-animate-effect="fadeIn">
 									<span class="icon">
 										<i class="icon-search"></i>
 									</span>
-									<h3>{{ product.head1 }}</h3>
-									<p>{{ product.desc1 }}</p>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-12">
-								<div class="feature-center animate-box" data-animate-effect="fadeIn">
+                                            <h3>{{ product.head1 }}</h3>
+                                            <p>{{ product.desc1 }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="feature-center animate-box" data-animate-effect="fadeIn">
 									<span class="icon">
 										<i class="icon-bowl"></i>
 									</span>
-									<h3>{{ product.head2 }}</h3>
-									<p>{{ product.desc2 }}</p>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-12">
-								<div class="feature-center animate-box" data-animate-effect="fadeIn">
+                                            <h3>{{ product.head2 }}</h3>
+                                            <p>{{ product.desc2 }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="feature-center animate-box" data-animate-effect="fadeIn">
 									<span class="icon">
 										<i class="icon-open-book"></i>
 									</span>
-									<h3>{{ product.head3 }}</h3>
-									<p>{{ product.desc3 }}</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                                            <h3>{{ product.head3 }}</h3>
+                                            <p>{{ product.desc3 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-			</div>
-			<br>
+                    </div>
+                    <br>
 
-			{% if request.user.is_authenticated %}
-			{% else %}
-			<p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
-			{% endif %}
-		</div>
-	</div>
+                    {% if request.user.is_authenticated %}
+                    {% else %}
+                        <p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{ request.path }}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
+                    {% endif %}
+                </div>
+            </div>
 
 
-	<div id="fh5co-testimonial" class="fh5co-bg-section" style = "background-color: #EFF6EE">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2 class = "section__header">Our Expert</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md col-sm animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-staff">
-						<img src="{% static 'images/lakshmi.jpg' %}" >
-						<h3>Lakshmi</h3>
-						<strong class="role">M.Sc(Clinical Nutrition),<br> Specializes in long term weight management.</strong>
-						<p>Passionate about nutrition and an expert in evaluating the dietary needs of a client Lakshmi has an inclination towards empowering others by understanding their symptoms, their bodies, and how even small diet and lifestyle changes can yield a more healthful, vibrant life in time. She is highly skilled in various fields of diet planning, nutrition counseling, management, public speaking, and healthcare.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %}
-	<div id="fh5co-testimonial" class="fh5co-bg-section" style = "background-color: rgba(240, 45, 58, 0.2)">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2 class="section__header">Happy Clients</h2>
-				</div>
-			</div>
-			<div class="row text-center">
-				<div class="col-md-4" style = "margin-bottom: 20px">
-					<a data-toggle="modal" href="#myModal1" data-backdrop="static">
-						<img src="../../media/{{ product.thumb1 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test1">
-					</a>
-					<div style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
-						<br>
-						<span style = "padding-left: 10px; font-size: 3vh;">{{ product.test_n1 }}</span>
-						<br>
-						&nbsp;
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
-						<br>
-						<p  style= "padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class = "text-left">
-						  {{ product.test_d1 }}
-						  </p>
-					</div>
-				</div>
-				<div class="col-md-4" style = "margin-bottom: 20px">
-					<a data-toggle="modal" href="#myModal2" data-backdrop="static">
-						<img src="../../media/{{ product.thumb2 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test2">
-					</a>
-					<div style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
-						<br>
-						<span style = "padding-left: 10px; font-size: 3vh;">{{ product.test_n2 }}</span>
-						<br>
-						&nbsp;
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
-						<br>
-						<p  style= "padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class = "text-left">
-						  {{ product.test_d2 }}
-						  </p>
-					</div>
-				</div>
-				<div class="col-md-4" style = "margin-bottom: 20px">
-					<a data-toggle="modal" href="#myModal3" data-backdrop="static" >
-						<img src="../../media/{{ product.thumb3 }}" width="350" height="197" style = "border-radius: 20px 20px 0px 0px;" alt="test3">
-					</a>
-					<div style = "border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class = "text-left">
-						<br>
-						<span style = "padding-left: 10px; font-size: 3vh;">{{ product.test_n3 }}</span>
-						<br>
-						&nbsp;
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star" style = "font-size: 2vh; color: #FFD700"></i>
-						<i class="fas fa-star-half-alt" style = "font-size: 2vh; color: #FFD700"></i>
-						<br>
-						<p  style= "padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class = "text-left">
-						  {{ product.test_d3 }}
-						  </p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Button trigger modal -->
-  {% comment %} <a data-toggle="modal" href="#myModal1" class="btn btn-primary btn-lg">Launch demo modal</a> {% endcomment %}
-
-  <!-- Modal video 1 -->
-  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo1()">×</button>
-          <h4 class="modal-title">Modal title</h4>
+            <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color: #EFF6EE">
+                <div class="container">
+                    <div class="row animate-box">
+                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                            <h2 class="section__header">Our Expert</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md col-sm animate-box" data-animate-effect="fadeIn">
+                            <div class="fh5co-staff">
+                                <img src="{% static 'images/lakshmi.jpg' %}">
+                                <h3>Lakshmi</h3>
+                                <strong class="role">M.Sc(Clinical Nutrition),<br> Specializes in long term weight management.</strong>
+                                <p>Passionate about nutrition and an expert in evaluating the dietary needs of a client Lakshmi has an inclination towards empowering others by understanding their symptoms, their bodies, and how even small diet and lifestyle changes can yield a more healthful, vibrant life in time. She is highly skilled in various fields of diet planning, nutrition counseling, management, public speaking, and healthcare.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color: rgba(240, 45, 58, 0.2)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2 class="section__header">Happy Clients</h2>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4" style="margin-bottom: 20px">
+                        <a data-toggle="modal" href="#myModal1" data-backdrop="static">
+                            <img src="../../media/{{ product.thumb1 }}" width="350" height="197" style="border-radius: 20px 20px 0px 0px;" alt="test1">
+                        </a>
+                        <div style="border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class="text-left">
+                            <br>
+                            <span style="padding-left: 10px; font-size: 3vh;">{{ product.test_n1 }}</span>
+                            <br>
+                            &nbsp;
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star-half-alt" style="font-size: 2vh; color: #FFD700"></i>
+                            <br>
+                            <p style="padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class="text-left">
+                                {{ product.test_d1 }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="margin-bottom: 20px">
+                        <a data-toggle="modal" href="#myModal2" data-backdrop="static">
+                            <img src="../../media/{{ product.thumb2 }}" width="350" height="197" style="border-radius: 20px 20px 0px 0px;" alt="test2">
+                        </a>
+                        <div style="border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class="text-left">
+                            <br>
+                            <span style="padding-left: 10px; font-size: 3vh;">{{ product.test_n2 }}</span>
+                            <br>
+                            &nbsp;
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star-half-alt" style="font-size: 2vh; color: #FFD700"></i>
+                            <br>
+                            <p style="padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class="text-left">
+                                {{ product.test_d2 }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="margin-bottom: 20px">
+                        <a data-toggle="modal" href="#myModal3" data-backdrop="static">
+                            <img src="../../media/{{ product.thumb3 }}" width="350" height="197" style="border-radius: 20px 20px 0px 0px;" alt="test3">
+                        </a>
+                        <div style="border-radius: 0px 0px 20px 20px; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); line-height: 1.0; font-family: 'Poppins', cursive; color: black; font-size: 3vh; background: #EFF6EE; width: 350px; margin: -10px auto 10px auto; padding: 10px" class="text-left">
+                            <br>
+                            <span style="padding-left: 10px; font-size: 3vh;">{{ product.test_n3 }}</span>
+                            <br>
+                            &nbsp;
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star" style="font-size: 2vh; color: #FFD700"></i>
+                            <i class="fas fa-star-half-alt" style="font-size: 2vh; color: #FFD700"></i>
+                            <br>
+                            <p style="padding: 10px; font-size: 1.5vh; line-height: 2; font-family: 'Poppins', sans-serif; color: black;" class="text-left">
+                                {{ product.test_d3 }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body text-center" style = "padding-top: 66.66%;">
-			<iframe id ="video1" class = "responsive-iframe" src="{{ product.test_l1 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
-		</div>
-         {% comment %} <div class="modal-footer">
+
+        <!-- Button trigger modal -->
+        {% comment %} <a data-toggle="modal" href="#myModal1" class="btn btn-primary btn-lg">Launch demo modal</a> {% endcomment %}
+
+        <!-- Modal video 1 -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo1()">×</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body text-center" style="padding-top: 66.66%;">
+                        <iframe id="video1" class="responsive-iframe" src="{{ product.test_l1 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        {% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
+                    </div>
+                    {% comment %} <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeVideo1()">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div> {% endcomment %}
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
-  <!-- Modal video 2 -->
-  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo2()">×</button>
-          <h4 class="modal-title">Modal title</h4>
-        </div>
-        <div class="modal-body text-center"  style = "padding-top: 66.66%;">
-			<iframe id ="video2" class = "responsive-iframe" src="{{ product.test_l2 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
-		</div>
-         {% comment %} <div class="modal-footer">
+        <!-- Modal video 2 -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo2()">×</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body text-center" style="padding-top: 66.66%;">
+                        <iframe id="video2" class="responsive-iframe" src="{{ product.test_l2 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        {% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
+                    </div>
+                    {% comment %} <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeVideo1()">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div> {% endcomment %}
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
-  <!-- Modal video 3 -->
-  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo3()">×</button>
-          <h4 class="modal-title">Modal title</h4>
-        </div>
-        <div class="modal-body text-center" style = "padding-top: 66.66%;">
-			<iframe id ="video3" class = "responsive-iframe" src="{{ product.test_l3 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	{% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
-		</div>
-        {% comment %} <div class="modal-footer">
+        <!-- Modal video 3 -->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="closeVideo3()">×</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body text-center" style="padding-top: 66.66%;">
+                        <iframe id="video3" class="responsive-iframe" src="{{ product.test_l3 }}" frameborder="10" allow="accelerometer; autoplay; clipboard-write;   encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        {% comment %} <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="100%" src="https://www.youtube.com/embed/mjQVat-cLaw?autoplay=0&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fwww.fittr.com&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=3" id="widget4"></iframe> {% endcomment %}
+                    </div>
+                    {% comment %} <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeVideo1()">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div> {% endcomment %}
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-<script>
-  var closeVideo1 = function(){
-	  $("#video1").each(function () {
-				console.log("Happened");
-				let vidurl = $(this).attr("src");
-				console.log(vidurl);
-                $(this).attr("src", '');
-                $(this).attr("src", vidurl);
-            });
-  };
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <script>
+            var closeVideo1 = function () {
+                $("#video1").each(function () {
+                    console.log("Happened");
+                    let vidurl = $(this).attr("src");
+                    console.log(vidurl);
+                    $(this).attr("src", '');
+                    $(this).attr("src", vidurl);
+                });
+            };
 
-   var closeVideo2 = function(){
-	  $("#video2").each(function () {
-				console.log("Happened2");
-				let vidurl = $(this).attr("src");
-				console.log(vidurl);
-                $(this).attr("src", '');
-                $(this).attr("src", vidurl);
-            });
-  };
+            var closeVideo2 = function () {
+                $("#video2").each(function () {
+                    console.log("Happened2");
+                    let vidurl = $(this).attr("src");
+                    console.log(vidurl);
+                    $(this).attr("src", '');
+                    $(this).attr("src", vidurl);
+                });
+            };
 
-   var closeVideo3 = function(){
-	  $("#video3").each(function () {
-				console.log("Happened3");
-				let vidurl = $(this).attr("src");
-				console.log(vidurl);
-                $(this).attr("src", '');
-                $(this).attr("src", vidurl);
-            });
-  };
-</script>
-	{% comment %} <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
+            var closeVideo3 = function () {
+                $("#video3").each(function () {
+                    console.log("Happened3");
+                    let vidurl = $(this).attr("src");
+                    console.log(vidurl);
+                    $(this).attr("src", '');
+                    $(this).attr("src", vidurl);
+                });
+            };
+        </script>
+        {% comment %} <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -653,7 +663,7 @@
 			</div>
 		</div>
 	</div> {% endcomment %}
-</div>
-</div>
+    </div>
+    </div>
 
 {% endblock %}
