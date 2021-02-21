@@ -7,6 +7,7 @@ class ExtendedUser(models.Model):
     ph_no = models.IntegerField(blank=True, null=True, default=1234567891)
     height = models.IntegerField(blank=True, default=176)
     weight = models.IntegerField(blank=True, default=65)
+    # profile_pic = models.ImageField(upload_to='/profile_photos')
 
     class Meta:
         db_table = "Extended Details"

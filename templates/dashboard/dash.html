@@ -2,7 +2,7 @@
 {% load static %}
 {% load custom_tags %}
 {% block extra_head %}
-  
+
 <style>
 
 .order_card{
@@ -18,7 +18,7 @@
 .order__title{
 	font-size: 3vh;
 	color: black;
-	padding: 10px 0px 0px 20px; 
+	padding: 10px 0px 0px 20px;
 }
 
 .order__desc{
@@ -30,7 +30,7 @@
 .order__status{
 	font-family: 'Poppins';
 	color: white;
-	font-size: 3.2vh; 
+	font-size: 3.2vh;
 	background-color: #F02D3A;
 	border-radius: 0px 5px 5px 0px;
 	writing-mode: vertical-rl !important;
@@ -61,7 +61,7 @@
   {% comment %} // background: #f02d3A url("https://images.unsplash.com/photo-1536338701933-9fb6ce505c48?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80") no-repeat; {% endcomment %}
   background-position: 100% 100%;
   position: relative;
-  
+
 }
 
 .card-wrapper__cover-bg {
@@ -83,7 +83,7 @@
   top: 30px;
   overflow: hidden;
   padding: 10px;
-  
+
   img {
     width: 150% !important;
     height: 150% !important;
@@ -116,12 +116,12 @@
 
 .card-wrapper__user-contact-info {
   padding-top: 20px;
-  
+
   .card-wrapper__user-contact-info-label {
     font-size: 16px;
     color: #707070;
   }
-  
+
   .card-wrapper__user-contact-info-value,
   .card-wrapper__user-contact-info-value a{
     font-size: 18px;
@@ -136,10 +136,10 @@
 
 .dash__user__image{
 
-	border: 7px solid #F02d3a; 
+	border: 7px solid #F02d3a;
 	border-radius: 30px;
-	margin-top: -100px; 
-	width: 220px; 
+	margin-top: -100px;
+	width: 220px;
 	height:220px;
 }
 
@@ -176,21 +176,21 @@
 	.card-wrapper {
 		width: 100%;
 	}
-	
+
 	.dash__name{
 		font-size: 4.5vh !important;
 	}
-	
+
 	.dash_user_details{
 		font-size: 2.2vh !important;
 	}
 
 	.dash__user__image{
 
-	border: 7px solid #F02d3a; 
+	border: 7px solid #F02d3a;
 	border-radius: 30px;
-	margin-top: -100px; 
-	width: 170px; 
+	margin-top: -100px;
+	width: 170px;
 	height:170px;
 }
 
@@ -253,7 +253,7 @@
 			</div>
 		</div>
 	</nav>
-	
+
     {% comment %} <nav class="fh5co-nav" style="background-color: #5D5B95; position: initial !important;" role="navigation">
 		<div class="top-menu">
 			<div class="container">
@@ -269,7 +269,7 @@
 			</div>
 		</div>
 	</nav> {% endcomment %}
-	
+
     <div class="user_info" style = "background: linear-gradient(to right, #d3cce3, #e9e4f0);">
 	<div class="row" style = "margin: 0">
 		<div class="col" style="margin-bottom: 0px;border-style: none;border-right-style: none;border-radius: 0px;background-color: #f02d3a;background-size: cover, auto;height:300px; ">
@@ -295,27 +295,35 @@
 					<p>
 						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-phone"></i> Mobile: </span> {{ customer.ph_no }}
 					</p>
-				</div>	
+				</div>
 			</div>
 			<div class="row dash_user_details">
 				<div class="col-sm-6 col-xs-12">
 					<p>
-					
-						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-weight"></i> Weight: </span> {{ customer.weight }} Kgs 
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-weight"></i> Weight: </span> {{ customer.weight }} Kgs
 					</p>
-					
+
 				</div>
 				<div class="col-sm-6 col-xs-12">
 					<p>
 						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-ruler-vertical"></i> Height: </span> {{ customer.height }} cms
 					</p>
 				</div>
-				{% endfor %}	
+
+                {% comment %}
+                <div class="col-sm-6 col-xs-12">
+					<p>
+						<span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-ruler-vertical"></i> Profile Pic: </span> {{ customer.profile_pic }}
+					</p>
+				</div>
+				{% endcomment %}
+
+				{% endfor %}
 			</div>
 		<br>
 			{% comment %} <button class = "btn dash__button">Update Profile</button> {% endcomment %}
 			<a data-toggle="modal" class = "btn dash__button" href="#myModal1" data-backdrop="static" style = "font-family: 'Poppins';">
-				Update Profile 
+				Update Profile
 			</a>
 		</div>
 	</div>
@@ -335,7 +343,7 @@
 						<div class="row">
 							<div class="col-md-6 col-xs-12">
 								<label> First Name: </label>
-								<input type="text" class="form-control" name = "first_name" id = "first_name" placeholder="Enter your first name" aria-describedby="basic-addon1" value = "{{request.user.first_name }}" required>	
+								<input type="text" class="form-control" name = "first_name" id = "first_name" placeholder="Enter your first name" aria-describedby="basic-addon1" value = "{{request.user.first_name }}" required>
 							</div>
 							<div class="col-md-6 col-xs-12">
 								<label> Last Name: </label>
@@ -345,13 +353,13 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<label> Mobile Number: </label>
-								<input type="text" class="form-control" name = "ph_no" id = "ph_no" placeholder="Enter your mobile number" value = "{{ customer.ph_no }}" aria-describedby="basic-addon1" required>	
+								<input type="text" class="form-control" name = "ph_no" id = "ph_no" placeholder="Enter your mobile number" value = "{{ customer.ph_no }}" aria-describedby="basic-addon1" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-xs-12">
 								<label> Weight: </label>
-								<input type="text" class="form-control" name = "weight" id = "weight" placeholder="Enter weight in Kgs." value = "{{ customer.weight }}" aria-describedby="basic-addon1" required>	
+								<input type="text" class="form-control" name = "weight" id = "weight" placeholder="Enter weight in Kgs." value = "{{ customer.weight }}" aria-describedby="basic-addon1" required>
 							</div>
 							<div class="col-md-6 col-xs-12">
 								<label> Height: </label>
@@ -370,9 +378,9 @@
 		<br>
 		<br>
 		<br>
-		
+
 		{% comment %} <h2>Hello, {{ user.first_name }}</h2> {% endcomment %}
-		{% comment %} <div class="container" style = "width: 80%">	
+		{% comment %} <div class="container" style = "width: 80%">
 			<div class="row" >
 				<div class="card-wrapper"> 
 					<div class="card-wrapper__bg">
@@ -416,8 +424,8 @@
 			</div>
 			
 		</div> {% endcomment %}
-			
-			
+
+
 
 			<div class="text-center" >
 				<h1 style = "font-size: 40px; font-family: 'Poppins'; font-weight: 800; color: #F02D3A;">My Orders</h1>
@@ -447,7 +455,7 @@
 							<div class="col-sm-1 col-xs-12 order__status" style="background: #4BB543"> On Going </div>
 						{% else %}
 							<div class="col-sm-1 col-xs-12 order__status"> Completed </div>
-						{% endif %}						
+						{% endif %}
 					</div>
 				</div>
 				<br>
