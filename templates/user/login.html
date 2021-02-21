@@ -1,187 +1,186 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extra_head %}
- <link rel="stylesheet" href="{% static 'CSS/register.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'CSS/register.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
-.fbbtn {
-	width: 100%;
-	padding: 12px;
-	border: none;
-	border-radius: 4px;
-	margin: 5px 0;
-	opacity: 0.85;
-	display: inline-block;
-	font-size: 17px;
-	line-height: 20px;
-  	text-decoration: none; /* remove underline from anchors */
-}
+    <style>
+        .fbbtn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            margin: 5px 0;
+            opacity: 0.85;
+            display: inline-block;
+            font-size: 17px;
+            line-height: 20px;
+            text-decoration: none; /* remove underline from anchors */
+        }
 
-.fbbtn:hover {
-  	opacity: 1;
-}
+        .fbbtn:hover {
+            opacity: 1;
+        }
 
-/* add appropriate colors to fb, twitter and google buttons */
-.fb {
-	{% comment %} box-shadow: 0 2px 4px 0 rgba(0,0,0,.25); {% endcomment %}
- 	background-color: none;
-  	border: 1px solid #3B5998;
-	color: #3B5998;
-	width: 95%;
-	-webkit-transition: all 0.60s ease-in-out;
-  	-moz-transition: all 0.60s ease-in-out;
-  	-ms-transition: all 0.60s ease-in-out;
-  	-o-transition: all 0.60s ease-in-out;
-}
-.fb:hover {
-	background-color: #3B5998;
-  	color: white;
-}
+        /* add appropriate colors to fb, twitter and google buttons */
+        .fb {
+        {% comment %} box-shadow: 0 2px 4px 0 rgba(0,0,0,.25); {% endcomment %} background-color: none;
+            border: 1px solid #3B5998;
+            color: #3B5998;
+            width: 95%;
+            -webkit-transition: all 0.60s ease-in-out;
+            -moz-transition: all 0.60s ease-in-out;
+            -ms-transition: all 0.60s ease-in-out;
+            -o-transition: all 0.60s ease-in-out;
+        }
 
-.google {
-	background-color: none;
-  	border: 1px solid #dd4b39;
-	color: #dd4b39;
-	width: 95%;
-	-webkit-transition: all 0.60s ease-in-out;
-  	-moz-transition: all 0.60s ease-in-out;
-  	-ms-transition: all 0.60s ease-in-out;
-  	-o-transition: all 0.60s ease-in-out;
-}
+        .fb:hover {
+            background-color: #3B5998;
+            color: white;
+        }
 
-.google:hover {
-	background-color: #dd4b39;
-  	color: white;
-}
+        .google {
+            background-color: none;
+            border: 1px solid #dd4b39;
+            color: #dd4b39;
+            width: 95%;
+            -webkit-transition: all 0.60s ease-in-out;
+            -moz-transition: all 0.60s ease-in-out;
+            -ms-transition: all 0.60s ease-in-out;
+            -o-transition: all 0.60s ease-in-out;
+        }
 
-.login__button{
-	font-family: 'Comfortaa', cursive;
-	height: 50px;
-	margin: 10px 40px;
-	padding: 2px 40px;
-	text-decoration: none;
-	border-radius: 30px;
-	line-height: 45px;
-	color: #FFF;
-	background: #F02D3A;
-	border: 2px solid #fff;
-	-webkit-transition: all 0.30s ease-in-out;
-  	-moz-transition: all 0.30s ease-in-out;
-  	-ms-transition: all 0.30s ease-in-out;
-  	-o-transition: all 0.30s ease-in-out;
-}
+        .google:hover {
+            background-color: #dd4b39;
+            color: white;
+        }
 
-.login__button:hover{
-	background-color: rgba(240, 45, 58,0.5);
-	color: #d83d3d;
-}
+        .login__button {
+            font-family: 'Comfortaa', cursive;
+            height: 50px;
+            margin: 10px 40px;
+            padding: 2px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            line-height: 45px;
+            color: #FFF;
+            background: #F02D3A;
+            border: 2px solid #fff;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+        }
 
-@media only screen and (max-width: 768px) {
+        .login__button:hover {
+            background-color: rgba(240, 45, 58, 0.5);
+            color: #d83d3d;
+        }
 
-	
-	
-}
+        @media only screen and (max-width: 768px) {
 
-</style>
+
+        }
+
+    </style>
 {% endblock extra_head %}
 {% block content %}
 
-<nav class="fh5co-nav" style="background-color: #F02D3A; position: initial !important;" role="navigation">
-	<div class="top">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 text-right">
-					<ul class="fh5co-social">
-						<li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
-						<li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
-						<li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
-						<li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="top-menu">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-2">
-					<div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
-				</div>
-				<div class="col-xs-10 text-right menu-1">
-					<ul>
-						<!--<li><a href="{% url 'work' %}">Work</a></li>-->
-						<li><a href="{% url 'about' %}">About</a></li>
-						<li><a href="{% url 'contact' %}">Contact</a></li>
-						<li class="has-dropdown"><a>Services</a>
-						{% for s in service %}
-							<ul class="dropdown">
-								<li><a href="{% url 'prod_detail' s.id %}">{{ s.name }}</a></li>
-							</ul>
-							{% endfor %}
-						</li>
-						{% if request.user.is_authenticated %}
-						<li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
-								<ul class="dropdown">
-									<li><a href="{% url 'logout' %}">Logout</a></li>
-								</ul>
-						</li>
-						{% else %}
-							<li class="btn-cta"><a href="{% url 'register' %}?next={{request.path}}"><span>Register</span></a></li>
-						{% endif %}
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</nav>
-<div class="container">
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-            <form action="" method="POST" class="fh5co-form animate-box" data-animate-effect="fadeIn">{% csrf_token %}
-                <div class="text-center">
-					{% comment %} <img src = "{% static 'images/logo1.png' %}" width = "150px">  {% endcomment %}
-					<h2 style ="margin-top: 15px; font-size: 3vh; font-weight: 400; color: #d23a3a; font-family: 'Poppins', sans-serif; text-transform: none; padding-top: 10px;">Welcome to Gymcounselor</h2>
-					<h2 style ="margin-top: -15px; font-size: 3vh; font-weight: 400; color: #d23a3a; font-family: 'Poppins', sans-serif; text-transform: none; padding-bottom: 10px;">Login!</h2>
-				</div>
-				{% if error %}
-					<div class="error">
-						<p class="errorText">{{ error }}</p>
-					</div>
-				{% endif %}
-				<div class="row">
-					<div class="col-xs-12 text-center">
-						<a href="{% url 'social:begin' 'facebook' %}" class="fb btn" style = "font-size: 2.1vh; font-family: 'Poppins', sans-serif; letter-spacing: 1px;"><i class="fa fa-facebook fa-fw"></i> CONNECT WITH FACEBOOK</a>
-					</div>
-					
-					<div style = "margin-top: 5px;" class="col-xs-12 text-center">
-						<a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn" style = "font-size: 2.1vh; font-family: 'Poppins', sans-serif; letter-spacing: 1px;"><i class="fa fa-google fa-fw"></i>&nbsp;CONNECT WITH GOOGLE&nbsp;</a>
-					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-xs-5">
-						<hr style = "height:1px;border:none;color:#333;background-color:#333;">
-					</div>
-					<div class="col-xs-2 text-center" style = "font:size: 20px; font-color: #333; padding-top: 5px">
-						OR
-					</div>
-					<div class="col-xs-5">
-						<hr style = "height:1px;border:none;color:#333;background-color:#333;">
-					</div>
-				</div>
-				<br>
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Email" name="username" id="username" required="required">
-				</div>
-				<div class="form-group">
-					<input type="password" class="form-control" placeholder="Password" name="password" id="password" required="required">
-				</div>
-				<input type="hidden" name="next" value="{{ request.GET.next }}">
-				<div class="form-group text-center">
-					<button type="submit" class="login__button">Log in</button>
-				</div>
-				{% comment %} <div class="row">
+    <nav class="fh5co-nav" style="background-color: #F02D3A; position: initial !important;" role="navigation">
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <ul class="fh5co-social">
+                            <li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+                            <li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+                            <li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+                    </div>
+                    <div class="col-xs-10 text-right menu-1">
+                        <ul>
+                            <!--<li><a href="{% url 'work' %}">Work</a></li>-->
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li class="has-dropdown"><a>Services</a>
+                                {% for s in service %}
+                                    <ul class="dropdown">
+                                        <li><a href="{% url 'prod_detail' s.id %}">{{ s.name }}</a></li>
+                                    </ul>
+                                {% endfor %}
+                            </li>
+                            {% if request.user.is_authenticated %}
+                                <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li class="btn-cta"><a href="{% url 'register' %}?next={{ request.path }}"><span>Register</span></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form action="" method="POST" class="fh5co-form animate-box" data-animate-effect="fadeIn">{% csrf_token %}
+                    <div class="text-center">
+                        {% comment %} <img src = "{% static 'images/logo1.png' %}" width = "150px">  {% endcomment %}
+                        <h2 style="margin-top: 15px; font-size: 3vh; font-weight: 400; color: #d23a3a; font-family: 'Poppins', sans-serif; text-transform: none; padding-top: 10px;">Welcome to Gymcounselor</h2>
+                        <h2 style="margin-top: -15px; font-size: 3vh; font-weight: 400; color: #d23a3a; font-family: 'Poppins', sans-serif; text-transform: none; padding-bottom: 10px;">Login!</h2>
+                    </div>
+                    {% if error %}
+                        <div class="error">
+                            <p class="errorText">{{ error }}</p>
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn" style="font-size: 2.1vh; font-family: 'Poppins', sans-serif; letter-spacing: 1px;"><i class="fa fa-google fa-fw"></i>&nbsp;CONNECT WITH GOOGLE&nbsp;</a>
+                        </div>
+
+                        <div style="margin-top: 5px;" class="col-xs-12 text-center">
+                            <a href="{% url 'social:begin' 'facebook' %}" class="fb btn" style="font-size: 2.1vh; font-family: 'Poppins', sans-serif; letter-spacing: 1px;"><i class="fa fa-facebook fa-fw"></i> CONNECT WITH FACEBOOK</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <hr style="height:1px;border:none;color:#333;background-color:#333;">
+                        </div>
+                        <div class="col-xs-2 text-center" style="font:size: 20px; font-color: #333; padding-top: 5px">
+                            OR
+                        </div>
+                        <div class="col-xs-5">
+                            <hr style="height:1px;border:none;color:#333;background-color:#333;">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" name="username" id="username" required="required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password" id="password" required="required">
+                    </div>
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    <div class="form-group text-center">
+                        <button type="submit" class="login__button">Log in</button>
+                    </div>
+                    {% comment %} <div class="row">
 					<div class="col-xs-6 text-center">
 						<a href="{% url 'social:begin' 'facebook' %}" class="fb btn"><i class="fa fa-facebook fa-fw"></i>Facebook</a>
 					</div>
@@ -189,22 +188,22 @@
 						<a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn"><i class="fa fa-google fa-fw"></i>&nbsp;Google&nbsp;</a>
 					</div>
 				</div> {% endcomment %}
-				<div class="col-12">
-					<div class="form-group text-center" style = "margin: 20px auto 5px auto;">
-						<a href="#" class="float-right">Forgot Password?</a>
-					</div>	
-				</div>
-				<div class="form-group">
-					<p class="text-center">New to <span style = "color: #F02D3A">Gymcounselor</span>, create an account <a href="{% url 'register' %}?next={{request.path}}"><span style = "color: #F02D3A">here.</span></a></p>
-				</div>
-			</form>
+                    <div class="col-12">
+                        <div class="form-group text-center" style="margin: 20px auto 5px auto;">
+                            <a href="#" class="float-right">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-center">New to <span style="color: #F02D3A">Gymcounselor</span>, create an account <a href="{% url 'register' %}?next={{ request.path }}"><span style="color: #F02D3A">here.</span></a></p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<br>
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
+    <br>
 {% endblock %}
 
 <script>
