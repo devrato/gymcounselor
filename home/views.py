@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 from services.models import Service
@@ -44,3 +45,7 @@ def contact_view(request):
         'service': service,
     }
     return render(request, 'home/contact.html', context)
+
+
+def newsletter_subscribe_view(request):
+    return JsonResponse(data={'message': 'Email Received', 'is_received': True}, status=200)

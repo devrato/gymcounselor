@@ -2,284 +2,345 @@
 {% load custom_tags %}
 {% load static %}
 {% block extra_head %}
-<style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: 20px auto;
-  text-align: left;
-  float: left;
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: 20px auto;
+            text-align: left;
+            float: left;
 
-}
-.center2{
-	margin: 10px auto;
-	position: relative;
-}
-.center {
-  height: 50%;
-  display: flex;
-  flex-directon: row;
-  justify-content: center;
-  align-items: center;
-}
+        }
 
-</style>
+        .center2 {
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .center {
+            height: 50%;
+            display: flex;
+            flex-directon: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            display: none;
+            overflow: hidden;
+            position: fixed;
+            top: 150px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1050;
+            -webkit-overflow-scrolling: touch;
+            outline: 0;
+        }
+
+    </style>
 {% endblock %}
 
 {% block content %}
     <title>Gymcounselor</title>
     <div class="fh5co-loader"></div>
-	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
-	    <div class="top">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 text-right">
-						<ul class="fh5co-social">
-							<li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
-							<li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
-							<li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
-							<li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="top-menu">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-2">
-						<div id="fh5co-logo" style = "font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
-					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<!--<li><a href="{% url 'work' %}">Work</a></li>-->
-							<li><a href="{% url 'about' %}">About</a></li>
-							<li><a href="{% url 'contact' %}">Contact</a></li>
+    <div id="page">
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <ul class="fh5co-social">
+                                <li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+                                <li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="fh5co-logo" style="font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <!--<li><a href="{% url 'work' %}">Work</a></li>-->
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
 
-						    <li class="has-dropdown"><a href = "/product/PCOS">Services</a>
-							{% for s in service %}
-							   <ul class="dropdown">
-							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
-							   </ul>
-							   {% endfor %}
-							</li>
+                                <li class="has-dropdown"><a href="/product/PCOS">Services</a>
+                                    {% for s in service %}
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+                                        </ul>
+                                    {% endfor %}
+                                </li>
 
-							{% if request.user.is_authenticated %}
-                            <li class="has-dropdown"><a  href="{% url 'dashboard' %}"> Hey, {{ user.first_name }}</a>
-									<ul class="dropdown">
-										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
-										<li><a href="{% url 'logout' %}">Logout</a></li>
-									</ul>
-							</li>
-							{% else %}
-                                <li class="btn-cta"><a href="{% url 'login' %}?next={{request.path}}"><span>Login</span></a></li>
-                            {% endif %}
-                        </ul>
-					</div>
-				</div>
+                                {% if request.user.is_authenticated %}
+                                    <li class="has-dropdown"><a href="{% url 'dashboard' %}"> Hey, {{ user.first_name }}</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'dashboard' %}">My Profile</a></li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="btn-cta"><a href="{% url 'login' %}?next={{ request.path }}"><span>Login</span></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
 
-			</div>
-		</div>
-	</nav>
+                </div>
+            </div>
+        </nav>
 
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:{% static 'images/img_bg_1.jpg' %};" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="display-t">
-						<div class="display-tc animate-box" >
-							<h1 style = "font-family: 'Poppins', sans-serif; font-weight: 600;">Making the Future of Fitness Easy and Accessible</h1>
-							<p><a href="{% url 'register' %}?next={{request.path}}" class="btn btn-default btn-lg" style = "font-family: 'Poppins', sans-serif;">Get Free Consultation</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+        <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:{% static 'images/img_bg_1.jpg' %};" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="display-t">
+                            <div class="display-tc animate-box">
+                                <h1 style="font-family: 'Poppins', sans-serif; font-weight: 600;">Making the Future of Fitness Easy and Accessible</h1>
+                                <p><a href="{% url 'register' %}?next={{ request.path }}" class="btn btn-default btn-lg" style="font-family: 'Poppins', sans-serif;">Get Free Consultation</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Our Services</h2>
-				</div>
-			</div>
-			<div class ="row">
-				{% for s in service %}
-				<div class="center2">
-					<div class="col-sm-4 col-xs-12">
-						<div class = "card" style = "background: #FFF;">
-							<img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
-							<br>
-							<a href="{% url 'prod_detail' s.slug %}" ><h3>{{ s.name }}</h3></a>
-						</div>
-					</div>
-				{% endfor %}
-				</div>
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Our Services</h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for s in service %}
+                    <div class="center2">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="card" style="background: #FFF;">
+                            <img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
+                            <br>
+                            <a href="{% url 'prod_detail' s.slug %}"><h3>{{ s.name }}</h3></a>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
 
-			</div>
-		</div>
-		</div>
-
-
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+            </div>
+        </div>
+    </div>
 
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-	<div id="fh5co-project">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Our Services</h2>
-				</div>
-			</div>
-		</div>
 
-		<div class="project-content">
-			{% for s in service %}
+
+    <div id="fh5co-project">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Our Services</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-content">
+            {% for s in service %}
                 <div class="col-forth">
-                        <div class="project animate-box" style="background-image: url('../../media/{{ s.img_card }}')" >
-                                <a href="{% url 'prod_detail' s.slug %}" class="desc">
-                                 <span>Get the Results you always Wanted</span>
-                                 <h3>{{ s.name }}</h3>
-                                </a>
-                          	  </div>
-                <p style="text-align:center;" ><a class="btn btn-primary  " href="{% url 'prod_detail' s.slug %}">Start a Free Trial</a></p>
+                    <div class="project animate-box" style="background-image: url('../../media/{{ s.img_card }}')">
+                        <a href="{% url 'prod_detail' s.slug %}" class="desc">
+                            <span>Get the Results you always Wanted</span>
+                            <h3>{{ s.name }}</h3>
+                        </a>
+                    </div>
+                    <p style="text-align:center;"><a class="btn btn-primary  " href="{% url 'prod_detail' s.slug %}">Start a Free Trial</a></p>
                 </div>
             {% endfor %}
-		</div>
-	</div>
+        </div>
+    </div>
 
 
-		<div id="fh5co-services" class="fh5co-bg-section">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h1><strong>What is GYMCOUNSELOR</strong></h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="test">
-						<img class="img-responsive" src="{% static 'images/home2.jpg' %}" alt = "home_image" >
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="row services-inner">
-						<div class="col-md-12 col-sm-12">
-							<div class="feature-center animate-box" data-animate-effect="fadeIn">
+    <div id="fh5co-services" class="fh5co-bg-section">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h1><strong>What is GYMCOUNSELOR</strong></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="test">
+                        <img class="img-responsive" src="{% static 'images/home2.jpg' %}" alt="home_image">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row services-inner">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="feature-center animate-box" data-animate-effect="fadeIn">
 								<span class="icon">
 									<i class="icon-image"></i>
 								</span>
-								<h3>Community</h3>
-								<p>We are a web based fitness community, trying to help anyone that wants to make a Positive change in their lives. We do so by sharing our knowledge and our expertise in the fields of Exercise Science and Nutrition.</p>
-							</div>
-						</div>
-						<div class="col-md-12 col-sm-12">
-							<div class="feature-center animate-box" data-animate-effect="fadeIn">
+                                <h3>Community</h3>
+                                <p>We are a web based fitness community, trying to help anyone that wants to make a Positive change in their lives. We do so by sharing our knowledge and our expertise in the fields of Exercise Science and Nutrition.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="feature-center animate-box" data-animate-effect="fadeIn">
 								<span class="icon">
 									<i class="icon-laptop"></i>
 								</span>
-								<h3>Experts</h3>
-								<p>Remove the guess work from your fitness journey with our expert guidance who are also Teaching Faculties of Leading Fitness Institutions.</p>
-							</div>
-						</div>
-						<div class="col-md-12 col-sm-12">
-							<div class="feature-center animate-box" data-animate-effect="fadeIn">
+                                <h3>Experts</h3>
+                                <p>Remove the guess work from your fitness journey with our expert guidance who are also Teaching Faculties of Leading Fitness Institutions.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="feature-center animate-box" data-animate-effect="fadeIn">
 								<span class="icon">
 									<i class="icon-air-play"></i>
 								</span>
-								<h3>Accountability</h3>
-								<p>With our continuous Motivation and Tracking system you will achieve your goals before you know it</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="fh5co-started">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2> Our Newsletter</h2>
-					<p>Sign up for a regular digital update. What you will get: Weekly updates of Exciting Recipes for PCOS Diet, Access to our Live Sessions Conducted by Experts in the industry</p>
-				</div>
-			</div>
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center">
-					<p><a href="{% url 'login' %}?next={{request.path}}" class="btn btn-default btn-lg">Subscribe</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-		<div id="fh5co-testimonial" class="fh5co-bg-section">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Meet Our Team</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-staff">
-						<img src="{% static 'images/lakshmi.jpg' %}" alt = "home_image" >
-						<h3>Lakshmi</h3>
-						<strong class="role">M.Sc(Clinical Nutrition),<br> Specializes in long term weight management.</strong>
-						<p>Passionate about nutrition and an expert in evaluating the dietary needs of a client Lakshmi has an inclination towards empowering others by understanding their symptoms, their bodies, and how even small diet and lifestyle changes can yield a more healthful, vibrant life in time. She is highly skilled in various fields of diet planning, nutrition counseling, management, public speaking, and healthcare.</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-staff">
-						<img src="{% static 'images/Siddharth.png' %}" alt = "home_image">
-						<h3>Dr. Siddharth baidya</h3>
-						<strong class="role">Orthopedic Surgeon,<br>Specialty Sports Injury</strong>
-						<p>Co-founder of GymCounselor, Dr. Sidharth Baidya holds a Specialization in Sport Injury from MGMC&H, WEST BENGAL. In his vast experience of 8 years in the Fields of Medical and Orthopedics Sidharth has worked with multiple clients and patients and has taught several courses in places like Korea and India to name a few.</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-staff">
-						<img src="{% static 'images/rajnish.jpg' %}" alt = "home_image" >
-						<h3>Rajnish</h3>
-						<strong class="role">Chief Of Exercise Sciences,<br>Certified Fitness and Nutrition Consultant (CPT)</strong>
-						<p>A Fitness and Nutrition Consultant certified by Scientific Training Fitness Academy and Currently one of the Faculty Members. I have worked on individual clients and have successfully helped them achieve their goals. Along with tailor made diet plan and customized exercise schedule, my clients reach their goals faster and in healthier fashion.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+                                <h3>Accountability</h3>
+                                <p>With our continuous Motivation and Tracking system you will achieve your goals before you know it</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
+    <div id="fh5co-started">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2> Our Newsletter</h2>
+                    <p>Sign up for a regular digital update. What you will get: Weekly updates of Exciting Recipes for PCOS Diet, Access to our Live Sessions Conducted by Experts in the industry</p>
+                </div>
+            </div>
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <p>
+                        <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#subscribeModal">Subscribe</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!--	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
-<!--	<script>-->
-<!--		if( {{context|hash:'order_successmodal'}} === 1)-->
-<!--		{-->
-<!--			console.log("Hello")-->
-<!--			swal("Thank You!", "Your order is successful!", "success");-->
-<!--		}-->
-<!--		else{-->
-<!--			console.log({{context|hash:'order_successmodal'}})-->
-<!--		}-->
-<!--	</script>-->
+    <div id="fh5co-testimonial" class="fh5co-bg-section">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Meet Our Team</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
+                    <div class="fh5co-staff">
+                        <img src="{% static 'images/lakshmi.jpg' %}" alt="home_image">
+                        <h3>Lakshmi</h3>
+                        <strong class="role">M.Sc(Clinical Nutrition),<br> Specializes in long term weight management.</strong>
+                        <p>Passionate about nutrition and an expert in evaluating the dietary needs of a client Lakshmi has an inclination towards empowering others by understanding their symptoms, their bodies, and how even small diet and lifestyle changes can yield a more healthful, vibrant life in time. She is highly skilled in various fields of diet planning, nutrition counseling, management, public speaking, and healthcare.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
+                    <div class="fh5co-staff">
+                        <img src="{% static 'images/Siddharth.png' %}" alt="home_image">
+                        <h3>Dr. Siddharth baidya</h3>
+                        <strong class="role">Orthopedic Surgeon,<br>Specialty Sports Injury</strong>
+                        <p>Co-founder of GymCounselor, Dr. Sidharth Baidya holds a Specialization in Sport Injury from MGMC&H, WEST BENGAL. In his vast experience of 8 years in the Fields of Medical and Orthopedics Sidharth has worked with multiple clients and patients and has taught several courses in places like Korea and India to name a few.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
+                    <div class="fh5co-staff">
+                        <img src="{% static 'images/rajnish.jpg' %}" alt="home_image">
+                        <h3>Rajnish</h3>
+                        <strong class="role">Chief Of Exercise Sciences,<br>Certified Fitness and Nutrition Consultant (CPT)</strong>
+                        <p>A Fitness and Nutrition Consultant certified by Scientific Training Fitness Academy and Currently one of the Faculty Members. I have worked on individual clients and have successfully helped them achieve their goals. Along with tailor made diet plan and customized exercise schedule, my clients reach their goals faster and in healthier fashion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+
+    <div class="modal fade" id="subscribeModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Subscribe to our Newsletter.</h4>
+                </div>
+                <div id="modal_body" class="modal-body">
+                    <input id="newsletter_email" type="email" placeholder="Your email address" class="form-control" required>
+                </div>
+                <div id="modal_footer" class="modal-footer">
+                    <button id="email_submit" type="button" class="btn btn-default">Subscribe</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+    <!--	<script>-->
+    <!--		if( {{context|hash:'order_successmodal'}} === 1)-->
+    <!--		{-->
+    <!--			console.log("Hello")-->
+    <!--			swal("Thank You!", "Your order is successful!", "success");-->
+    <!--		}-->
+    <!--		else{-->
+    <!--			console.log({{context|hash:'order_successmodal'}})-->
+    <!--		}-->
+    <!--	</script>-->
+
+    <script>
+        // Subscribe newsletter script
+
+        document.getElementById('email_submit').addEventListener('click', function () {
+            const email = document.getElementById('newsletter_email').value;
+            let modal_body = document.getElementById('modal_body');
+            let modal_footer = document.getElementById('modal_footer');
+            $.ajax({
+                url: '/subscribe-news-letter/',
+                method: 'GET',
+                data: {'email': email},
+                dataType: 'json',
+                success: function (response) {
+                    if (response['is_received']) {
+                        modal_body.innerHTML = `<h1 class="text-center" style="margin-top: 15px;">Thank You</h1>`;
+                        modal_footer.remove();
+                    }
+                }
+            })
+        })
+    </script>
+
 {% endblock %}

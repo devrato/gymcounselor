@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from services.views import service_view
-from home.views import home_view, about_view, work_view, contact_view
+from home.views import home_view, about_view, work_view, contact_view, newsletter_subscribe_view
 from account.views import login_view, register_view
 from dashboard.views import dash_view, updateuserdetails
 from products.views import prod_view, order_success
@@ -26,6 +26,8 @@ urlpatterns = [
     path('product/<slug>', prod_view, name='prod_detail'),
     # path('trial/<slug>', trial, name='trial'),
     path('ordersuccess', order_success, name='order_success'),
+    # subscribe newsletter url
+    path('subscribe-news-letter/', newsletter_subscribe_view, name='subscribe_letter'),
     # path('order_successmodal', order_successmodal, name='order_successmodal'),
     path('updateuserdetails', updateuserdetails, name='updateuserdetails'),
     url('social-auth/', include('social_django.urls', namespace='social')),
