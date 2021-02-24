@@ -1,214 +1,213 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extra_head %}
-   
-
-<style>
-
-.order_card{
-	background-color: white;
-	border-radius: 5px;
-	padding-right: 0px;
-	padding-left: 0px;
-	box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
-	-webkit-box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
-	-moz-box-shadow: 11px 10px 17px -2px rgba(0,0,0,0.42);
-}
 
 
+    <style>
+
+        .order_card {
+            background-color: white;
+            border-radius: 5px;
+            padding-right: 0px;
+            padding-left: 0px;
+            box-shadow: 11px 10px 17px -2px rgba(0, 0, 0, 0.42);
+            -webkit-box-shadow: 11px 10px 17px -2px rgba(0, 0, 0, 0.42);
+            -moz-box-shadow: 11px 10px 17px -2px rgba(0, 0, 0, 0.42);
+        }
 
 
-.animation-ctn{
-  text-align:center;
-  margin-top:5em;
-}
+        .animation-ctn {
+            text-align: center;
+            margin-top: 5em;
+        }
 
-	@-webkit-keyframes checkmark {
-    0% {
-        stroke-dashoffset: 100px
-    }
+        @-webkit-keyframes checkmark {
+            0% {
+                stroke-dashoffset: 100px
+            }
 
-    100% {
-        stroke-dashoffset: 200px
-    }
-}
+            100% {
+                stroke-dashoffset: 200px
+            }
+        }
 
-@-ms-keyframes checkmark {
-    0% {
-        stroke-dashoffset: 100px
-    }
+        @-ms-keyframes checkmark {
+            0% {
+                stroke-dashoffset: 100px
+            }
 
-    100% {
-        stroke-dashoffset: 200px
-    }
-}
+            100% {
+                stroke-dashoffset: 200px
+            }
+        }
 
-@keyframes checkmark {
-    0% {
-        stroke-dashoffset: 100px
-    }
+        @keyframes checkmark {
+            0% {
+                stroke-dashoffset: 100px
+            }
 
-    100% {
-        stroke-dashoffset: 0px
-    }
-}
+            100% {
+                stroke-dashoffset: 0px
+            }
+        }
 
-@-webkit-keyframes checkmark-circle {
-    0% {
-        stroke-dashoffset: 480px
-   
-    }
+        @-webkit-keyframes checkmark-circle {
+            0% {
+                stroke-dashoffset: 480px
 
-    100% {
-        stroke-dashoffset: 960px;
-      
-    }
-}
+            }
 
-@-ms-keyframes checkmark-circle {
-    0% {
-        stroke-dashoffset: 240px
-    }
+            100% {
+                stroke-dashoffset: 960px;
 
-    100% {
-        stroke-dashoffset: 480px
-    }
-}
+            }
+        }
 
-@keyframes checkmark-circle {
-    0% {
-        stroke-dashoffset: 480px 
-    }
+        @-ms-keyframes checkmark-circle {
+            0% {
+                stroke-dashoffset: 240px
+            }
 
-    100% {
-        stroke-dashoffset: 960px
-    }
-}
+            100% {
+                stroke-dashoffset: 480px
+            }
+        }
 
-@keyframes colored-circle { 
-    0% {
-        opacity:0
-    }
+        @keyframes checkmark-circle {
+            0% {
+                stroke-dashoffset: 480px
+            }
 
-    100% {
-        opacity:100
-    }
-}
+            100% {
+                stroke-dashoffset: 960px
+            }
+        }
 
-/* other styles */
-/* .svg svg {
-    display: none
-}
- */
-.inlinesvg .svg svg {
-    display: inline
-}
+        @keyframes colored-circle {
+            0% {
+                opacity: 0
+            }
 
-/* .svg img {
-    display: none
-} */
+            100% {
+                opacity: 100
+            }
+        }
 
-.icon--order-success svg polyline {
-    -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
-    animation: checkmark 0.25s ease-in-out 0.7s backwards
-}
+        /* other styles */
+        /* .svg svg {
+            display: none
+        }
+         */
+        .inlinesvg .svg svg {
+            display: inline
+        }
 
-.icon--order-success svg circle {
-    -webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
-    animation: checkmark-circle 0.6s ease-in-out backwards;
-}
-.icon--order-success svg circle#colored {
-    -webkit-animation: colored-circle 0.6s ease-in-out 0.7s backwards;
-    animation: colored-circle 0.6s ease-in-out 0.7s backwards;
-} 
+        /* .svg img {
+            display: none
+        } */
+
+        .icon--order-success svg polyline {
+            -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+            animation: checkmark 0.25s ease-in-out 0.7s backwards
+        }
+
+        .icon--order-success svg circle {
+            -webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
+            animation: checkmark-circle 0.6s ease-in-out backwards;
+        }
+
+        .icon--order-success svg circle#colored {
+            -webkit-animation: colored-circle 0.6s ease-in-out 0.7s backwards;
+            animation: colored-circle 0.6s ease-in-out 0.7s backwards;
+        }
 
 
-@media only screen and (max-width: 767px) {
-	.card__desc{
-        font-size: 3.5vw !important;
-    }
-}
+        @media only screen and (max-width: 767px) {
+            .card__desc {
+                font-size: 3.5vw !important;
+            }
+        }
 
-</style>
+    </style>
 
 {% endblock extra_head %}
 
 {% block content %}
-<div class="fh5co-loader"></div>
-	<div id="page">
-    <nav class="fh5co-nav" style="background-color: #F02D3A; position: initial !important;" role="navigation">
-		<div class="top">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 text-right">
-						<ul class="fh5co-social">
-							<li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
-							<li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
-							<li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
-							<li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="top-menu">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
-					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<!--<li><a href="{% url 'work' %}">Work</a></li>-->
-							<li><a href="{% url 'about' %}">About</a></li>
-							<li><a href="{% url 'contact' %}">Contact</a></li>
-
-						    <li class="has-dropdown"><a>Services</a>
-							{% for s in allService %}
-							   <ul class="dropdown">
-							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
-							   </ul>
-							   {% endfor %}
-							</li>
-
-							{% if request.user.is_authenticated %}
-                            <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
-									<ul class="dropdown">
-										<li><a href="{% url 'dashboard' %}">My Profile</a></li>
-										<li><a href="{% url 'logout' %}">Logout</a></li>
-									</ul>
-							</li>
-							{% else %}
-                                <li class="btn-cta"><a href="{% url 'login' %}?next={{request.path}}"><span>Login</span></a></li>
-                            {% endif %}
-                        </ul>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</nav>
-
-<div class="div" style = "background-color: #EFF6EE;">
-    <div class="container text-center">
-        <div class="order_card" style = "margin: 20px;">
-            <div class="animation-ctn" style = "padding-top: 50px">
-                <div class="icon icon--order-success svg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">  
-                        <g fill="none" stroke="#22AE73" stroke-width="2"> 
-                        <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
-                        <circle id="colored" fill="#22AE73" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
-                        <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8 63.7,97.9 112.2,49.4 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>   
-                        </g> 
-                    </svg>
+    <div class="fh5co-loader"></div>
+    <div id="page">
+        <nav class="fh5co-nav" style="background-color: #F02D3A; position: initial !important;" role="navigation">
+            <div class="top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <ul class="fh5co-social">
+                                <li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+                                <li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br>
-            <div class="card__heading">
-                <h1 style = "font-family: 'Poppins'; font-size: 6vh; font-weight: 600; color: #F02D3A;">Thank You</h1>
-                <h3>You're Onboard 😊</h3> 
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <!--<li><a href="{% url 'work' %}">Work</a></li>-->
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                                <li class="has-dropdown"><a>Services</a>
+                                    {% for s in allService %}
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+                                        </ul>
+                                    {% endfor %}
+                                </li>
+
+                                {% if request.user.is_authenticated %}
+                                    <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'dashboard' %}">My Profile</a></li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="btn-cta"><a href="{% url 'login' %}?next={{ request.path }}"><span>Login</span></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            {% comment %} <div class="row order__options">
+        </nav>
+
+        <div class="div" style="background-color: #EFF6EE;">
+            <div class="container text-center">
+                <div class="order_card" style="margin: 20px;">
+                    <div class="animation-ctn" style="padding-top: 50px">
+                        <div class="icon icon--order-success svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
+                                <g fill="none" stroke="#22AE73" stroke-width="2">
+                                    <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                                    <circle id="colored" fill="#22AE73" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                                    <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8 63.7,97.9 112.2,49.4 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card__heading">
+                        <h1 style="font-family: 'Poppins'; font-size: 6vh; font-weight: 600; color: #F02D3A;">Thank You</h1>
+                        <h3>You're Onboard 😊</h3>
+                    </div>
+                    {% comment %} <div class="row order__options">
                 <div class="col-sm-6 col-xs-12">
                     <p>
                         <span style = "color: #F02D3A; font-weight: 600"><i class="fas fa-history"></i> Order Id: </span> O3243T 
@@ -232,17 +231,17 @@
                     </p>
                 </div>	
             </div> {% endcomment %}
-            <div class="card__desc">
-                {% comment %} <p style = "color: black; padding: 5px 35px;">You will receive an email from   <strong>XXX@gymcounselor.com</strong> with the subject XXX@gymcounselor.com it may take up to <strong>5 - 10 mins</strong> before it hits your inbox.</p>     
+                    <div class="card__desc">
+                        {% comment %} <p style = "color: black; padding: 5px 35px;">You will receive an email from   <strong>XXX@gymcounselor.com</strong> with the subject XXX@gymcounselor.com it may take up to <strong>5 - 10 mins</strong> before it hits your inbox.</p>
                 <p style = "color: black; padding: 5px 35px"><strong>Note : </strong>If you are a gmail user click,here and make sure you click on <strong>"All emails"</strong> in case our strongail goes to promotions folder.</p>     
                 <p style = "color: black; padding: 5px 35px">For any further instance assistance you can write us on <strong>XXX@gymcounselor.com</strong></p>      {% endcomment %}
-                <p style = "color: black; padding: 5px 35px;" class="lead">You will receive an email from <strong style=" word-break: break-all;">pcosfreeme@gymcounselor.com</strong> with the subject.It may take a day before it hits your inbox.</p>
-                <p style = "color: black; padding: 5px 35px;" class="lead">Note : If you are a gmail user click<a href="https://www.gmail.com/">,here </a>and make sure you click on<strong>"All emails"</strong>in case our email goes to promotions folder.</p>
-                <p style = "color: black; padding: 5px 35px;" >For any further instance assistance you can write us on support@gymcounselor.com</p>
-                <br>
+                        <p style="color: black; padding: 5px 35px;" class="lead">You will receive an email from <strong style=" word-break: break-all;">pcosfreeme@gymcounselor.com</strong> with the subject.It may take a day before it hits your inbox.</p>
+                        <p style="color: black; padding: 5px 35px;" class="lead">Note : If you are a gmail user click<a href="https://www.gmail.com/">,here </a>and make sure you click on<strong>"All emails"</strong>in case our email goes to promotions folder.</p>
+                        <p style="color: black; padding: 5px 35px;">For any further instance assistance you can write us on support@gymcounselor.com</p>
+                        <br>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
     </div>
 {% endblock %}
