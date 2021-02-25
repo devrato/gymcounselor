@@ -1,7 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 
+from django.core.mail import send_mail
 from services.models import Service
+
+from gym.settings import EMAIL_HOST_USER
 
 
 def home_view(request):
@@ -48,4 +51,14 @@ def contact_view(request):
 
 
 def newsletter_subscribe_view(request):
+    message = 'Welcome you have succesfully subscribed to gymcounselor newsletter'
+    subject = 'Hey'
+    to = {request.GET.get("email")}
+    send_mail(
+        subject,
+        message,
+        EMAIL_HOST_USER,
+        to,
+        fail_silently=False,
+    )
     return JsonResponse(data={'message': 'Email Received', 'is_received': True}, status=200)
