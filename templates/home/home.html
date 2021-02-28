@@ -128,7 +128,6 @@
             animation: colored-circle 0.6s ease-in-out 0.7s backwards;
         }
 
-
     </style>
 {% endblock %}
 
@@ -213,10 +212,10 @@
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                     <br>
-        <br>
-        <br>
-        <br>
-        <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <h2>Our Services</h2>
                 </div>
             </div>
@@ -392,35 +391,34 @@
                 </div>
                 <div id="modal_body" class="modal-body">
                     <input id="newsletter_email" type="email" placeholder="Your email address" class="form-control" required>
+                    <div id="modal_footer" class="modal-footer">
+                        <button id="email_submit" type="button" class="btn btn-default">Subscribe</button>
+                    </div>
                 </div>
-                <div id="modal_footer" class="modal-footer">
-                    <button id="email_submit" type="button" class="btn btn-default">Subscribe</button>
-                </div>
+
             </div>
-
         </div>
-    </div>
 
-    <!--	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
-    <!--	<script>-->
-    <!--		if( {{context|hash:'order_successmodal'}} === 1)-->
-    <!--		{-->
-    <!--			console.log("Hello")-->
-    <!--			swal("Thank You!", "Your order is successful!", "success");-->
-    <!--		}-->
-    <!--		else{-->
-    <!--			console.log({{context|hash:'order_successmodal'}})-->
-    <!--		}-->
-    <!--	</script>-->
+        <!--	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+        <!--	<script>-->
+        <!--		if( {{context|hash:'order_successmodal'}} === 1)-->
+        <!--		{-->
+        <!--			console.log("Hello")-->
+        <!--			swal("Thank You!", "Your order is successful!", "success");-->
+        <!--		}-->
+        <!--		else{-->
+        <!--			console.log({{context|hash:'order_successmodal'}})-->
+        <!--		}-->
+        <!--	</script>-->
 
-    <script>
-        // Subscribe newsletter script
+        <script>
+            // Subscribe newsletter script
 
-        document.getElementById('email_submit').addEventListener('click', function () {
-            const email = document.getElementById('newsletter_email').value;
-            let modal_body = document.getElementById('modal_body');
-            let modal_footer = document.getElementById('modal_footer');
-            const message = `
+            document.getElementById('email_submit').addEventListener('click', function () {
+                const email = document.getElementById('newsletter_email').value;
+                let modal_body = document.getElementById('modal_body');
+                let modal_footer = document.getElementById('modal_footer');
+                const message = `
             <div class="text-center">
                 <div class="animation-ctn" style="padding-top: 10px">
                     <div class="icon icon--order-success svg">
@@ -440,19 +438,30 @@
                 </div>
              </div>
             `
-            $.ajax({
-                url: '/subscribe-news-letter/',
-                method: 'GET',
-                data: {'email': email},
-                dataType: 'json',
-                success: function (response) {
-                    if (response['is_received']) {
-                        modal_body.innerHTML = message;
-                        modal_footer.remove();
+
+                const sending = `
+                    <div class="text-center">
+                        <h2 style="margin: 50px;">Subscribing...</h2>
+                    </div>
+            `
+
+                $.ajax({
+                    url: '/subscribe-news-letter/',
+                    method: 'GET',
+                    data: {'email': email},
+                    dataType: 'json',
+                    beforeSend: function () {
+                        modal_body.innerHTML = sending;
+                    },
+                    success: function (response) {
+                        if (response['is_received']) {
+                            console.log(response)
+                            modal_body.innerHTML = message;
+                            modal_footer.remove();
+                        }
                     }
-                }
+                })
             })
-        })
-    </script>
+        </script>
 
 {% endblock %}
