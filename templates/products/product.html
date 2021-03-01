@@ -59,6 +59,7 @@
   /* float: left; */
 
 }
+
 .center {
   height: 50%;
   display: flex;
@@ -153,6 +154,29 @@
         margin: auto;
         width: 80%;
 }
+}
+
+/* footer sticky button */
+.sticky-footer-button{
+    display: none;
+}
+
+
+@media (max-width: 767px) {
+
+    .sticky-footer-button {
+        display: none;
+        font-family: 'Poppins', cursive;
+        border: 2px solid #fff;
+        background: #f02d3a;
+        position: fixed;
+        bottom: 0;
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+    }
 }
 
 
@@ -315,7 +339,7 @@
 
 		<div style="text-align:center; background: #EFF6EE;">
 			<br><br>
-				<form action="/ordersuccess"  method="POST">
+				<form id="buy-form" action="/ordersuccess"  method="POST">
 				{% csrf_token %}
 					<script
 						src="https://checkout.razorpay.com/v1/checkout.js"
@@ -569,6 +593,11 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+        {% if user.is_authenticated %}
+            <button id="sticky-btn" onClick="buyForm()" type="button" class="sticky-footer-button">Buy Now</button>
+        {% endif %}
+
 <script>
   var closeVideo1 = function(){
 	  $("#video1").each(function () {
@@ -599,6 +628,31 @@
                 $(this).attr("src", vidurl);
             });
   };
+
+   /* sticky footer button */
+
+      window.addEventListener('scroll', () => {
+          try {
+              const stickyButton = document.getElementById('sticky-btn');
+              let scroll = this.scrollY;
+              /* set scroll limit according live to page */
+              if (scroll >= 500 && scroll <= 1100) {
+                  stickyButton.style.display = 'inline';
+              } else {
+                  stickyButton.style.display = 'none';
+              }
+          } catch (e) {
+              
+          }
+      })
+
+
+
+    function buyForm() {
+        console.log('click')
+        //send the buy form to server.
+    }
+
 </script>
 	{% comment %} <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color:#eff6ee">
 		<div class="container">
@@ -650,7 +704,9 @@
 			</div>
 		</div>
 	</div> {% endcomment %}
+
 </div>
 </div>
+
 
 {% endblock %}
