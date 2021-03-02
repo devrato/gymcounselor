@@ -165,7 +165,7 @@
 @media (max-width: 767px) {
 
     .sticky-footer-button {
-        display: none;
+        display: inline;
         font-family: 'Poppins', cursive;
         border: 2px solid #fff;
         background: #f02d3a;
@@ -594,9 +594,9 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
-        {% if user.is_authenticated %}
-            <button id="sticky-btn" onClick="buyForm()" type="button" class="sticky-footer-button">Buy Now</button>
-        {% endif %}
+
+        <button id="sticky-btn" onClick="buyForm()" type="button" class="sticky-footer-button">Buy Now</button>
+
 
 <script>
   var closeVideo1 = function(){
@@ -630,21 +630,6 @@
   };
 
    /* sticky footer button */
-
-      window.addEventListener('scroll', () => {
-          try {
-              const stickyButton = document.getElementById('sticky-btn');
-              let scroll = this.scrollY;
-              /* set scroll limit according live to page */
-              if (scroll >= 500 && scroll <= 1100) {
-                  stickyButton.style.display = 'inline';
-              } else {
-                  stickyButton.style.display = 'none';
-              }
-          } catch (e) {
-              
-          }
-      })
 
 
 
