@@ -31,7 +31,6 @@ def prod_view(request, slug):
     return render(request, 'products/product.html', context)
 
 
-
 def order_success(request):
     if request.method == 'POST':
 
@@ -100,8 +99,6 @@ def trial(request, slug):
         'users': user,
     }
     return render(request, 'products/blank.html', context)
-
-
 
 # def pcosblank(request):
 #     service = Service.objects.all()
