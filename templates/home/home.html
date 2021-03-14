@@ -161,6 +161,7 @@
                                 <!--<li><a href="{% url 'work' %}">Work</a></li>-->
                                 <li><a href="{% url 'about' %}">About</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li><a href="{% url 'blog_home' %}">Blog</a></li>
 
                                 <li class="has-dropdown"><a href="/product/PCOS">Services</a>
                                     {% for s in service %}
@@ -398,27 +399,28 @@
 
             </div>
         </div>
+    </div>
 
-        <!--	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
-        <!--	<script>-->
-        <!--		if( {{context|hash:'order_successmodal'}} === 1)-->
-        <!--		{-->
-        <!--			console.log("Hello")-->
-        <!--			swal("Thank You!", "Your order is successful!", "success");-->
-        <!--		}-->
-        <!--		else{-->
-        <!--			console.log({{context|hash:'order_successmodal'}})-->
-        <!--		}-->
-        <!--	</script>-->
+    <!--	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+    <!--	<script>-->
+    <!--		if( {{context|hash:'order_successmodal'}} === 1)-->
+    <!--		{-->
+    <!--			console.log("Hello")-->
+    <!--			swal("Thank You!", "Your order is successful!", "success");-->
+    <!--		}-->
+    <!--		else{-->
+    <!--			console.log({{context|hash:'order_successmodal'}})-->
+    <!--		}-->
+    <!--	</script>-->
 
-        <script>
-            // Subscribe newsletter script
+    <script>
+        // Subscribe newsletter script
 
-            document.getElementById('email_submit').addEventListener('click', function () {
-                const email = document.getElementById('newsletter_email').value;
-                let modal_body = document.getElementById('modal_body');
-                let modal_footer = document.getElementById('modal_footer');
-                const message = `
+        document.getElementById('email_submit').addEventListener('click', function () {
+            const email = document.getElementById('newsletter_email').value;
+            let modal_body = document.getElementById('modal_body');
+            let modal_footer = document.getElementById('modal_footer');
+            const message = `
             <div class="text-center">
                 <div class="animation-ctn" style="padding-top: 10px">
                     <div class="icon icon--order-success svg">
@@ -439,29 +441,29 @@
              </div>
             `
 
-                const sending = `
+            const sending = `
                     <div class="text-center">
                         <h2 style="margin: 50px;">Subscribing...</h2>
                     </div>
             `
 
-                $.ajax({
-                    url: '/subscribe-news-letter/',
-                    method: 'GET',
-                    data: {'email': email},
-                    dataType: 'json',
-                    beforeSend: function () {
-                        modal_body.innerHTML = sending;
-                    },
-                    success: function (response) {
-                        if (response['is_received']) {
-                            console.log(response)
-                            modal_body.innerHTML = message;
-                            modal_footer.remove();
-                        }
+            $.ajax({
+                url: '/subscribe-news-letter/',
+                method: 'GET',
+                data: {'email': email},
+                dataType: 'json',
+                beforeSend: function () {
+                    modal_body.innerHTML = sending;
+                },
+                success: function (response) {
+                    if (response['is_received']) {
+                        console.log(response)
+                        modal_body.innerHTML = message;
+                        modal_footer.remove();
                     }
-                })
+                }
             })
-        </script>
+        })
+    </script>
 
 {% endblock %}

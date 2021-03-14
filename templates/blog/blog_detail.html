@@ -1,0 +1,218 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+<title>{{ title }}</title>
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'CSS/style.blog.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+    <div class="fh5co-loader"></div>
+
+    <div id="page">
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <ul class="fh5co-social">
+                                <li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+                                <li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="fh5co-logo" style="font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <!--<li><a href="{% url 'work' %}">Work</a></li>-->
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li><a href="{% url 'blog_home' %}">Blog</a></li>
+
+                                <li class="has-dropdown"><a>Services</a>
+                                    {% for s in service %}
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+                                        </ul>
+                                    {% endfor %}
+                                </li>
+
+                                {% if request.user.is_authenticated %}
+                                    <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'dashboard' %}">My Profile</a></li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="btn-cta"><a href="{% url 'login' %}?next={{ request.path }}"><span>Login</span></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+        </header>
+
+        <div id="fh5co-about">
+            <div class="container">
+                <div class="row">
+                    <main class="col-lg-8">
+                        <div>
+                            <h2 style="margin-bottom: 10px">{{ object.blog_title|title }}</h2>
+                        </div>
+
+                        <a href="{% url 'blog_detail' object.id %}">
+                            <img src="{{ object.blog_image.url }}" alt="{{ object.id }}" width="100%" style="border-radius: 5px;">
+                        </a>
+                        <div class="post-details">
+                            <div class="object-meta d-flex justify-content-between" style="margin-top: 10px">
+                                <div>{{ object.blog_datetime|date:'M | Y' }}</div>
+                                <div>#{{ object.blog_category }}</div>
+                            </div>
+                            <hr>
+                            <p class="text-muted" style="text-align: justify-all;">
+                                {{ object.blog_content }}
+                            </p>
+                        </div>
+
+                        <hr>
+
+                        <div style="margin-top: 20px;">
+                            <header>
+                                <h3 class="h3">Post Comments<span class="text-muted" style="font-size: 13pt;"> ({{ comment_count }})</span></h3>
+                            </header>
+                            {% for comment in comments %}
+                                <div class="alert">
+                                    <div class="alert-default">
+                                        <div class="comment-header d-flex justify-content-between" style="padding: 10px;">
+                                            <div class="user d-flex align-items-center">
+                                                <div class="image">
+                                                    <img src="{% static 'images/user.svg' %}" alt="user" width="35">
+                                                </div>
+                                                <div style="margin-left: 10px;">
+                                                    <strong style="font-size: 10pt;">{{ comment.comment_user }}</strong>
+                                                    <br>
+                                                    <span style="font-size: 8pt;">{{ comment.comment_datetime|date }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p style="margin-left: 54px;">
+                                                {{ comment.comment }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="add-comment">
+                            <header>
+                                <h3 class="h3">Leave a reply</h3>
+                            </header>
+                            <form action="#" class="commenting-form">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" name="username" id="username" placeholder="Name" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="email" name="username" id="useremail" placeholder="Email Address" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <textarea name="usercomment" id="usercomment" placeholder="Type your comment" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <button type="submit" class="btn btn-danger">Submit Comment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </main>
+
+
+                    <aside class="col-lg-4">
+                        <div class="widget search">
+                            <form action="{% url 'blog_filter' %}" method="get" class="search-form">
+                                <div class="d-flex">
+                                    <input type="search" name="search" class="form-control" placeholder="What are you looking for?" required>
+                                    <button type="submit" class="btn-danger"><i class="icon-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="panel panel-default" style="margin-top: 20px;">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <h3 class="h3 text-center" style="margin-top: 0">Latest Posts</h3>
+                                </div>
+                                <div class="blog-posts">
+                                    {% for post in latest_post %}
+                                        <hr style="margin: 15px 0;">
+                                        <a href="{% url 'blog_detail' post.id %}">
+                                            <div class="item d-flex justify-content-center">
+                                                <div class="image">
+                                                    <img src="{{ post.blog_image.url }}" alt="{{ post.blog_title }}" width="80">
+                                                </div>
+                                                <div style="color:#000; margin-left: 10px;">
+                                                    <p>{{ post.blog_title|title }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default" style="margin-top: 20px;">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <h3 class="h3 text-center" style="margin-top: 0">Categories</h3>
+                                </div>
+                                <hr>
+                                <div class="item d-flex justify-content-between"><a href="#">Growth</a><span>12</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default" style="margin-top: 20px;">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <h3 class="h3 text-center" style="margin-top: 0">Tags</h3>
+                                </div>
+                                <hr>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=sport" class="tag">#SPORT</a></li>
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=food">#FOOD</a></li>
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=music" class="tag">#MUSIC</a></li>
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=fitness" class="tag">#FITNESS</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

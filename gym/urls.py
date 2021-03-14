@@ -31,6 +31,9 @@ urlpatterns = [
     # path('order_successmodal', order_successmodal, name='order_successmodal'),
     path('updateuserdetails', updateuserdetails, name='updateuserdetails'),
     url('social-auth/', include('social_django.urls', namespace='social')),
+
+    # blog urls
+    path('blog/', include('blog.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

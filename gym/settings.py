@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     # INSTALLED
     'social_django',
     'crispy_forms',
+    'multiselectfield',
     'home',
     'services',
     'account',
     'dashboard',
     'products',
+    'blog.apps.BlogConfig',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,0 +1,231 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+<title>{{ title }}</title>
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'CSS/style.blog.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+    <div class="fh5co-loader"></div>
+
+    <div id="page">
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <ul class="fh5co-social">
+                                <li><a href="https://www.instagram.com/gymcounselor/"><i class="icon-instagram"></i></a></li>
+                                <li><a href="https://www.facebook.com/gymcounselor"><i class="icon-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UChvRw7rp9-gX00EpiCoMDNg"><i class="icon-youtube"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/gymcounselor/"><i class="icon-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="fh5co-logo" style="font-family: 'Poppins', sans-serif;"><a href="{% url 'home' %}">gymCOUNSELOR<span>.</span></a></div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <!--<li><a href="{% url 'work' %}">Work</a></li>-->
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li><a href="{% url 'blog_home' %}">Blog</a></li>
+
+                                <li class="has-dropdown"><a>Services</a>
+                                    {% for s in service %}
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+                                        </ul>
+                                    {% endfor %}
+                                </li>
+
+                                {% if request.user.is_authenticated %}
+                                    <li class="has-dropdown"><a> Hey, {{ user.first_name }}</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'dashboard' %}">My Profile</a></li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="btn-cta"><a href="{% url 'login' %}?next={{ request.path }}"><span>Login</span></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+        <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+        </header>
+
+        <div id="fh5co-about">
+            <div class="container">
+                <div class="row">
+                    <main class="col-lg-8">
+                        <div class="row">
+                            {% if blog_list %}
+                                {% for post in blog_list %}
+                                    <!-- post -->
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <div class="panel-title">
+                                                    <a href="{% url 'blog_detail' post.id %}">
+                                                        <img src="{{ post.blog_image.url }}" alt="{{ post.id }}" width="100%" style="border-radius: 5px;">
+                                                    </a>
+                                                </div>
+                                                <div class="post-details">
+                                                    <div class="post-meta d-flex justify-content-between">
+                                                        <div>{{ post.blog_datetime|date:'M | Y' }}</div>
+                                                        <div>#{{ post.blog_category }}</div>
+                                                    </div>
+                                                    <a href="{% url 'blog_detail' post.id %}">
+                                                        <h3>{{ post.blog_title|title }}</h3>
+                                                    </a>
+                                                    <p class="text-muted">
+                                                        {{ post.blog_content|truncatewords:40 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <a href="#" target="_blank" style="background-color: #3b5998; color: #ffffff" class="text-center col-2"><i class="fab fa-facebook-f"></i></a>
+                                                    <a href="#" target="_blank" style="background-color: #25D366; color: #ffffff" class="text-center col-2"><i class="fab fa-whatsapp"></i></a>
+                                                    <a href="#" target="_blank" style="background-color: #1DA1F2; color: #ffffff" class="text-center col-2"><i class="fab fa-twitter"></i></a>
+                                                    <a href="#" target="_blank" style="background-color: #0077b5; color: #ffffff" class="text-center col-2"><i class="fab fa-linkedin"></i></a>
+                                                    <a href="#" target="_blank" style="background-color: #8a3ab9; color: #ffffff" class="text-center col-2"><i class="fab fa-instagram"></i></a>
+                                                    <a href="#" target="_blank" style="background-color: #FF0000; color: #ffffff" class="text-center col-2"><i class="fab fa-youtube"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    <div class="avatar">
+                                                        <img src="{% static 'images/user.svg' %}" alt="user-pic" width="35">
+                                                    </div>
+                                                    <div style="color: #000000; font-size: 10pt; font-family: Poppins, sans-serif; margin-left: 10px;">{{ post.blog_author.first_name }}</div>
+                                                </div>
+                                                <div class="date" style="font-size: 10pt;"><i class="far fa-clock"></i> {{ post.blog_datetime|timesince }} ago</div>
+                                                <div style="font-size: 10pt;"><i class="far fa-comment"></i> {{ post.comment_count }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div style="margin-left: auto; margin-right: auto; margin-top: 200px;">
+                                    <h1 class="h1" style="font-size: 6rem; font-weight: 300; line-height: 1.2;">NOT FOUND</h1>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </main>
+
+
+                    <aside class="col-lg-4">
+                        <div class="widget search">
+                            <form action="{% url 'blog_filter' %}" method="get" class="search-form">
+                                <div class="d-flex">
+                                    <input type="search" name="search" class="form-control" placeholder="What are you looking for?" required>
+                                    <button type="submit" class="btn-danger"><i class="icon-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="panel panel-default" style="margin-top: 20px;">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <h3 class="h3 text-center" style="margin-top: 0">Latest Posts</h3>
+                                </div>
+                                <div class="blog-posts">
+                                    {% for post in latest_post %}
+                                        <hr style="margin: 15px 0;">
+                                        <a href="{% url 'blog_detail' post.id %}">
+                                            <div class="item d-flex justify-content-center">
+                                                <div class="image">
+                                                    <img src="{{ post.blog_image.url }}" alt="{{ post.blog_title }}" width="80">
+                                                </div>
+                                                <div style="color:#000; margin-left: 10px;">
+                                                    <p>{{ post.blog_title|title }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default" style="margin-top: 20px;">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <h3 class="h3 text-center" style="margin-top: 0">Categories</h3>
+                                </div>
+                                <hr>
+                                <div class="item d-flex justify-content-between"><a href="#">Growth</a><span>12</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+                                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default" style="margin-top: 20px;">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <h3 class="h3 text-center" style="margin-top: 0">Tags</h3>
+                                </div>
+                                <hr>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=sport" class="tag">#SPORT</a></li>
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=food">#FOOD</a></li>
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=music" class="tag">#MUSIC</a></li>
+                                    <li class="list-inline-item"><a href="{% url 'blog_filter' %}?tag=fitness" class="tag">#FITNESS</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Pagination -->
+                    {% if page_obj %}
+                        <div style="display:flex; width: 100%">
+                            <nav style="margin: auto;" aria-label="Page navigation">
+                                <ul class="pagination pagination-template">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                                    {% endif %}
+
+                                    <li class="page-item">
+                                        <span class="page-link">{{ page_obj.number }}</span>
+                                    </li>
+
+
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        let fb = document.getElementsByTagName("title", 'facebook')
+        console.log(fb)
+        fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href);
+
+    </script>
+
+{% endblock %}
