@@ -127,16 +127,17 @@
                             <header>
                                 <h3 class="h3">Leave a reply</h3>
                             </header>
-                            <form action="#" class="commenting-form">
+                            <form action="{% url 'add_comment' object.id %}" method="post" class="commenting-form">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" name="username" id="username" placeholder="Name" class="form-control">
+                                        <input type="text" maxlength="50" name="name" id="username" placeholder="Name" class="form-control" required>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="email" name="username" id="useremail" placeholder="Email Address" class="form-control">
+                                        <input type="email" maxlength="80" name="email" id="useremail" placeholder="Email Address" class="form-control" required>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <textarea name="usercomment" id="usercomment" placeholder="Type your comment" class="form-control"></textarea>
+                                        <textarea maxlength="200" name="comment" id="usercomment" placeholder="Type your comment" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <button type="submit" class="btn btn-danger">Submit Comment</button>

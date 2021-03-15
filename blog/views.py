@@ -1,4 +1,6 @@
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
 from .models import Blog, BlogComment
 
 
@@ -50,3 +52,14 @@ class BlogFilterView(ListView):
         context['latest_post'] = Blog.objects.all().order_by('-pk')[:3]
         context['title'] = 'Blog - GymCounselor'
         return context
+
+
+@login_required
+def add_comment(request, post_id):
+    comment = request.POST.get('comment')
+    BlogComment.objects.create(
+        comment_blog_id=post_id,
+        comment=comment,
+        comment_user=request.user
+    )
+    return redirect('blog_detail', post_id)
