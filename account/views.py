@@ -8,19 +8,22 @@ from .models import ExtendedUser
 
 def login_view(request):
     valuenext = request.POST.get('next')
+    comment = request.POST.get('comment')
+    print(comment)
     if request.user.is_authenticated:
         return redirect('home')
     context = {
         'title': 'Login',
         'valuenext': valuenext,
     }
+
     if request.method == "POST":
         user = auth.authenticate(
             username=request.POST['username'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
             if valuenext != '':
-                return redirect('home')
+                return redirect(valuenext)
             else:
                 return redirect('home')
         else:

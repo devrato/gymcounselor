@@ -33,7 +33,8 @@ class Blog(models.Model):
 
 class BlogComment(models.Model):
     comment_blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-    comment_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    # comment_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    comment_user = models.EmailField()
     comment = models.TextField(max_length=500)
     comment_datetime = models.DateTimeField(auto_now_add=True)
 

@@ -75,6 +75,16 @@
                 <div class="row">
                     <main class="col-lg-8">
                         <div class="row">
+
+                            <div style="margin-bottom: 10px; width: 100%;" class="d-block d-md-none">
+                                <form action="{% url 'blog_filter' %}" method="get" class="search-form col-md-6">
+                                    <div class="d-flex">
+                                        <input type="search" name="search" class="form-control" placeholder="What are you looking for?" required>
+                                        <button type="submit" class="btn-danger"><i class="icon-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+
                             {% if blog_list %}
                                 {% for post in blog_list %}
                                     <!-- post -->
@@ -92,29 +102,32 @@
                                                         <div>#{{ post.blog_category }}</div>
                                                     </div>
                                                     <a href="{% url 'blog_detail' post.id %}">
-                                                        <h3>{{ post.blog_title|title }}</h3>
+                                                        <h3 style="font-family: Poppins; font-weight: 500;">{{ post.blog_title|title }}</h3>
                                                     </a>
                                                     <p class="text-muted">
                                                         {{ post.blog_content|truncatewords:40 }}
                                                     </p>
                                                 </div>
                                             </div>
+
+                                            {% comment %}
                                             <div class="container">
                                                 <div class="row">
-                                                    <a href="#" target="_blank" style="background-color: #3b5998; color: #ffffff" class="text-center col-2"><i class="fab fa-facebook-f"></i></a>
-                                                    <a href="#" target="_blank" style="background-color: #25D366; color: #ffffff" class="text-center col-2"><i class="fab fa-whatsapp"></i></a>
-                                                    <a href="#" target="_blank" style="background-color: #1DA1F2; color: #ffffff" class="text-center col-2"><i class="fab fa-twitter"></i></a>
-                                                    <a href="#" target="_blank" style="background-color: #0077b5; color: #ffffff" class="text-center col-2"><i class="fab fa-linkedin"></i></a>
-                                                    <a href="#" target="_blank" style="background-color: #8a3ab9; color: #ffffff" class="text-center col-2"><i class="fab fa-instagram"></i></a>
-                                                    <a href="#" target="_blank" style="background-color: #FF0000; color: #ffffff" class="text-center col-2"><i class="fab fa-youtube"></i></a>
+                                                    <a href="http://www.facebook.com/sharer/sharer.php?u=https://gymcounselor.com{{ request.get_full_path|urlencode }}post/{{ post.id }}/" target="_blank" style="background-color: #3b5998; color: #ffffff" class="text-center col"><i class="fab fa-facebook-f"></i></a>
+                                                    <a href="whatsapp://send?text=This is WhatsApp sharing example using link" data-action="share/whatsapp/share" target="_blank" style="background-color: #25D366; color: #ffffff" class="text-center col"><i class="fab fa-whatsapp"></i></a>
+                                                    <a href="#" target="_blank" style="background-color: #1DA1F2; color: #ffffff" class="text-center col"><i class="fab fa-twitter"></i></a>
+                                                    <a href="http://www.linkedin.com/shareArticle?url=https://gymcounsoler.com{{ request.get_full_path|urlencode }}post/{{ post.id }}/" target="_blank" style="background-color: #0077b5; color: #ffffff" class="text-center col"><i class="fab fa-linkedin"></i></a>
+                                                    <a href="#" target="_blank" style="background-color: #8a3ab9; color: #ffffff" class="text-center col"><i class="fab fa-instagram"></i></a>
                                                 </div>
                                             </div>
+                                            {% endcomment %}
+
                                             <div class="panel-footer d-flex align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <div class="avatar">
                                                         <img src="{% static 'images/user.svg' %}" alt="user-pic" width="35">
                                                     </div>
-                                                    <div style="color: #000000; font-size: 10pt; font-family: Poppins, sans-serif; margin-left: 10px;">{{ post.blog_author.first_name }}</div>
+                                                    <div style="font-size: 10pt; margin-left: 10px;">{{ post.blog_author.first_name }}</div>
                                                 </div>
                                                 <div class="date" style="font-size: 10pt;"><i class="far fa-clock"></i> {{ post.blog_datetime|timesince }} ago</div>
                                                 <div style="font-size: 10pt;"><i class="far fa-comment"></i> {{ post.comment_count }}</div>
@@ -132,7 +145,7 @@
 
 
                     <aside class="col-lg-4">
-                        <div class="widget search">
+                        <div class="d-none d-md-block" style="width: 100%;">
                             <form action="{% url 'blog_filter' %}" method="get" class="search-form">
                                 <div class="d-flex">
                                     <input type="search" name="search" class="form-control" placeholder="What are you looking for?" required>
@@ -219,13 +232,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-
-        let fb = document.getElementsByTagName("title", 'facebook')
-        console.log(fb)
-        fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href);
-
-    </script>
 
 {% endblock %}

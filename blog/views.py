@@ -30,7 +30,7 @@ class BlogDetailView(DetailView):
             'object': self.get_object(),
             'title': self.object.blog_title,
             'latest_post': Blog.objects.all().order_by('-pk')[:3],
-            'comments': BlogComment.objects.filter(comment_blog=self.object.pk).order_by('-pk')[:5],
+            'comments': BlogComment.objects.filter(comment_blog=self.object.pk).order_by('-pk')[:3],
             'comment_count': BlogComment.objects.filter(comment_blog=self.object.pk).count()
         }
         return context
@@ -54,12 +54,33 @@ class BlogFilterView(ListView):
         return context
 
 
-@login_required
+#
+# # @login_required
+# def add_comment(request, post_id):
+#     comment = request.POST.get('comment', None)
+#     if comment is None:
+#         comment = request.session.get('post_comment')
+#         print(comment)
+#
+#     if request.user.is_authenticated:
+#         BlogComment.objects.create(
+#             comment_blog_id=post_id,
+#             comment=comment,
+#             comment_user=request.user
+#         )
+#         return redirect('blog_detail', post_id)
+#
+#     else:
+#         request.session['post_comment'] = comment
+#         return redirect('login')
+
+
 def add_comment(request, post_id):
-    comment = request.POST.get('comment')
+    comment = request.POST.get('comment', None)
+    email = request.POST.get('email', None)
     BlogComment.objects.create(
         comment_blog_id=post_id,
         comment=comment,
-        comment_user=request.user
+        comment_user=email
     )
     return redirect('blog_detail', post_id)

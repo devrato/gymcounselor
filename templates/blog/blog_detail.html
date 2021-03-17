@@ -74,7 +74,7 @@
                 <div class="row">
                     <main class="col-lg-8">
                         <div>
-                            <h2 style="margin-bottom: 10px">{{ object.blog_title|title }}</h2>
+                            <h2 style="padding-bottom: 10px;">{{ object.blog_title|title }}</h2>
                         </div>
 
                         <a href="{% url 'blog_detail' object.id %}">
@@ -145,18 +145,54 @@
                                 </div>
                             </form>
                         </div>
-
                     </main>
 
 
                     <aside class="col-lg-4">
-                        <div class="widget search">
+                        <div style="margin-bottom: 20px">
                             <form action="{% url 'blog_filter' %}" method="get" class="search-form">
                                 <div class="d-flex">
                                     <input type="search" name="search" class="form-control" placeholder="What are you looking for?" required>
                                     <button type="submit" class="btn-danger"><i class="icon-search"></i></button>
                                 </div>
                             </form>
+                        </div>
+
+                        <div class="panel panel-default d-done d-md-block" style="width: 100%;">
+                            <div class="panel-body">
+                                <div class="panel-title text-center">
+                                    <h3 class="h3" style="margin-top: 0;">Share</h3>
+                                </div>
+                                <div class="row" style="height: 50px; margin-bottom: -15px;">
+                                    <a class="col" style="background-color: #3b5998; color: #ffffff"
+                                       href="https://www.facebook.com/sharer/sharer.php?u=https://gymcounselor.com{{ request.path|urlencode }}" target="_blank">
+                                        <div class="text-center" style="margin-top: 13px;">
+                                            <i class="fab fa-facebook-f" style="font-size: 25px;"></i>
+                                        </div>
+                                    </a>
+
+                                    <a class="col" style="background-color: #25D366; color: #ffffff"
+                                       href="https://wa.me/?text=https://gymcounselor.com{{ request.path|urlencode }}" target="_blank" data-action="share/whatsapp/share">
+                                        <div class="text-center" style="margin-top: 13px;">
+                                            <i class="fab fa-whatsapp" style="font-size: 25px;"></i>
+                                        </div>
+                                    </a>
+
+                                    <a class="col" style="background-color: #1DA1F2; color: #ffffff" target="_blank"
+                                       href="http://twitter.com/share?url=https://gymcounselor.com{{ request.path|urlencode }}">
+                                        <div class="text-center" style="margin-top: 13px;">
+                                            <i class="fab fa-twitter" style="font-size: 25px;"></i>
+                                        </div>
+                                    </a>
+
+                                    <a class="col" style="background-color: #0077b5; color: #ffffff" target="_blank"
+                                       href="https://www.linkedin.com/sharing/share-offsite/?url=https://gymcounselor.com{{ request.path|urlencode }}">
+                                        <div class="text-center" style="margin-top: 13px;">
+                                            <i class="fab fa-linkedin" style="font-size: 25px;"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="panel panel-default" style="margin-top: 20px;">
