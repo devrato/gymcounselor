@@ -70,16 +70,16 @@
         </header>
 
         <div id="fh5co-about">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <main class="col-lg-8">
                         <div>
                             <h2 style="padding-bottom: 10px;">{{ object.blog_title|title }}</h2>
                         </div>
 
-                        <a href="{% url 'blog_detail' object.id %}">
+                        <div>
                             <img src="{{ object.blog_image.url }}" alt="{{ object.id }}" width="100%" style="border-radius: 5px;">
-                        </a>
+                        </div>
                         <div class="post-details">
                             <div class="object-meta d-flex justify-content-between" style="margin-top: 10px">
                                 <div>{{ object.blog_datetime|date:'M | Y' }}</div>

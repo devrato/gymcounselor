@@ -263,12 +263,14 @@
             </div>
         </nav>
         {% if request.user.is_authenticated %}
+            {% comment %}
             <div class="container-fluid" style="background-color: #F02D3A">
                 <div class="row">
                     <h3 class="prod_head" style="text-align: centre;color: #FFF">{{ product.name }}</h3>
                     <br>
                 </div>
             </div>
+            {% endcomment %}
             <div class="row" style="background: #EFF6EE; padding: 20px">
                 <br>
                 <p class="trialheading_desc" style="font-size :3vh; text-align :center; padding: 20px;">Your Plan for <br> <strong><span style="font-size : 5vh">{{ product.name }}</span></strong></p>
