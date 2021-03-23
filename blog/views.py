@@ -1,13 +1,14 @@
 from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from .models import Blog, BlogComment
+from services.models import Service
 
+service = Service.objects.all()
 
 class BlogHomeView(ListView):
     template_name = 'blog/blog_home.html'
     paginate_by = 4
-
     def get_queryset(self):
         return Blog.objects.all().order_by('-pk')
 
@@ -15,6 +16,7 @@ class BlogHomeView(ListView):
         context = super(BlogHomeView, self).get_context_data(**kwargs)
         context['title'] = 'Blog - GymCounselor'
         context['latest_post'] = Blog.objects.all().order_by('-pk')[:3]
+        context['service'] = service
         return context
 
 
@@ -32,6 +34,7 @@ class BlogDetailView(DetailView):
             'latest_post': Blog.objects.all().order_by('-pk')[:3],
             'comments': BlogComment.objects.filter(comment_blog=self.object.pk).order_by('-pk')[:3],
             'comment_count': BlogComment.objects.filter(comment_blog=self.object.pk).count()
+
         }
         return context
 
@@ -51,6 +54,7 @@ class BlogFilterView(ListView):
         context = super(BlogFilterView, self).get_context_data(**kwargs)
         context['latest_post'] = Blog.objects.all().order_by('-pk')[:3]
         context['title'] = 'Blog - GymCounselor'
+        context['service'] = service
         return context
 
 

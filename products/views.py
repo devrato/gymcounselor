@@ -4,7 +4,9 @@ import razorpay
 from services.models import Service
 from dashboard.models import Order
 import random
+from django.template.loader import render_to_string
 from gym.settings import EMAIL_HOST_USER
+
 
 
 def prod_view(request, slug):
@@ -63,6 +65,7 @@ def order_success(request):
             message,
             EMAIL_HOST_USER,
             to,
+            html_message=html_message,
             fail_silently=False,
         )
         return render(request, 'products/thank.html')
