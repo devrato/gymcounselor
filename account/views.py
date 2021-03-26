@@ -11,7 +11,7 @@ def login_view(request):
     comment = request.POST.get('comment')
     print(comment)
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('/product/PCOS')
     context = {
         'title': 'Login',
         'valuenext': valuenext,
@@ -23,7 +23,7 @@ def login_view(request):
         if user is not None:
             auth.login(request, user)
             if valuenext != '':
-                return redirect(valuenext)
+                return redirect('/product/PCOS')
             else:
                 return redirect('home')
         else:
@@ -35,7 +35,7 @@ def login_view(request):
 def register_view(request):
     valuenext = request.POST.get('next')
     if request.user.is_authenticated:
-        return redirect(valuenext)
+        return redirect('/product/PCOS')
     context = {
         'title': 'Register',
         'valuenext': valuenext,
@@ -59,7 +59,7 @@ def register_view(request):
                 'username'), password=password)
             if user is not None:
                 login(request, user)
-                return redirect(valuenext)
+                return redirect('valuenext')
 
         # else:
         #     print("Password Not Matched")

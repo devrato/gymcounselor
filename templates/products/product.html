@@ -302,7 +302,7 @@
                                 </ul>
 
                                 <div style="text-align:center; background: #FFFFFF;">
-                                      <div style="font-size: 20px;"><s>&#8377;2499</s></div>
+                                      <div style="font-size: 20px;"><s>&#8377;2500</s></div>
 
                 <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
                     {% csrf_token %}
@@ -344,15 +344,16 @@
                                 </ul>
 
                                 <div style="text-align:center; background: #FFFFFF;">
+                                    <div style="font-size: 20px;"><s>&#8377;8000</s></div>
                 <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
                     {% csrf_token %}
                     <script
                             src="https://checkout.razorpay.com/v1/checkout.js"
                             data-key="rzp_test_V2KMUMI2Ommcj1"
-                            data-amount=""
+                            data-amount= 4999
                             data-currency="INR"
                             data-order_id="{{ payment.id }}"
-                            data-buttontext="Pay Online"
+                            data-buttontext= &#8377;&nbsp;4999
                             data-name="GYMCOUNSELOR"
                             data-description="{{ product.name }}"
                             data-image="{% static 'images/logo1.png' %}"
@@ -384,15 +385,16 @@
                                     </li>
                                 </ul>
                                 <div style="text-align:center; background: #FFFFFF;">
+                                    <div style="font-size: 20px;"><s>&#8377;18000</s></div>
                 <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
                     {% csrf_token %}
                     <script
                             src="https://checkout.razorpay.com/v1/checkout.js"
                             data-key="rzp_test_V2KMUMI2Ommcj1"
-                            data-amount="{{ product.price }}"
+                            data-amount= 8999
                             data-currency="INR"
                             data-order_id="{{ payment.id }}"
-                            data-buttontext="Pay Online"
+                            data-buttontext= &#8377;&nbsp;4999
                             data-name="GYMCOUNSELOR"
                             data-description="{{ product.name }}"
                             data-image="{% static 'images/logo1.png' %}"
