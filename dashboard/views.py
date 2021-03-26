@@ -1,11 +1,8 @@
-from django.contrib.auth import login
-from django.shortcuts import render, redirect
+#from django.contrib.auth import login
+from django.shortcuts import render
 from .models import Order
 from account.models import ExtendedUser
 from services.models import Service
-
-# from services.models import Service
-
 
 def dash_view(request):
     if request.user.is_authenticated:
@@ -19,15 +16,12 @@ def dash_view(request):
         props['services'] = service
 
         return render(request, 'dashboard/dash.html', {'props': props})
-    else:
-        return render(request, 'dashboard/dash.html')
-
 
 def updateuserdetails(request):
     if request.method == 'POST':
         service = Service.objects.all()
-        extended_user = ExtendedUser.objects.get(user=request.user)
         user = request.user
+        extended_user = ExtendedUser.objects.get(user=user)
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         extended_user.ph_no = request.POST['ph_no']
@@ -43,4 +37,5 @@ def updateuserdetails(request):
         props['user'] = extended_user
         props['orders'] = orders
         props['services'] = service
+
         return render(request, 'dashboard/dash.html', {'props': props})

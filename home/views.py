@@ -12,7 +12,7 @@ def home_view(request):
     user = request.user
 
     context = {
-        'title': 'home',
+        'title': 'Home',
         'users': user,
         'service': service,
     }

@@ -201,7 +201,6 @@
 </style>
 
 {% endblock extra_head %}
-<title>My Profile</title>
 {% block content %}
 
 	<div id="page">
@@ -231,21 +230,13 @@
 							<li><a href="{% url 'about' %}">About</a></li>
 							<li><a href="{% url 'contact' %}">Contact</a></li>
                             <li><a href="{% url 'blog_home' %}">Blog</a></li>
-{#							<li class="has-dropdown"><a>Services</a>#}
-{#							{% for s in props|hash:'services' %}#}
-{#								<ul class="dropdown">#}
-{#									<li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>#}
-{#								</ul>#}
-{#							{% endfor %}#}
-{#							</li>#}
-                        <li class="has-dropdown"><a>Services</a>
+							<li class="has-dropdown"><a>Services</a>
 
-							   <ul class="dropdown">
-								   {% for s in service %}
-							        <li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
-							        {% endfor %}
-
-							   </ul>
+								<ul class="dropdown">
+                                    {% for s in props|hash:'services' %}
+									<li><a href="{% url 'prod_detail' s.slug %}">{{ s.name }}</a></li>
+								    {% endfor %}
+                                </ul>
 
 							</li>
 							{% if request.user.is_authenticated %}

@@ -57,6 +57,7 @@
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             max-width: 300px;
+            max-height: 700px;
             margin: 20px auto;
             text-align: left;
             /* float: left; */
@@ -140,7 +141,6 @@
             margin-left: 50px;
             width: 50%;
         }
-
         @media only screen and (max-width: 767px) {
             .trialheading {
                 padding-left: 20px;
@@ -277,27 +277,6 @@
                 <br>
                 <p class="trialheading_desc" style="font-size :3vh; text-align :center; padding: 20px;">Your Plan for <br> <strong><span style="font-size : 5vh">{{ product.name }}</span></strong></p>
 
-                <div class="buy-form" style="text-align:center;">
-                    <form action="/ordersuccess" method="POST">
-                        {% csrf_token %}
-                        <script
-                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                data-amount="{{ product.price }}"
-                                data-currency="INR"
-                                data-order_id="{{ payment.id }}"
-                                data-buttontext="IN &#8377; {{ product.price }}"
-                                data-name="GYMCOUNSELOR"
-                                data-description="Fitness and healthcare"
-                                data-image="{% static 'images/logo1.png' %}"
-                                data-prefill.name="User"
-                                data-prefill.email="example.kumar@example.com"
-                                data-theme.color="#F02D3A"
-                        ></script>
-                        <input class="btn btn-primary btn-outline with-arrow" style="text-align:center;font-family: Poppins; margin: 0; position: absolute; top: 50%; left: 50%;" type="hidden" custom="Hidden Element" name="hidden">
-                        <!--<p style="text-align:center;font-family: Poppins"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{request.path}}"><strong>IN &#8377; {{ product.price }} /month</strong><i class="icon-arrow-right"></i></a></p>-->
-                    </form>
-                </div>
             </div>
             <div class="row" style="background: #EFF6EE;">
                 <div class="container">
@@ -321,6 +300,30 @@
                                         <p class="trialheading_desc">&#8226; 24/7 expert’s support.</p>
                                     </li>
                                 </ul>
+
+                                <div style="text-align:center; background: #FFFFFF;">
+                                      <div style="font-size: 20px;"><s>&#8377;2499</s></div>
+
+                <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
+                    {% csrf_token %}
+                    <script
+                            src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="rzp_test_V2KMUMI2Ommcj1"
+                            data-amount= 199900
+                            data-currency="INR"
+                            data-order_id="{{ payment.id }}"
+                            data-buttontext= &#8377;&nbsp;1999
+                            data-name="GYMCOUNSELOR"
+                            data-description="{{ product.name }}"
+                            data-image="{% static 'images/logo1.png' %}"
+                            data-prefill.name="{{ user.name }}"
+                            data-prefill.email="{{ user.email }}"
+                            data-theme.color="#F02D3A"
+                    ></script>
+                    <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+                </form>
+                                    <br>
+            </div>
                             </div>
                         </div>
                         <div class="col-sm-4 col-xs-12">
@@ -339,6 +342,29 @@
                                         <p class="trialheading_desc">&#8226; Complete care of your daily nutritional requirements to re-balance your hormones' functionality.</p>
                                     </li>
                                 </ul>
+
+                                <div style="text-align:center; background: #FFFFFF;">
+                <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
+                    {% csrf_token %}
+                    <script
+                            src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="rzp_test_V2KMUMI2Ommcj1"
+                            data-amount=""
+                            data-currency="INR"
+                            data-order_id="{{ payment.id }}"
+                            data-buttontext="Pay Online"
+                            data-name="GYMCOUNSELOR"
+                            data-description="{{ product.name }}"
+                            data-image="{% static 'images/logo1.png' %}"
+                            data-prefill.name="{{ user.name }}"
+                            data-prefill.email="{{ user.email }}"
+                            data-theme.color="#F02D3A"
+                    ></script>
+                    <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+                </form>
+                                    <br>
+            </div>
+
                             </div>
                         </div>
                         <div class="col-sm-4 col-xs-12">
@@ -357,14 +383,7 @@
                                         <p class="trialheading_desc">&#8226; Wide variety of options to choose from recipes from all over INDIA.</p>
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align:center; background: #EFF6EE;">
-                <br><br>
+                                <div style="text-align:center; background: #FFFFFF;">
                 <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
                     {% csrf_token %}
                     <script
@@ -383,8 +402,37 @@
                     ></script>
                     <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
                 </form>
-                <br><br>
+                                    <br>
             </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{#            <div style="text-align:center; background: #EFF6EE;">#}
+{#                <br><br>#}
+{#                <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">#}
+{#                    {% csrf_token %}#}
+{#                    <script#}
+{#                            src="https://checkout.razorpay.com/v1/checkout.js"#}
+{#                            data-key="rzp_test_V2KMUMI2Ommcj1"#}
+{#                            data-amount="{{ product.price }}"#}
+{#                            data-currency="INR"#}
+{#                            data-order_id="{{ payment.id }}"#}
+{#                            data-buttontext="Pay Online"#}
+{#                            data-name="GYMCOUNSELOR"#}
+{#                            data-description="{{ product.name }}"#}
+{#                            data-image="{% static 'images/logo1.png' %}"#}
+{#                            data-prefill.name="{{ user.name }}"#}
+{#                            data-prefill.email="{{ user.email }}"#}
+{#                            data-theme.color="#F02D3A"#}
+{#                    ></script>#}
+{#                    <input class="btn btn-default btn-lg" type="radio" custom="Hidden Element" name="hidden">#}
+{#                </form>#}
+{#                <br><br>#}
+{#            </div>#}
         {% else %}
             <div class="container-fluid" style="background-color: #EFF6EE">
                 <div class="row">
