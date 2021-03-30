@@ -35,6 +35,14 @@ def login_view(request):
 def register_view(request):
     valuenext = request.POST.get('next')
     if request.user.is_authenticated:
+        # value = request.session.get('value',default=0)
+        # if value==1:
+        #     return redirect('/product/PCOS')
+        # elif value==2:
+        #     return redirect('/product/PCOS')
+        # elif value==3:
+        #     return redirect('/product/PCOS')
+        # else:
         return redirect('/product/PCOS')
     context = {
         'title': 'Register',
@@ -58,8 +66,15 @@ def register_view(request):
             user = authenticate(request, username=request.POST.get(
                 'username'), password=password)
             if user is not None:
-                login(request, user)
-                return redirect('valuenext')
+                auth.login(request, user)
+                if valuenext != '':
+                    return redirect('/product/PCOS')
+                else:
+                    return redirect('home')
+            else:
+                return render(request, "user/login.html", {"error": "Invalid Login Credentials."})
+        else:
+            return render(request, 'user/login.html', context)
 
         # else:
         #     print("Password Not Matched")

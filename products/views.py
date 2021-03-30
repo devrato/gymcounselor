@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 import razorpay
 from services.models import Service
@@ -10,27 +10,39 @@ from gym.settings import EMAIL_HOST_USER
 
 
 def prod_view(request, slug):
-    user = request.user
-    try:
-        service = Service.objects.get(slug=slug)
-    except:
-        service = None
-    allService = Service.objects.all()
-    order_amount = 50000
-    order_currency = 'INR'
-    order_receipt = 'order_rcptid_11'
-    client = razorpay.Client(
-        auth=('rzp_test_V2KMUMI2Ommcj1', 'YzemijL2imRE9yxKep1c0ydD'))
-    payment = client.order.create({'amount': order_amount, 'currency': 'INR',
-                                   'payment_capture': '1'})
-    context = {
-        'title': service.name,
-        'product': service,
-        'allService': allService,
-        'users': user,
-    }
-
-    return render(request, 'products/product.html', context)
+    if request.method == 'POST':
+        request.session['value']  = int(request.POST.get('value','0'))
+        if(request.user.is_authenticated):
+            return redirect('/product/PCOS')
+        else:
+            return redirect('/register/?next=/product/PCOS')
+    else:
+        user = request.user
+        try:
+            service = Service.objects.get(slug=slug)
+        except:
+            service = None
+        allService = Service.objects.all()
+        order_amount = 50000
+        order_currency = 'INR'
+        order_receipt = 'order_rcptid_11'
+        client = razorpay.Client(
+            auth=('rzp_test_V2KMUMI2Ommcj1', 'YzemijL2imRE9yxKep1c0ydD'))
+        payment = client.order.create({'amount': order_amount, 'currency': 'INR', 'payment_capture': '1'})
+        context = {
+            'title': service.name,
+            'product': service,
+            'allService': allService,
+            'users': user,
+        }
+        print(request.session.get('value', default='0'))
+        val = int(request.session.get('value', default='0'))
+        if request.user.is_authenticated:
+            if val!=0:
+                context['value'] =val
+        else:
+            request.session['value'] = 0
+        return render(request, 'products/product.html', context)
 
 
 def order_success(request):

@@ -23,7 +23,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('dashboard/', dash_view, name='dashboard'),
     path('myorders/', dash_view, name='myorders'),
-    path('product/<slug>', prod_view, name='prod_detail'),
+    path('product/<slug:slug>', prod_view, name='prod_detail'),
     # path('trial/<slug>', trial, name='trial'),
     path('ordersuccess', order_success, name='order_success'),
     # subscribe newsletter url
