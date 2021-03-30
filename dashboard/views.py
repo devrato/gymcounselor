@@ -10,11 +10,11 @@ def dash_view(request):
         orders = Order.objects.filter(customer_email=request.user.email)
         extended_user = ExtendedUser.objects.filter(user=request.user)
         props = {}
-        props['title'] = 'Dashboard'
+        # props['title'] = 'Dashboard'
         props['user'] = extended_user
         props['orders'] = orders
         props['services'] = service
-
+        props['title'] = 'Hello'
         return render(request, 'dashboard/dash.html', {'props': props})
 
 def updateuserdetails(request):
