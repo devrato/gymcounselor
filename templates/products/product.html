@@ -247,30 +247,44 @@
             <!-- After LOGGING IN -->
             {% if value %}
             <!-- If Product one is choosen -->
-            {% ifequal value 1 %}
             <div class="container-fluid" style="background-color: #EFF6EE">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <!-- <h1 >{{value}}</h1> -->
                         <button class="razor-button" type="submit" form="goback" value="Submit"><i class="fa fa-arrow-left"></i></button>
-                        <img src="../../media/bg_1.png" class="center-block" alt="product_heading_image">
+                        {% if product_details.thumb %}
+                        <img src="{{product_detail.thumb.url}}" class="center-block" alt="product_heading_image">
+                        {% endif  %}
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 text-center">
                         
-                            <h1 style="color: #F02D3A" class="home__desc ">EXPERT GUIDANCE</h1>
+                            <h1 style="color: #F02D3A" class="home__desc ">{{ product_detail.name }}</h1>
                             <!-- <p class="heading_content_desc" style="color:#F2F2F">&nbsp;&nbsp;&nbsp;{{ product.des }}</p> -->
                             <ul  style="padding: 10px">
                                 <li>
-                                    <p>&#8226; 1:1 personal live session daily</p>
+                                    {% if product_detail.desc1 %}
+                                    <p>&#8226; {{product_detail.desc1}}</p>
+                                    {% endif %}
                                 </li>
                                 <li>
-                                    <p>&#8226; Coaches that motivate you and track your progress.</p>
+                                    {% if product_detail.desc2 %}
+                                    <p>&#8226; {{product_detail.desc2}}</p>
+                                    {% endif %}
                                 </li>
                                 <li>
-                                    <p>&#8226; Regular sessions with clinical nutritionists.</p>
+                                    {% if product_detail.desc3 %}
+                                    <p>&#8226; {{product_detail.desc3}}</p>
+                                    {% endif %}
                                 </li>
                                 <li>
-                                    <p>&#8226; 24/7 expert’s support.</p>
+                                    {% if product_detail.desc4 %}
+                                    <p>&#8226; {{product_detail.desc4}}</p>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if product_detail.desc5 %}
+                                    <p>&#8226; {{product_detail.desc5}}</p>
+                                    {% endif %}
                                 </li>
                             </ul>
                             <br>
@@ -284,10 +298,10 @@
                                 <script
                                         src="https://checkout.razorpay.com/v1/checkout.js"
                                         data-key="rzp_test_V2KMUMI2Ommcj1"
-                                        data-amount= 199900
+                                        data-amount= {{product_detail.price}}00
                                         data-currency="INR"
                                         data-order_id="{{ payment.id }}"
-                                        data-buttontext= &#8377;&nbsp;1999
+                                        data-buttontext= &#8377;&nbsp;{{product_detail.price}}
                                         data-name="GYMCOUNSELOR"
                                         data-description="{{ product.name }}"
                                         data-image="{% static 'images/logo1.png' %}"
@@ -304,125 +318,6 @@
                     </div>
                 </div>
             </div>
-            {% endifequal %}
-             <!-- If Product two is choosen -->
-            {% ifequal value  2  %}
-            <div class="container-fluid" style="background-color: #EFF6EE">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <!-- <h1 >{{value}}</h1> -->
-                        <button class="razor-button" type="submit" form="goback" value="Submit"><i class="fa fa-arrow-left"></i></button>
-                        <img src="../../media/bg_1.png" class="center-block" alt="product_heading_image">
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 text-center">
-                        
-                            <h1 style="color: #F02D3A" class="home__desc ">CUSTOMIZED DIET PLAN</h1>
-                            <!-- <p class="heading_content_desc" style="color:#F2F2F">&nbsp;&nbsp;&nbsp;{{ product.des }}</p> -->
-                            <ul  style="padding: 10px">
-                                <li>
-                                    <p>&#8226; 1:1 personal live session daily</p>
-                                </li>
-                                <li>
-                                    <p>&#8226; Coaches that motivate you and track your progress.</p>
-                                </li>
-                                <li>
-                                    <p>&#8226; Regular sessions with clinical nutritionists.</p>
-                                </li>
-                                <li>
-                                    <p>&#8226; 24/7 expert’s support.</p>
-                                </li>
-                            </ul>
-                            <br>
-                            <!-- {% if request.user.is_authenticated %}
-                                <p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="background-color : #F02D3A; color: white;">&#8377;&nbsp;1999</a></p>
-                            {% else %}
-                                <p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{ request.path }}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
-                            {% endif %} -->
-                            <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                {% csrf_token %}
-                                <script
-                                        src="https://checkout.razorpay.com/v1/checkout.js"
-                                        data-key="rzp_test_V2KMUMI2Ommcj1"
-                                        data-amount= 199900
-                                        data-currency="INR"
-                                        data-order_id="{{ payment.id }}"
-                                        data-buttontext= &#8377;&nbsp;1999
-                                        data-name="GYMCOUNSELOR"
-                                        data-description="{{ product.name }}"
-                                        data-image="{% static 'images/logo1.png' %}"
-                                        data-prefill.name="{{ user.name }}"
-                                        data-prefill.email="{{ user.email }}"
-                                        data-theme.color="#F02D3A"
-                                ></script>
-                                <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                            </form>
-                            <form  method="POST" id="goback">
-                                {% csrf_token %}
-                                <input hidden type="text"  name="value" value="0">
-                            </form>
-                    </div>
-                </div>
-            </div>
-            {% endifequal %}
-             <!-- If Product two is choosen -->
-            {% ifequal value  3  %}
-            <div class="container-fluid" style="background-color: #EFF6EE">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <!-- <h1 >{{value}}</h1> -->
-                        <button class="razor-button" type="submit" form="goback" value="Submit"><i class="fa fa-arrow-left"></i></button>
-                        <img src="../../media/bg_1.png" class="center-block" alt="product_heading_image">
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 text-center">
-                        
-                            <h1 style="color: #F02D3A" class="home__desc ">INDIAN PCOS RECIPE BOOK</h1>
-                            <!-- <p class="heading_content_desc" style="color:#F2F2F">&nbsp;&nbsp;&nbsp;{{ product.des }}</p> -->
-                            <ul  style="padding: 10px">
-                                <li>
-                                    <p>&#8226; 1:1 personal live session daily</p>
-                                </li>
-                                <li>
-                                    <p>&#8226; Coaches that motivate you and track your progress.</p>
-                                </li>
-                                <li>
-                                    <p>&#8226; Regular sessions with clinical nutritionists.</p>
-                                </li>
-                                <li>
-                                    <p>&#8226; 24/7 expert’s support.</p>
-                                </li>
-                            </ul>
-                            <br>
-                            <!-- {% if request.user.is_authenticated %}
-                                <p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="background-color : #F02D3A; color: white;">&#8377;&nbsp;1999</a></p>
-                            {% else %}
-                                <p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{ request.path }}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
-                            {% endif %} -->
-                            <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                {% csrf_token %}
-                                <script
-                                        src="https://checkout.razorpay.com/v1/checkout.js"
-                                        data-key="rzp_test_V2KMUMI2Ommcj1"
-                                        data-amount= 199900
-                                        data-currency="INR"
-                                        data-order_id="{{ payment.id }}"
-                                        data-buttontext= &#8377;&nbsp;1999
-                                        data-name="GYMCOUNSELOR"
-                                        data-description="{{ product.name }}"
-                                        data-image="{% static 'images/logo1.png' %}"
-                                        data-prefill.name="{{ user.name }}"
-                                        data-prefill.email="{{ user.email }}"
-                                        data-theme.color="#F02D3A"
-                                ></script>
-                                <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                            </form>
-                            <form  method="POST" id="goback">
-                                {% csrf_token %}
-                                <input hidden type="text"  name="value" value="0">
-                            </form>
-                    </div>
-                </div>
-            </div>
-            {% endifequal %}
             {% else %}
             <!-- Already LOGGED IN -->
             {% comment %}
@@ -444,7 +339,70 @@
             <div class="row" style="background: #EFF6EE;">
                 <div class="container">
                     <div class="center2">
+                        {% for x in products %}
                         <div class="col-sm-4 col-xs-12">
+                            <div class="card" style="background: #FFF;">
+                                {% if x.thumb %}
+                                <img src="{{x.thumb.url}}" alt="Photo" style="width:100%">
+                                {% endif %}
+                                <br>
+                                <h5 class="trialheading">{{x.identity}}. {{ x.name}}</h5>
+                                <ul style="padding: 10px">
+                                    <li>
+                                        {% if x.desc1 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc1}}</p>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if x.desc2 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc2}}</p>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if x.desc3 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc3}}</p>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if x.desc4 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc4}}</p>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                                <div style="text-align:center; background: #FFFFFF;">
+                                    <div style="font-size: 20px;"><s>&#8377;18000</s></div>
+                                    <!-- {% if request.user.is_authenticated %}
+                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
+                                        {% csrf_token %}
+                                        <script
+                                                src="https://checkout.razorpay.com/v1/checkout.js"
+                                                data-key="rzp_test_V2KMUMI2Ommcj1"
+                                                data-amount= {{x.price}}
+                                                data-currency="INR"
+                                                data-order_id="{{ payment.id }}"
+                                                data-buttontext= &#8377;&nbsp;{{x.price}}
+                                                data-name="GYMCOUNSELOR"
+                                                data-description="{{ product.name }}"
+                                                data-image="{% static 'images/logo1.png' %}"
+                                                data-prefill.name="{{ user.name }}"
+                                                data-prefill.email="{{ user.email }}"
+                                                data-theme.color="#F02D3A"
+                                        ></script>
+                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+                                    </form>
+                                    {% else %} -->
+                                    <!-- {% endif %} -->
+                                    <form  method="POST">
+                                    {% csrf_token %}
+                                    <input hidden type="text"  name="value" value={{x.identity}}>
+                                    <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;{{x.price}}">
+                                    </form>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- <div class="col-sm-4 col-xs-12">
                             <div class="card" style="background: #FFF;">
                                 <img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
                                 <br>
@@ -466,7 +424,7 @@
 
                                 <div style="text-align:center; background: #FFFFFF;">
                                       <div style="font-size: 20px;"><s>&#8377;2500</s></div>
-                                      <!-- {% if request.user.is_authenticated %}
+                                      {% if request.user.is_authenticated %}
                                     <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
                                         {% csrf_token %}
                                         <script
@@ -492,7 +450,7 @@
                                         <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
                                     </form> -->
                                     <!-- {% endif %} -->
-                                    <form  method="POST">
+                                    <!-- <form  method="POST">
                                         {% csrf_token %}
                                         <input hidden type="text"  name="value" value="1">
                                         <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
@@ -519,7 +477,7 @@
                                 </ul>
 
                                 <div style="text-align:center; background: #FFFFFF;">
-                                    <div style="font-size: 20px;"><s>&#8377;8000</s></div>
+                                    <div style="font-size: 20px;"><s>&#8377;8000</s></div> -->
                                     <!-- {% if request.user.is_authenticated %}
                                     <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
                                         {% csrf_token %}
@@ -546,7 +504,7 @@
                                         <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
                                     </form> -->
                                     <!-- {% endif %} -->
-                                    <form  method="POST">
+                                    <!-- <form  method="POST">
                                         {% csrf_token %}
                                         <input hidden type="text"  name="value" value="2">
                                         <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
@@ -573,7 +531,7 @@
                                     </li>
                                 </ul>
                                 <div style="text-align:center; background: #FFFFFF;">
-                                    <div style="font-size: 20px;"><s>&#8377;18000</s></div>
+                                    <div style="font-size: 20px;"><s>&#8377;18000</s></div> -->
                                     <!-- {% if request.user.is_authenticated %}
                                     <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
                                         {% csrf_token %}
@@ -601,16 +559,16 @@
                                      type="submit"  value="&#8377;&nbsp;4999">
                                     </form> -->
                                     <!-- {% endif %} -->
-                                    <form  method="POST">
+                                    <!-- <form  method="POST">
                                         {% csrf_token %}
                                         <input hidden type="text"  name="value" value="3">
                                         <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
                                     </form>
                                     <br>
-                                </div>
+                                </div> -->
 
-                            </div>
-                        </div>
+                            <!-- </div> -->
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -668,7 +626,71 @@
                     <div class="row">
                 <div class="container">
                     <div class="center2">
+                        {% for x in products %}
                         <div class="col-sm-4 col-xs-12">
+                            <div class="card" style="background: #FFF;">
+                                {% if x.thumb %}
+                                <img src="{{x.thumb.url}}" alt="Photo" style="width:100%">
+                                {% endif %}
+                                <br>
+                                <h5 class="trialheading">{{x.identity}}. {{ x.name}}</h5>
+                                <ul style="padding: 10px">
+                                    <li>
+                                        {% if x.desc1 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc1}}</p>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if x.desc2 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc2}}</p>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if x.desc3 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc3}}</p>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if x.desc4 %}
+                                        <p class="trialheading_desc">&#8226; {{x.desc3}}</p>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                                <div style="text-align:center; background: #FFFFFF;">
+                                    <div style="font-size: 20px;"><s>&#8377;18000</s></div>
+                                    <!-- {% if request.user.is_authenticated %}
+                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
+                                        {% csrf_token %}
+                                        <script
+                                                src="https://checkout.razorpay.com/v1/checkout.js"
+                                                data-key="rzp_test_V2KMUMI2Ommcj1"
+                                                data-amount= {{x.price}}
+                                                data-currency="INR"
+                                                data-order_id="{{ payment.id }}"
+                                                data-buttontext= &#8377;&nbsp;{{x.price}}
+                                                data-name="GYMCOUNSELOR"
+                                                data-description="{{ product.name }}"
+                                                data-image="{% static 'images/logo1.png' %}"
+                                                data-prefill.name="{{ user.name }}"
+                                                data-prefill.email="{{ user.email }}"
+                                                data-theme.color="#F02D3A"
+                                        ></script>
+                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+                                    </form>
+                                    {% else %} -->
+                                    <!-- {% endif %} -->
+                                    <form  method="POST">
+                                    {% csrf_token %}
+                                    <input hidden type="text"  name="value" value={{x.identity}}>
+                                    <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;{{x.price}}">
+                                    </form>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- </div> -->
+                        <!-- <div class="col-sm-4 col-xs-12">
                             <div class="card" style="background: #FFF;">
                                 <img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
                                 <br>
@@ -817,8 +839,8 @@
                                     <br>
                                 </div>
 
-                            </div>
-                        </div>
+                            </div> -->
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
