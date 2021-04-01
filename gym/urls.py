@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from services.views import service_view
-from home.views import home_view, about_view, work_view, contact_view, newsletter_subscribe_view
+from home.views import home_view, about_view, work_view, contact_view, newsletter_subscribe_view, landing_page_view
 from account.views import login_view, register_view
 from dashboard.views import dash_view, updateuserdetails
 from products.views import prod_view, order_success
@@ -22,6 +22,7 @@ urlpatterns = [
     path('services/', service_view, name='services'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('dashboard/', dash_view, name='dashboard'),
+    path('PCOS_Campaign/', landing_page_view, name='landing'),
     path('myorders/', dash_view, name='myorders'),
     path('product/<slug:slug>', prod_view, name='prod_detail'),
     # path('trial/<slug>', trial, name='trial'),
