@@ -62,3 +62,9 @@ def newsletter_subscribe_view(request):
         fail_silently=False,
     )
     return JsonResponse(data={'message': 'Email Received', 'is_received': True}, status=200)
+
+
+
+def landing_page_view(request):
+
+    return render(request, 'landing/home.html')
