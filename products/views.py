@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 import razorpay
 from services.models import Service
+from products.models import Product,Product_detail
 from dashboard.models import Order
 import random
 from django.template.loader import render_to_string
@@ -20,6 +21,7 @@ def prod_view(request, slug):
         user = request.user
         try:
             service = Service.objects.get(slug=slug)
+            products = Product.objects.filter(service=service).order_by('identity')
         except:
             service = None
         allService = Service.objects.all()
@@ -34,11 +36,17 @@ def prod_view(request, slug):
             'product': service,
             'allService': allService,
             'users': user,
+            'products': products
         }
         print(request.session.get('value', default='0'))
         val = int(request.session.get('value', default='0'))
         if request.user.is_authenticated:
             if val!=0:
+                try:
+                    product_detail = Product_detail.objects.filter(service=service).get(identity = val)
+                except:
+                    product_detail = None
+                context['product_detail'] = product_detail
                 context['value'] =val
         else:
             request.session['value'] = 0
