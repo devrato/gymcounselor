@@ -34,6 +34,8 @@ urlpatterns = [
 
     # blog urls
     path('blog/', include('blog.urls')),
+    #workout urls
+    path('videos',include('workout.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

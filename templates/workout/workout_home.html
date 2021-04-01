@@ -4,7 +4,70 @@
 <title>{{ title }}</title>
 
 {% block extra_head %}
-    <link rel="stylesheet" href="{% static 'CSS/style.blog.css' %}">
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  align-items: center;
+  justify-content: center;
+}
+.home__desc {
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 1.5em !important;
+            margin-top: 10% !important;
+}
+.card {
+  display: flex;
+  background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.5)
+  );
+  border-radius: 1rem;
+  margin: 2rem 0rem;
+  padding: 2rem;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+}
+
+
+.card-info {
+    padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (max-width: 767px) {
+            .home__desc {
+                font-size: 1em !important;
+            }
+            
+            .img-responsive{
+                max-height: 100px;
+            }
+            .card{
+                max-height: 120px;
+                display: flex;
+                background: linear-gradient(
+                    to left top,
+                    rgba(255, 255, 255, 0.8),
+                    rgba(255, 255, 255, 0.5)
+                );
+                border-radius: 1rem;
+                margin: 2rem 0rem;
+                padding: 1rem;
+                box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+            }
+            .card-info {
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+            }
+}
+</style>
 {% endblock extra_head %}
 
 {% block content %}
@@ -63,6 +126,7 @@
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
         </nav>
@@ -72,129 +136,40 @@
         </header>
 
         <div id="fh5co-about">
-            <div class="container-fluid">
-                <div class="row">
-                    <main class="col-lg-8">
-                        <div>
-                            <h2 style="padding-bottom: 10px; text-align: center;">{{ object.blog_title|title }}</h2>
-                        </div>
-
-                        <div>
-                            <img src="{{ object.blog_image.url }}" alt="{{ object.id }}" width="100%" style="border-radius: 5px;">
-                        </div>
-                        <div class="post-details">
-                            <div class="object-meta d-flex justify-content-between" style="margin-top: 10px">
-                                <div>{{ object.blog_datetime|date:'M | Y' }}</div>
-                                <div>#{{ object.blog_category }}</div>
-                            </div>
-                            <hr>
-                            <p class="text-muted" style="text-align: justify-all;">
-                                {{ object.blog_content }}
-                            </p>
-                        </div>
-
-                        <hr>
-
-                        <div style="margin-top: 20px;">
-                            <header>
-                                <h3 class="h3">Post Comments<span class="text-muted" style="font-size: 13pt;"> ({{ comment_count }})</span></h3>
-                            </header>
-                            {% for comment in comments %}
-                                <div class="alert">
-                                    <div class="alert-default">
-                                        <div class="comment-header d-flex justify-content-between" style="padding: 10px;">
-                                            <div class="user d-flex align-items-center">
-                                                <div class="image">
-                                                    <img src="{% static 'images/user.svg' %}" alt="user" width="35">
-                                                </div>
-                                                <div style="margin-left: 10px;">
-                                                    <strong style="font-size: 10pt;">{{ comment.comment_user }}</strong>
-                                                    <br>
-                                                    <span style="font-size: 8pt;">{{ comment.comment_datetime|date }}</span>
-                                                </div>
-                                            </div>
+            <div class="container">
+                    <main>
+                            {% if workout_list %}
+                                <div class="cards">
+                                {% for post in workout_list %}
+                                <a href="{% url 'workout_detail' post.id %}">
+                                    <div class="card">
+                                            <img class="img-responsive" src="{{ post.video_image.url }}" alt="{{ post.id }}" style="border-radius: 5px;">
+                                        <div class = "card-info" >
+                                            <h2 class = "home__desc" >{{ post.video_title }}</h2>
+                                            <span>{{ post.upload_datetime|date:'M | Y' }} &nbsp;#{{ post.video_category }}</span> 
+                                            
                                         </div>
-                                        <div>
-                                            <p style="margin-left: 54px;">
-                                                {{ comment.comment }}
-                                            </p>
-                                        </div>
+                                               
                                     </div>
+                                    </a>
+                                {% endfor %}
                                 </div>
-                            {% endfor %}
-                        </div>
-
-
-                        <div class="add-comment">
-                            <header>
-                                <h3 class="h3">Leave a reply</h3>
-                            </header>
-                            <form action="{% url 'add_comment' object.id %}" method="post" class="commenting-form">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <input type="text" maxlength="50" name="name" id="username" placeholder="Name" class="form-control" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input type="email" maxlength="80" name="email" id="useremail" placeholder="Email Address" class="form-control" required>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <textarea maxlength="200" name="comment" id="usercomment" placeholder="Type your comment" class="form-control" required></textarea>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <button type="submit" class="btn btn-danger">Submit Comment</button>
-                                    </div>
+                            {% else %}
+                                <div style="margin-left: auto; margin-right: auto; margin-top: 200px;">
+                                    <h1 class="h1" style="font-size: 6rem; font-weight: 300; line-height: 1.2;">NOT FOUND</h1>
                                 </div>
-                            </form>
-                        </div>
+                            {% endif %}
                     </main>
 
 
-                    <aside class="col-lg-4">
-                        <div style="margin-bottom: 20px">
+                    <!-- <aside class="col-lg-4">
+                        <div class="d-none d-md-block" style="width: 100%;">
                             <form action="{% url 'blog_filter' %}" method="get" class="search-form">
                                 <div class="d-flex">
                                     <input type="search" name="search" class="form-control" placeholder="What are you looking for?" required>
                                     <button type="submit" class="btn-danger"><i class="icon-search"></i></button>
                                 </div>
                             </form>
-                        </div>
-
-                        <div class="panel panel-default d-done d-md-block" style="width: 100%;">
-                            <div class="panel-body">
-                                <div class="panel-title text-center">
-                                    <h3 class="h3" style="margin-top: 0;">Share</h3>
-                                </div>
-                                <div class="row" style="height: 50px; margin-bottom: -15px;">
-                                    <a class="col" style="background-color: #3b5998; color: #ffffff"
-                                       href="https://www.facebook.com/sharer/sharer.php?u=https://gymcounselor.com{{ request.path|urlencode }}" target="_blank">
-                                        <div class="text-center" style="margin-top: 13px;">
-                                            <i class="fab fa-facebook-f" style="font-size: 25px;"></i>
-                                        </div>
-                                    </a>
-
-                                    <a class="col" style="background-color: #25D366; color: #ffffff"
-                                       href="https://wa.me/?text=https://gymcounselor.com{{ request.path|urlencode }}" target="_blank" data-action="share/whatsapp/share">
-                                        <div class="text-center" style="margin-top: 13px;">
-                                            <i class="fab fa-whatsapp" style="font-size: 25px;"></i>
-                                        </div>
-                                    </a>
-
-                                    <a class="col" style="background-color: #1DA1F2; color: #ffffff" target="_blank"
-                                       href="http://twitter.com/share?url=https://gymcounselor.com{{ request.path|urlencode }}">
-                                        <div class="text-center" style="margin-top: 13px;">
-                                            <i class="fab fa-twitter" style="font-size: 25px;"></i>
-                                        </div>
-                                    </a>
-
-                                    <a class="col" style="background-color: #0077b5; color: #ffffff" target="_blank"
-                                       href="https://www.linkedin.com/sharing/share-offsite/?url=https://gymcounselor.com{{ request.path|urlencode }}">
-                                        <div class="text-center" style="margin-top: 13px;">
-                                            <i class="fab fa-linkedin" style="font-size: 25px;"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="panel panel-default" style="margin-top: 20px;">
@@ -248,10 +223,31 @@
                                 </ul>
                             </div>
                         </div>
-                    </aside>
-                </div>
+                    </aside> -->
+
+                    <!-- Pagination -->
+                    {% if page_obj %}
+                        <div style="display:flex; width: 100%">
+                            <nav style="margin: auto;" aria-label="Page navigation">
+                                <ul class="pagination pagination-template">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                                    {% endif %}
+
+                                    <li class="page-item">
+                                        <span class="page-link">{{ page_obj.number }}</span>
+                                    </li>
+
+
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                    {% endif %}
             </div>
         </div>
     </div>
 
-{% endblock content %}
+{% endblock %}
