@@ -253,11 +253,11 @@
             animation: colored-circle 0.6s ease-in-out 0.7s backwards;
         }
     </style>
-   <script>
+   <!-- <script>
 	$(document).ready(function(){
-		$("#ThankyouModal").modal('show');
+		$("#thankyouModal").modal('show');
 	});
-</script>
+</script> -->
 
 </head>
 
@@ -805,7 +805,11 @@
     </div>
     </div>
     </div>
-
+    <!-- <script>
+        $(document).ready(function(){
+            $("#thankyouModal").modal('show');
+        });
+    </script> -->
 <div class="modal fade" id="thankyouModal" role="dialog" >
     <div class="modal-dialog">
         <div class="modal-content">
@@ -834,7 +838,11 @@
 </div>
 
 
-
+<!-- <script>
+	$(document).ready(function(){
+		$("#thankyouModal").modal('show');
+	});
+</script> -->
 
 
 
@@ -1102,11 +1110,13 @@
 
         <!--====== Main js ======-->
         <script src="../../static/assets/js/main.js"></script>
+        {% if show %}
         <script>
             $(document).ready(function(){
-                $("#myModal").modal('show');
+                $("#thankyouModal").modal('show');
             });
         </script>
+        {% endif %}
 </body>
 
 </html>
