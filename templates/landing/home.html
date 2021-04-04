@@ -43,7 +43,88 @@
         crossorigin="anonymous" />
 
     <title>Gymcounselor</title>
-
+    <style>
+        .modal {
+  padding: 0 !important;
+}
+.modal .modal-dialog {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+}
+.modal .modal-content {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background-color: #ffe4e1 !important;
+}
+.modal-icon{
+    border-radius: 50%;
+    background-color: #EFF6EE;
+    margin-bottom:50px;
+}
+.modal-icon1{
+    border-radius: 50%;
+    padding: 15px;
+    background-color: #EFF6EE;
+    margin-bottom:30px;
+}
+.modal .modal-body {
+  overflow-y: auto;
+}
+/* .close-change {
+    background-color: white !important;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-right: 15px;
+    padding: 5px;
+}  */
+.number-span{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    backdrop-filter: blur(2rem);
+}
+.number-input{
+    /* float:left; clear: both; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 30px;
+    padding-left: 10px;
+    /* padding-left: 10px; */
+    /* margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px; */
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    border-style: hidden;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    backdrop-filter: blur(2rem);
+}
+.number-submit{
+    float:left; clear: both;
+    margin-top: 20px;
+    background-color:#1ebea5;
+    color:#EFF6EE;
+    border-style: hidden;
+    border-radius:50px;
+    padding-top: 5px;
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-bottom: 5px;
+}
+    </style>
     <style>
         @media(min-width: 768px) {
             .center {
@@ -172,6 +253,11 @@
             animation: colored-circle 0.6s ease-in-out 0.7s backwards;
         }
     </style>
+   <script>
+	$(document).ready(function(){
+		$("#ThankyouModal").modal('show');
+	});
+</script>
 
 </head>
 
@@ -254,9 +340,12 @@
                             </p>
                             <ul class="d-flex">
                                 <li>
-                                    <a href="" target="_blank" rel="nofollow"
+                                    <!-- <a href="" target="_blank" rel="nofollow"
                                         class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s"
-                                        data-wow-delay="1.5s">Contact Us</a>
+                                        data-wow-delay="1.5s">Contact Us</a> -->
+                                        <button class="main-btn wow fadeInLeftBig" data-wow-duration="1.3s"
+                                        data-wow-delay="1.5s" data-toggle="modal"
+                                        data-target="#contactusModal">Contact Us</button>
                                 </li>
                             </ul>
                         </div> <!-- header hero content -->
@@ -356,7 +445,6 @@
 
 
         <!-- <div class="steps-timeline">
-
             <div class="steps-one wow fadeInUpBig" data-wow-duration="0.5s" data-wow-delay="0.2s">
                 <img class="steps-img" src="assets/images/redbg.png" alt="bg" />
                 <h3 class="steps-name">
@@ -366,7 +454,6 @@
                     The timeline is created using negative margins and a top border.
                 </p>
             </div>
-
             <div class="steps-two wow fadeInUpBig" data-wow-duration="0.5s" data-wow-delay="0.4s">
                 <img class="steps-img" src="assets/images/redbg.png" alt="bg" />
                 <h3 class="steps-name">
@@ -376,7 +463,6 @@
                     All elements are positioned realtive to the parent. No absolute positioning.
                 </p>
             </div>
-
             <div class="steps-three wow fadeInUpBig" data-wow-duration="0.5s" data-wow-delay="0.6s">
                 <img class="steps-img" src="assets/images/redbg.png" alt="bg" />
                 <h3 class="steps-name">
@@ -386,7 +472,6 @@
                     The timeline does not extend past the first and last elements.
                 </p>
             </div>
-
             <div class="steps-four wow fadeInUpBig" data-wow-duration="0.5s" data-wow-delay="0.8s">
                 <img class="steps-img" src="assets/images/redbg.png" alt="bg" />
                 <h3 class="steps-name">
@@ -396,7 +481,6 @@
                     This is the landing page of GymCounselor.
                 </p>
             </div>
-
         </div> -->
     </section>
 
@@ -512,8 +596,8 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+
+                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"
                         onclick="closeVideo2()">×</button>
                 </div>
                 <div class="modal-body text-center">
@@ -533,7 +617,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title"></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"
                         onclick="closeVideo3()">×</button>
                 </div>
                 <div class="modal-body text-center">
@@ -686,9 +770,68 @@
 
 
     <!--====== Text test starts ======-->
+    <div class="modal fade" id="contactusModal" role="dialog" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close close-change" data-dismiss="modal">&times;</button>
+                </div>
+                <div id="modal_body" class="modal-body">
+                    <div class="col-lg-4 col-md-6">
+                            <img class = "modal-icon" style ="float:left; clear: both;" src="../../static/assets/images/logo1.png" width="80" height="80" alt="Logo">
+                            <br>
+                            <h3 style ="float:left; clear: both; margin-bottom:25px;" class="header-title " >
+                                Start your<br><span style = "color: #f02d3a;">PCOSFREEME</span><br> journey today
+                            </h3>
+                            <p style =" margin-bottom:25px; float:left; clear: both;">
+                                Submit your mobile number here & <br> we will book your free Consultation</p>
+                            </p>
+                           <div style="float:left; clear: both; padding-top: 10px; margin-bottom:25px;">
+                            <form style ="margin-bottom:15px;"  method="POST">
+                                {% csrf_token %}
+                                <span style ="float:left;"  class="number-span" ><strong>&nbsp;&nbsp;+&nbsp;91&nbsp;&nbsp;</strong>|</span><input style = "margin-bottom:10px;" class="number-input" type="tel" id="phone" name="phone"
+                                minlength="10"
+                                maxlength="10"
+                                required placeholder="  Enter your Number">
+                            <br>
+                            <p  style =" font-size: x-small; margin-bottom:25px; float:left; clear: both;">
+                            Your mobile no. is totally safe with our strict privacy policy*</p>
+                        </p>
+                        <input class="number-submit" type="submit"  value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 
-
-
+<div class="modal fade" id="thankyouModal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close close-change" data-dismiss="modal">&times;</button>
+            </div>
+            <div id="modal_body" class="modal-body">
+                <div class="col-lg-4 col-md-6">
+                        <!-- <img class = "modal-icon" style ="float:left; clear: both;" src="../../static/assets/images/logo1.png" width="80" height="80" alt="Logo"> -->
+                        <i class="fa fa-check fa-3x modal-icon1" style ="float:left; clear: both; color:#1ebea5" aria-hidden="true"></i>
+                        <br>
+                        <h3 style ="float:left; clear: both; margin-bottom:25px;" class="header-title " >
+                            <span style = "color: #f02d3a;">Congrats!</span><br> Your free session is booked
+                        </h3>
+                        <p style =" margin-bottom:50px; float:left; clear: both;">
+                            Thank you for choosing us as your fitness partner. <br>
+                            You will get a call from our team today to confirm your time slot with clinical expert.
+                        </p>
+                       <div style="float:left; clear: both; padding-top: 10px; margin-bottom:25px;">
+                    <a class="number-submit" href="{% url 'landing' %}">Continue</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -699,7 +842,6 @@
     <!-- 
     <div class="modal fade" id="subscribeModal" role="dialog">
         <div class="modal-dialog">
-
         
             <div class="modal-content">
                 <div class="modal-header">
@@ -713,7 +855,6 @@
                         <button id="email_submit" type="button" class="btn btn-danger">Subscribe</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div> -->
@@ -852,7 +993,9 @@
             <i class="fab fa-whatsapp fa-2x float-icon"></i>
         </a>
         <!-- sticky button end -->
-
+        <!-- {% if show %}
+        
+        {% endif%} -->
         <script>
             function unmuteFunction1() {
                 let video = document.getElementById('side-video1');
@@ -879,7 +1022,6 @@
 
         <!-- <script>
             // Subscribe newsletter script
-
             document.getElementById('email_submit').addEventListener('click', function () {
                 const email = document.getElementById('newsletter_email').value;
                 let modal_body = document.getElementById('modal_body');
@@ -904,13 +1046,11 @@
                 </div>
              </div>
             `
-
                 const sending = `
                     <div class="text-center">
                         <h2 style="margin: 50px;">Subscribing...</h2>
                     </div>
             `
-
                 $.ajax({
                     url: '/subscribe-news-letter/',
                     method: 'GET',
@@ -962,6 +1102,11 @@
 
         <!--====== Main js ======-->
         <script src="../../static/assets/js/main.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myModal").modal('show');
+            });
+        </script>
 </body>
 
 </html>

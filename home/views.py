@@ -1,9 +1,9 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from services.models import Service
-
+from .models import Contact
 from gym.settings import EMAIL_HOST_USER
 
 
@@ -66,5 +66,9 @@ def newsletter_subscribe_view(request):
 
 
 def landing_page_view(request):
-
-    return render(request, 'landing/home.html')
+    if request.method == 'POST':
+        contact = Contact(phone_number = request.POST.get('phone','0'))
+        contact.save()
+        return render(request, 'landing/home.html',{'show':'show'})
+    else:
+        return render(request, 'landing/home.html')
