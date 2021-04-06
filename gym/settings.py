@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'dashboard',
     'products',
     'blog.apps.BlogConfig',
-    'workout'
+    'workout',
+    'import_export',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
