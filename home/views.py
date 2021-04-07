@@ -72,3 +72,4 @@ def landing_page_view(request):
         return render(request, 'landing/home.html',{'show':'show'})
     else:
         return render(request, 'landing/home.html')
+

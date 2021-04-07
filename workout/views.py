@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+# from django.shortcuts import render
+# from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 # from django.contrib.auth.decorators import login_required
 from .models import Workout
