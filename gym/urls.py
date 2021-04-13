@@ -10,6 +10,7 @@ from home.views import home_view, about_view, work_view, contact_view, newslette
 from account.views import login_view, register_view
 from dashboard.views import dash_view, updateuserdetails
 from products.views import prod_view, order_success
+from html_to_pdf.views import GeneratePdf 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,6 +38,8 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     #workout urls
     path('videos',include('workout.urls')),
+    #html_top_pdf
+    path('pdf/', GeneratePdf.as_view()), 
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block extra_head %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -33,6 +34,27 @@
 
 
         .razorpay-payment-button {
+            display: block;
+            font-family: 'Poppins', cursive;
+            background-color:#1ebea5 !important;
+            color:#EFF6EE;
+            border-style: hidden;
+            border-radius:50px;
+            padding-top: 7px;
+            padding-right: 30px;
+            padding-left: 30px;
+            padding-bottom: 7px;
+            margin: 25px auto !important;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+        }
+        .red-button {
             font-family: 'Poppins', cursive;
             height: 50px;
             margin: 10px 40px;
@@ -55,9 +77,9 @@
             /* padding: 2px 40px; */
             border-radius: 30px;
             line-height: 45px;
-            color: #F02D3A;
-            background: #EFF6EE;
-            border: 2px solid #EFF6EE;
+            color: #1ebea5;
+            background: rgba(240, 45, 58, 0);
+            border: 2px solid rgba(240, 45, 58, 0);
             -webkit-transition: all 0.30s ease-in-out;
             -moz-transition: all 0.30s ease-in-out;
             -ms-transition: all 0.30s ease-in-out;
@@ -154,7 +176,47 @@
             margin-left: 50px;
             width: 50%;
         }
-        @media only screen and (max-width: 767px) {
+       
+    .thumb-img{
+        width: 450px;
+        height: auto;
+        margin: 0px 50px 50px 25px;
+
+    }
+    .product-ul {
+  list-style: none;
+  padding: 0;
+    }
+    .key-points {
+    padding-left: 1.3em;
+     min-height: 3em; 
+    font-size: medium;
+    /* color:black; */
+    }
+    .key-points:before {
+    content: "\f00c"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    font-size: 150%;
+    display: inline-block;
+    margin-left: -1.3em; /* same as padding-left set on li */
+    color: #1ebea5;
+    width: 1.3em; /* same as padding-left set on li */
+   
+}
+.form-css{
+    margin: auto;
+}
+.number-submit{
+    background-color:#1ebea5 !important;
+    color:#EFF6EE;
+    border-style: hidden;
+    border-radius:50px;
+    padding-top: 5px;
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-bottom: 5px;
+}
+@media only screen and (max-width: 767px) {
             .trialheading {
                 padding-left: 20px;
                 font-size: 21px;
@@ -177,8 +239,33 @@
                 margin: auto;
                 width: 80%;
             }
+            .thumb-img{
+                display: block;
+                margin: auto  !important;
+                width: 80% !important;
+                height: auto;
+            }
+            .pull-right{
+                align-items: center;
+                float: none !important;
+            }
+            .product-ul {
+                margin: auto !important;  
+            }
+            .key-points {
+                margin: auto !important;  
+            }
+            .dont-show{
+                display: none;
+            }
+            .thumb-img{
+                padding-bottom:25px;
+            }
+            .key-points {
+                font-size: small !important;
+                min-height: 4em !important;
+            }
         }
-        
     </style>
 {% endblock %}
 
@@ -246,53 +333,66 @@
             <!-- After LOGGING IN -->
             {% if value %}
             <!-- If Product one is choosen -->
-            <div class="container-fluid" style="background-color: #EFF6EE">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
+            
+            <div class="container-fluid" style="background-color:#ffe4e1 !important";>
+                <button class="razor-button" type="submit" form="goback" value="Submit"><i class="fa fa-arrow-left"></i></button>
+                <div class="row" >
+                    <div class="col-xs-12 col-sm-6 col-md-6" >
                         <!-- <h1 >{{value}}</h1> -->
-                        <button class="razor-button" type="submit" form="goback" value="Submit"><i class="fa fa-arrow-left"></i></button>
-                        {% if product_details.thumb %}
-                        <img src="{{product_detail.thumb.url}}" class="center-block" alt="product_heading_image">
-                        {% endif  %}
+                        <picture>
+                            <source media="(max-width:767px)" srcset="{{product_detail.mob_thumb.url}}">
+                            <img src="{{product_detail.thumb.url}}" class=" thumb-img pull-right" alt="product_heading_image">
+                          </picture>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 text-center">
-                        
-                            <h1 style="color: #F02D3A" class="home__desc ">{{ product_detail.name }}</h1>
-                            <!-- <p class="heading_content_desc" style="color:#F2F2F">&nbsp;&nbsp;&nbsp;{{ product.des }}</p> -->
-                            <ul  style="padding: 10px">
-                                <li>
-                                    {% if product_detail.desc1 %}
-                                    <p>&#8226; {{product_detail.desc1}}</p>
-                                    {% endif %}
+                    <div class="col-xs-12 col-sm-6 col-md-6 data" >
+                            <div  class="dont-show"style=" padding:10px; padding-left: 30px;  padding-right: 25px; text-align: left; "> <strong> Package details:</strong></div>
+                            <ul  class="product-ul" style=" padding-left: 50px;  padding-right: 25px; text-align: left; ">
+                                
+                                {% if product_detail.desc1 %}
+                               <li  class="key-points"> 
+                                    
+                                    {{product_detail.desc1}}
+                                    
                                 </li>
-                                <li>
-                                    {% if product_detail.desc2 %}
-                                    <p>&#8226; {{product_detail.desc2}}</p>
-                                    {% endif %}
+                                {% endif %}
+                                <!-- <br> -->
+                                {% if product_detail.desc2 %}
+                                <li  class="key-points">
+                                   
+                                   {{product_detail.desc2}}
+                                   
                                 </li>
-                                <li>
-                                    {% if product_detail.desc3 %}
-                                    <p>&#8226; {{product_detail.desc3}}</p>
-                                    {% endif %}
+                                {% endif %}
+                                <!-- <br> -->
+                                {% if product_detail.desc3 %}
+                                <li  class="key-points">
+                                    
+                                    {{product_detail.desc3}}
+                                   
                                 </li>
-                                <li>
-                                    {% if product_detail.desc4 %}
-                                    <p>&#8226; {{product_detail.desc4}}</p>
-                                    {% endif %}
+                                {% endif %}
+                                <!-- <br> -->
+                                {% if product_detail.desc4 %}
+                                <li  class="key-points">
+                                    
+                                     {{product_detail.desc4}}
+                                    
                                 </li>
-                                <li>
-                                    {% if product_detail.desc5 %}
-                                    <p>&#8226; {{product_detail.desc5}}</p>
-                                    {% endif %}
+                                {% endif %}
+                                {% if product_detail.desc5 %}
+                                <li  class="key-points">
+                                    
+                                    {{product_detail.desc5}}
+                                   
                                 </li>
+                                {% endif %}
                             </ul>
-                            <br>
                             <!-- {% if request.user.is_authenticated %}
                                 <p><a class="btn btn-default btn-lg product__button" href="{{ product.buyLink }}" style="background-color : #F02D3A; color: white;">&#8377;&nbsp;1999</a></p>
                             {% else %}
                                 <p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{ request.path }}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
                             {% endif %} -->
-                            <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
+                            <form class="buy-form  form-css" id="buy-form" action="/ordersuccess" method="POST">
                                 {% csrf_token %}
                                 <script
                                         src="https://checkout.razorpay.com/v1/checkout.js"
@@ -308,7 +408,7 @@
                                         data-prefill.email="{{ user.email }}"
                                         data-theme.color="#F02D3A"
                                 ></script>
-                                <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
+                                <input class="btn btn-default btn-lg"  type="hidden" custom="Hidden Element" name="hidden">
                             </form>
                             <form  method="POST" id="goback">
                                 {% csrf_token %}
@@ -894,7 +994,7 @@
     </div>
 </div>
 {% endif %}
-        <div id="fh5co-testimonial" class="fh5co-bg-section" style="background-color: rgba(240, 45, 58, 0.2)">
+        <div id="fh5co-testimonial" class="fh5co-bg-section" {% if  value %} style="background-color:#EFF6EE "  {% else %} style="background-color: rgba(240, 45, 58, 0.2)" {% endif %}>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -1133,6 +1233,12 @@
 
     </div>
     </div>
-
+    <script>
+        $(window).resize(function(){
+            if($(window).width()<768){
+                $('.pull-right').removeClass('pull-right');
+            }
+        });
+    </script>
 
 {% endblock %}

@@ -1,0 +1,186 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django HTMLtoPDF Tutorial</title>
+</head>
+<body>
+    <h1>HTML To PDF</h1>
+     <b>I'm building web-based, data-driven apps using Django. <br>
+Eventually (or unfortunately), I will need to generate some reports that are printer-friendly. <b>
+Logically, PDF is the format for such files... <br>
+so how am I going to convert my xHTML and CSS to a nice-looking PDF document?<br>
+ 
+The Django Book has a whole chapter dedicated to Generating Non-HTML Content.<br> 
+They seem to to be fond of ReportLab ToolKit.<br>
+ The caveat here, though, is that you need to know a bit about the internals of a PDF document.<br> 
+If you're familiar with this, the ReportLab toolkit seems to be the way to go! It has many features, and it seems to be a powerful PDF-generating tool.
+</b>
+</body>
+</html>
+  -->
+
+  <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <style>
+        .bg-mint {
+            background-color: #eff6ee;
+        }
+
+        .page1 {
+            height: 7in !important;
+            width: 9.25in !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div hidden>
+        <div id="content" style="margin: 0 auto; width: 100%">
+            <!-- <div id="content" style = "background-image: url('template.png'); background-size: cover;"> -->
+            <div class="wrapper" style="background-image: url('page_1.png'); background-size: cover; height: 27.5cm;
+            margin: 0px;
+            padding: 0px">
+                <!-- <img class="center logo" src="Logo.png" height="250" /> -->
+                <br />
+                <br />
+                <div style="text-align:center; padding-top: 250px; color: #F02D3A; font-size: 30px;">
+                    <!-- <h1>GYMCOUNSELOR</h1> -->
+                    <h1 id="clientPhaseName" style="font: size 55px; font-weight:bold;"></h1>
+                </div>
+                <div style="text-align:center;text-transform: uppercase;">
+                    <br />
+                    <br />
+                    <br />
+                    <p>&nbsp;</p> <span style="font-size:40px;">Personalized Diet Plan For</span>
+                    <br />
+                    <br />
+                    <br /> <span id="clientName" style="font-size:80px;font-weight:bold;color:#F02D3A;">
+                    </span>
+                    <p>&nbsp;</p>
+                    <!-- <p>&nbsp;</p> <span id = "clientPhaseName" style="font-size:60px;font-weight:bold;">Diet Goal Map</span> -->
+                    <br />
+                    <br />
+                    <!-- <br /> <span id = "clientPhaseDesc" style="font-size:60px;font-weight:bold;color:#F02D3A;">Fat-Loss</span> -->
+                    <br />
+                    <br />
+                    <br /> <span id="clientWeek" style="font-size:60px;font-weight:bold;color:#F02D3A;">Week-1</span>
+                </div>
+                <div class="pagebreak"></div>
+                <div class="page1" style="background-image: url('desc_page.png'); background-size: cover; height: 27.5cm;
+                margin: 0px;
+                padding: 0px">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="text-center" style="width: 80%;" style="text-align: center;">
+                        <div id="clientpage2Desc"
+                            style=" margin-left: 130px;font-size:30px; line-height: normal; color:#ea6153; text-align: center;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pagebreak"></div>
+                <div class="page1" style="background-image: url('template.png'); background-size: cover; height: 27.5cm;
+                margin: 0px;
+                padding: 0px">
+                    <div>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;<span style="font-size:50px;font-weight:bold;color:#F02D3A;">&nbsp;&nbsp;Week 1</span>
+                        </p>
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="container" style="padding: 20px !important;">
+                        <div class="table">
+                            <div class="row header blue">
+                                <div class="cell1"> Time </div>
+                                <div class="cell2"> Meals </div>
+                                <div class="cell3"> Calories </div>
+                            </div>
+                            <div class="row">
+                                <div id="breakfastname__day1" class="cell1"> Breakfast </div>
+                                <div id="breakfast__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5
+                                    Almonds + 1 pieces of fruit (Apple, Orange) </div>
+                                    <div id="cal_meal1_day1" class="cell3"> Meal 1</div>
+                            </div>
+                            <div class="row">
+                                <div id="lunchname__day1" class="cell1"> Lunch </div>
+                                <div id="lunch__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5 Almonds
+                                    + 1 pieces of fruit (Apple, Orange) </div>
+                                <div id="cal_meal2_day1" class="cell3"> Meal 1</div>
+                            </div>
+                            <div class="row">
+                                <div id="snacksname__day1" class="cell1"> Evening Snack </div>
+                                <div id="snacks__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5 Almonds
+                                    + 1 pieces of fruit (Apple, Orange) </div>
+                                    <div id="cal_meal3_day1" class="cell3"> Meal 1</div>
+                            </div>
+                            <div class="row">
+                                <div id="dinnername__day1" class="cell1"> Dinner </div>
+                                <div id="dinner__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5 Almonds
+                                    + 1 pieces of fruit (Apple, Orange) </div>
+                                    <div id="cal_meal4_day1" class="cell3"> Meal 1</div>
+                            </div>
+                            <div class="row" id="extrameal1__day1__div">
+                                <div id="extrameal1name__day1" class="cell1"> Extra </div>
+                                <div id="extrameal1__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5
+                                    Almonds + 1 pieces of fruit (Apple, Orange) </div>
+                                    <div id="cal_meal5_day1" class="cell3"> Meal 1</div>
+                            </div>
+                            <div class="row" id="extrameal2__day1__div">
+                                <div id="extrameal2name__day1" class="cell1"> Extra </div>
+                                <div id="extrameal2__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5
+                                    Almonds + 1 pieces of fruit (Apple, Orange) </div>
+                                <div id="cal_meal6_day1" class="cell3"> Meal 1</div>
+                            </div>
+                            <div class="row" id="extrameal3__day1__div">
+                                <div id="extrameal3name__day1" class="cell1"> Extra </div>
+                                <div id="extrameal3__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5
+                                    Almonds + 1 pieces of fruit (Apple, Orange) </div>
+                                <div id="cal_meal7_day1" class="cell3"> Meal 1</div>
+                          </div>
+                            <div class="row" id="extrameal4__day1__div">
+                                <div id="extrameal4name__day1" class="cell1"> Extra </div>
+                                <div id="extrameal4__day1" class="cell2"> 100 ml low fat/whole Milk + 40 gms Oats + 5
+                                    Almonds + 1 pieces of fruit (Apple, Orange) </div>
+                                <div id="cal_meal8_day1" class="cell3"> Meal 1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="pagebreak"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
