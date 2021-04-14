@@ -2,18 +2,17 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 import razorpay
 from services.models import Service
-from products.models import Product,Product_detail
+from products.models import Product, ProductDetail, Coupons
 from dashboard.models import Order
 import random
-from django.template.loader import render_to_string
+# from django.template.loader import render_to_string
 from gym.settings import EMAIL_HOST_USER
-
 
 
 def prod_view(request, slug):
     if request.method == 'POST':
-        request.session['value']  = int(request.POST.get('value','0'))
-        if(request.user.is_authenticated):
+        request.session['value'] = int(request.POST.get('value', '0'))
+        if request.user.is_authenticated:
             return redirect('/product/PCOS')
         else:
             return redirect('/register/?next=/product/PCOS')
@@ -41,13 +40,13 @@ def prod_view(request, slug):
         print(request.session.get('value', default='0'))
         val = int(request.session.get('value', default='0'))
         if request.user.is_authenticated:
-            if val!=0:
+            if val != 0:
                 try:
-                    product_detail = Product_detail.objects.filter(service=service).get(identity = val)
+                    product_detail = ProductDetail.objects.filter(service=service).get(identity=val)
                 except:
                     product_detail = None
                 context['product_detail'] = product_detail
-                context['value'] =val
+                context['value'] = val
         else:
             request.session['value'] = 0
         return render(request, 'products/product.html', context)
@@ -85,7 +84,6 @@ def order_success(request):
             message,
             EMAIL_HOST_USER,
             to,
-            html_message=html_message,
             fail_silently=False,
         )
         return render(request, 'products/thank.html')
@@ -98,30 +96,30 @@ def order_success(request):
         }
         return render(request, 'products/thank.html', {'context': context})
 
-
-def trial(request, slug):
-    user = request.user
-    try:
-        service = Service.objects.get(slug=slug)
-    except:
-        service = None
-    allService = Service.objects.all()
-    #
-    # order_amount = 50000
-    # order_currency = 'INR'
-    # order_receipt = 'order_rcptid_11'
-    # client = razorpay.Client(
-    #     auth=('rzp_test_V2KMUMI2Ommcj1', 'YzemijL2imRE9yxKep1c0ydD'))
-    # payment = client.order.create({'amount': order_amount, 'currency': 'INR',
-    #                                'payment_capture': '1'})
-
-    context = {
-        'title': service,
-        'product': service,
-        'allService': allService,
-        'users': user,
-    }
-    return render(request, 'products/blank.html', context)
+#
+# def trial(request, slug):
+#     user = request.user
+#     try:
+#         service = Service.objects.get(slug=slug)
+#     except:
+#         service = None
+#     allService = Service.objects.all()
+#     #
+#     # order_amount = 50000
+#     # order_currency = 'INR'
+#     # order_receipt = 'order_rcptid_11'
+#     # client = razorpay.Client(
+#     #     auth=('rzp_test_V2KMUMI2Ommcj1', 'YzemijL2imRE9yxKep1c0ydD'))
+#     # payment = client.order.create({'amount': order_amount, 'currency': 'INR',
+#     #                                'payment_capture': '1'})
+#
+#     context = {
+#         'title': service,
+#         'product': service,
+#         'allService': allService,
+#         'users': user,
+#     }
+#     return render(request, 'products/blank.html', context)
 
 # def pcosblank(request):
 #     service = Service.objects.all()
