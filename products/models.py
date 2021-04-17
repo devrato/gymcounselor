@@ -41,13 +41,9 @@ class ProductDetail(models.Model):
     desc3 = models.CharField(max_length=500, blank=True, null=True)
     desc4 = models.CharField(max_length=500, blank=True, null=True)
     desc5 = models.CharField(max_length=500, blank=True, null=True)
-<<<<<<< HEAD
     thumb = models.ImageField(upload_to='product/images/',blank=True, null=True)
     mob_thumb =  models.ImageField(upload_to='product/images/',blank=True, null=True)
     
-=======
-    thumb = models.ImageField(upload_to='product/images/', blank=True, null=True)
->>>>>>> 2c94f4e7ceaac39bd352aa51e3657bc4fdd095e2
 
     def __str__(self):
         return self.name

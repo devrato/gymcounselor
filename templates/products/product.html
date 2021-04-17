@@ -44,7 +44,7 @@
             padding-right: 30px;
             padding-left: 30px;
             padding-bottom: 7px;
-            margin: 25px auto !important;
+            margin: 25px 260px 25px 0px !important;
             -webkit-transition: all 0.30s ease-in-out;
             -moz-transition: all 0.30s ease-in-out;
             -ms-transition: all 0.30s ease-in-out;
@@ -181,7 +181,11 @@
         width: 450px;
         height: auto;
         margin: 0px 50px 50px 25px;
+        clear:both;
 
+    }
+    .pull-right{
+        float:right !important;
     }
     .product-ul {
   list-style: none;
@@ -205,8 +209,11 @@
 }
 .form-css{
     margin: auto;
+    clear: both !important; 
+    float:right;
 }
 .number-submit{
+   
     background-color:#1ebea5 !important;
     color:#EFF6EE;
     border-style: hidden;
@@ -216,7 +223,72 @@
     padding-left: 25px;
     padding-bottom: 5px;
 }
+.coupon-div{
+    float: right !important;
+    clear: both;
+    margin-right: 25px;
+}
+.coupon-input{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 30px;
+            padding-left: 10px;
+           
+            background: linear-gradient(
+                    to right bottom,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.3)
+            );
+            border-style: hidden;
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+            backdrop-filter: blur(2rem);
+    }
+    .coupon-div-mobile{
+        display: none;
+    }
+    .form-css-mobile{
+        display: none;
+    }
+    .coupon-button{
+        background-color:#ffe4e1 !important;
+        border: none;
+        color:#1ebea5;
+    }
 @media only screen and (max-width: 767px) {
+    .coupon-div-mobile{
+    margin-top: 40px;
+    display: block;
+    
+    }
+    .coupon-input{
+        display: block;
+        margin:auto;
+        font-size:small;
+    }
+    .coupon-span{
+        display: block;
+        margin:auto;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size:small;
+    }
+    .form-css-mobile{
+        display: block;
+        margin: 20px auto;
+        clear: both !important; 
+        float: none;
+    }
+    .coupon-div{
+        display: none;
+    }
+    .form-css{
+        display: none;
+    }
+    .razorpay-payment-button {
+            display: block !important;
+            margin: auto !important;
+        }
             .trialheading {
                 padding-left: 20px;
                 font-size: 21px;
@@ -342,7 +414,35 @@
                         <picture>
                             <source media="(max-width:767px)" srcset="{{product_detail.mob_thumb.url}}">
                             <img src="{{product_detail.thumb.url}}" class=" thumb-img pull-right" alt="product_heading_image">
-                          </picture>
+                        </picture>
+                        <div class="coupon-div">
+                            <form  method="POST" >
+                                {% csrf_token %}   
+                                <input style = "margin-bottom:10px;" class="coupon-input" name="Offer Code"
+                            required placeholder="Offer Code">
+                            <span> Have an offer code?<input class="coupon-button" type="submit"  name="Submit Coupon" value="Apply here"> </span>
+                            </form>
+                        </div>
+
+                          <form class="buy-form  form-css" id="buy-form" action="/ordersuccess" method="POST" >
+                            {% csrf_token %}
+                            <script
+                                    src="https://checkout.razorpay.com/v1/checkout.js"
+                                    data-key="rzp_test_V2KMUMI2Ommcj1"
+                                    data-amount= {{product_detail.price}}00
+                                    data-currency="INR"
+                                    data-order_id="{{ payment.id }}"
+                                    data-buttontext= "&nbsp;Proceed to buy " 
+                                    data-name="GYMCOUNSELOR"
+                                    data-description="{{ product.name }}"
+                                    data-image="{% static 'images/logo1.png' %}"
+                                    data-prefill.name="{{ user.name }}"
+                                    data-prefill.email="{{ user.email }}"
+                                    data-theme.color="#F02D3A"
+                            ></script>
+                            <input class="btn btn-default btn-lg"  type="hidden" custom="Hidden Element" name="hidden">
+                        </form>
+
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 data" >
                             <div  class="dont-show"style=" padding:10px; padding-left: 30px;  padding-right: 25px; text-align: left; "> <strong> Package details:</strong></div>
@@ -392,7 +492,18 @@
                             {% else %}
                                 <p><a class="btn btn-default btn-lg product__button" href="{% url 'register' %}?next={{ request.path }}" style="background-color : #F02D3A; color: white;">Get a Custom Plan</a></p>
                             {% endif %} -->
-                            <form class="buy-form  form-css" id="buy-form" action="/ordersuccess" method="POST">
+                            <div class="coupon-div-mobile">
+                                <form  method="POST" >
+                                    {% csrf_token %}
+                                    <div>   
+                                        <input style = "margin-bottom:10px;" class="coupon-input" name="Offer Code"
+                                        required placeholder="Offer Code">
+                                    </div>
+                                    <span class="coupon-span"> Have an offer code? <input class="coupon-button" type="submit"  name="Submit Coupon" value="Apply here"> </span>
+                                </form>
+                            </div>
+                            
+                              <form class="buy-form  form-css-mobile" id="buy-form" action="/ordersuccess" method="POST" >
                                 {% csrf_token %}
                                 <script
                                         src="https://checkout.razorpay.com/v1/checkout.js"
@@ -400,7 +511,7 @@
                                         data-amount= {{product_detail.price}}00
                                         data-currency="INR"
                                         data-order_id="{{ payment.id }}"
-                                        data-buttontext= &#8377;&nbsp;{{product_detail.price}}
+                                        data-buttontext= "&nbsp;Proceed to buy " 
                                         data-name="GYMCOUNSELOR"
                                         data-description="{{ product.name }}"
                                         data-image="{% static 'images/logo1.png' %}"
@@ -440,9 +551,9 @@
                     <div class="center2">
                         {% for x in products %}
                         <div class="col-sm-4 col-xs-12">
-                            <div class="card" style="background: #FFF;">
+                            <div class="card" style="background: #FFF; align-items: center; ">
                                 {% if x.thumb %}
-                                <img src="{{x.thumb.url}}" alt="Photo" style="width:100%">
+                                <img src="{{x.thumb.url}}" alt="Photo" style="display:block; width:50%; margin:auto">
                                 {% endif %}
                                 <br>
                                 <h5 class="trialheading">{{x.identity}}. {{ x.name}}</h5>
@@ -501,173 +612,7 @@
                             </div>
                         </div>
                         {% endfor %}
-                        <!-- <div class="col-sm-4 col-xs-12">
-                            <div class="card" style="background: #FFF;">
-                                <img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
-                                <br>
-                                <h5 class="trialheading">1. EXPERT GUIDANCE</h5>
-                                <ul style="padding: 10px" style="padding: 10px">
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; 1:1 personal live session daily</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Coaches that motivate you and track your progress.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Regular sessions with clinical nutritionists.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; 24/7 expert’s support.</p>
-                                    </li>
-                                </ul>
-
-                                <div style="text-align:center; background: #FFFFFF;">
-                                      <div style="font-size: 20px;"><s>&#8377;2500</s></div>
-                                      {% if request.user.is_authenticated %}
-                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                        {% csrf_token %}
-                                        <script
-                                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                                data-amount= 199900
-                                                data-currency="INR"
-                                                data-order_id="{{ payment.id }}"
-                                                data-buttontext= &#8377;&nbsp;1999
-                                                data-name="GYMCOUNSELOR"
-                                                data-description="{{ product.name }}"
-                                                data-image="{% static 'images/logo1.png' %}"
-                                                data-prefill.name="{{ user.name }}"
-                                                data-prefill.email="{{ user.email }}"
-                                                data-theme.color="#F02D3A"
-                                        ></script>
-                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-                                    {% else %} -->
-                                    <!-- <form  method="POST">
-                                        {% csrf_token %}
-                                        <input hidden type="text"  name="value" value="1">
-                                        <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form> -->
-                                    <!-- {% endif %} -->
-                                    <!-- <form  method="POST">
-                                        {% csrf_token %}
-                                        <input hidden type="text"  name="value" value="1">
-                                        <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form>
-                                    <br>
-                                </div>
-                            </div>
-                         </div>
-                        <div class="col-sm-4 col-xs-12">
-                            <div class="card" style="background: #FFF;">
-                                <img src="{% static 'images/head2.png' %}" alt="Photo" style="width:100%">
-                                <br>
-                                <h5 class="trialheading">2. CUSTOMIZED DIET PLAN</h5>
-                                <ul style="padding: 10px">
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Indian diet plan with easy-to-follow recipes as per your preferences.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Curated by PCOS expert Nutritionist.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Complete care of your daily nutritional requirements to re-balance your hormones' functionality.</p>
-                                    </li>
-                                </ul>
-
-                                <div style="text-align:center; background: #FFFFFF;">
-                                    <div style="font-size: 20px;"><s>&#8377;8000</s></div> -->
-                                    <!-- {% if request.user.is_authenticated %}
-                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                        {% csrf_token %}
-                                        <script
-                                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                                data-amount= 4999
-                                                data-currency="INR"
-                                                data-order_id="{{ payment.id }}"
-                                                data-buttontext= &#8377;&nbsp;4999
-                                                data-name="GYMCOUNSELOR"
-                                                data-description="{{ product.name }}"
-                                                data-image="{% static 'images/logo1.png' %}"
-                                                data-prefill.name="{{ user.name }}"
-                                                data-prefill.email="{{ user.email }}"
-                                                data-theme.color="#F02D3A"
-                                        ></script>
-                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-                                    {% else %} -->
-                                    <!-- <form  method="POST">
-                                        {% csrf_token %}
-                                        <input hidden type="text"  name="value" value="2">
-                                        <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form> -->
-                                    <!-- {% endif %} -->
-                                    <!-- <form  method="POST">
-                                        {% csrf_token %}
-                                        <input hidden type="text"  name="value" value="2">
-                                        <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form>
-                                    <br>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-xs-12">
-                            <div class="card" style="background: #FFF;">
-                                <img src="{% static 'images/head3.png' %}" alt="Photo" style="width:100%">
-                                <br>
-                                <h5 class="trialheading">3. INDIAN PCOS RECIPE BOOK </h5>
-                                <ul style="padding: 10px">
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; 30+ Easy to make PCOS Friendly INDIAN recipes.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Detailed nutritional chart and pictorial representation.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Wide variety of options to choose from recipes from all over INDIA.</p>
-                                    </li>
-                                </ul>
-                                <div style="text-align:center; background: #FFFFFF;">
-                                    <div style="font-size: 20px;"><s>&#8377;18000</s></div> -->
-                                    <!-- {% if request.user.is_authenticated %}
-                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                        {% csrf_token %}
-                                        <script
-                                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                                data-amount= 8999
-                                                data-currency="INR"
-                                                data-order_id="{{ payment.id }}"
-                                                data-buttontext= &#8377;&nbsp;4999
-                                                data-name="GYMCOUNSELOR"
-                                                data-description="{{ product.name }}"
-                                                data-image="{% static 'images/logo1.png' %}"
-                                                data-prefill.name="{{ user.name }}"
-                                                data-prefill.email="{{ user.email }}"
-                                                data-theme.color="#F02D3A"
-                                        ></script>
-                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-                                    {% else %} -->
-                                    <!-- <form  method="POST">
-                                    {% csrf_token %}
-                                    <input hidden type="text"  name="value" value="3">
-                                    <input 
-                                     type="submit"  value="&#8377;&nbsp;4999">
-                                    </form> -->
-                                    <!-- {% endif %} -->
-                                    <!-- <form  method="POST">
-                                        {% csrf_token %}
-                                        <input hidden type="text"  name="value" value="3">
-                                        <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form>
-                                    <br>
-                                </div> -->
-
-                            <!-- </div> -->
-                        <!-- </div> -->
+                        
                     </div>
                 </div>
             </div>
@@ -757,27 +702,7 @@
                                 </ul>
                                 <div style="text-align:center; background: #FFFFFF;">
                                     <div style="font-size: 20px;"><s>&#8377;18000</s></div>
-                                    <!-- {% if request.user.is_authenticated %}
-                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                        {% csrf_token %}
-                                        <script
-                                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                                data-amount= {{x.price}}
-                                                data-currency="INR"
-                                                data-order_id="{{ payment.id }}"
-                                                data-buttontext= &#8377;&nbsp;{{x.price}}
-                                                data-name="GYMCOUNSELOR"
-                                                data-description="{{ product.name }}"
-                                                data-image="{% static 'images/logo1.png' %}"
-                                                data-prefill.name="{{ user.name }}"
-                                                data-prefill.email="{{ user.email }}"
-                                                data-theme.color="#F02D3A"
-                                        ></script>
-                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-                                    {% else %} -->
-                                    <!-- {% endif %} -->
+                                   
                                     <form  method="POST">
                                     {% csrf_token %}
                                     <input hidden type="text"  name="value" value={{x.identity}}>
@@ -788,185 +713,7 @@
                             </div>
                         </div>
                         {% endfor %}
-                        <!-- </div> -->
-                        <!-- <div class="col-sm-4 col-xs-12">
-                            <div class="card" style="background: #FFF;">
-                                <img src="{% static 'images/head1.png' %}" alt="Photo" style="width:100%">
-                                <br>
-                                <h5 class="trialheading">1. EXPERT GUIDANCE</h5>
-                                <ul style="padding: 10px" style="padding: 10px">
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; 1:1 personal live session daily</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Coaches that motivate you and track your progress.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Regular sessions with clinical nutritionists.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; 24/7 expert’s support.</p>
-                                    </li>
-                                </ul>
-
-                                <div style="text-align:center; background: #FFFFFF;">
-                                      <div style="font-size: 20px;"><s>&#8377;2500</s></div>
-                                      {% if request.user.is_authenticated %}
-                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                        {% csrf_token %}
-                                        <script
-                                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                                data-amount= 199900
-                                                data-currency="INR"
-                                                data-order_id="{{ payment.id }}"
-                                                data-buttontext= &#8377;&nbsp;1999
-                                                data-name="GYMCOUNSELOR"
-                                                data-description="{{ product.name }}"
-                                                data-image="{% static 'images/logo1.png' %}"
-                                                data-prefill.name="{{ user.name }}"
-                                                data-prefill.email="{{ user.email }}"
-                                                data-theme.color="#F02D3A"
-                                        ></script>
-                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-                                    {% else %}
-                                    <form  method="POST">
-                                        {% csrf_token %}
-                                        <input hidden type="text"  name="value" value="1">
-                                        <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form>
-                                    {% endif %}
-                                    <br>
-                                </div>
-                            </div>
-                         </div>
-                        <div class="col-sm-4 col-xs-12">
-                            <div class="card" style="background: #FFF;">
-                                <img src="{% static 'images/head2.png' %}" alt="Photo" style="width:100%">
-                                <br>
-                                <h5 class="trialheading">2. CUSTOMIZED DIET PLAN</h5>
-                                <ul style="padding: 10px">
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Indian diet plan with easy-to-follow recipes as per your preferences.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Curated by PCOS expert Nutritionist.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Complete care of your daily nutritional requirements to re-balance your hormones' functionality.</p>
-                                    </li>
-                                </ul>
-
-                                <div style="text-align:center; background: #FFFFFF;">
-                                    <div style="font-size: 20px;"><s>&#8377;8000</s></div>
-                                    {% if request.user.is_authenticated %}
-                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                        {% csrf_token %}
-                                        <script
-                                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                                data-amount= 4999
-                                                data-currency="INR"
-                                                data-order_id="{{ payment.id }}"
-                                                data-buttontext= &#8377;&nbsp;4999
-                                                data-name="GYMCOUNSELOR"
-                                                data-description="{{ product.name }}"
-                                                data-image="{% static 'images/logo1.png' %}"
-                                                data-prefill.name="{{ user.name }}"
-                                                data-prefill.email="{{ user.email }}"
-                                                data-theme.color="#F02D3A"
-                                        ></script>
-                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-                                    {% else %}
-                                    <form  method="POST">
-                                        {% csrf_token %}
-                                        <input hidden type="text"  name="value" value="2">
-                                        <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form>
-                                    {% endif %}
-                                    <br>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-xs-12">
-                            <div class="card" style="background: #FFF;">
-                                <img src="{% static 'images/head3.png' %}" alt="Photo" style="width:100%">
-                                <br>
-                                <h5 class="trialheading">3. INDIAN PCOS RECIPE BOOK </h5>
-                                <ul style="padding: 10px">
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; 30+ Easy to make PCOS Friendly INDIAN recipes.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Detailed nutritional chart and pictorial representation.</p>
-                                    </li>
-                                    <li>
-                                        <p class="trialheading_desc">&#8226; Wide variety of options to choose from recipes from all over INDIA.</p>
-                                    </li>
-                                </ul>
-                                <div style="text-align:center; background: #FFFFFF;">
-                                    <div style="font-size: 20px;"><s>&#8377;18000</s></div>
-                                    {% if request.user.is_authenticated %}
-                                    <form class="buy-form" id="buy-form" action="/ordersuccess" method="POST">
-                                        {% csrf_token %}
-                                        <script
-                                                src="https://checkout.razorpay.com/v1/checkout.js"
-                                                data-key="rzp_test_V2KMUMI2Ommcj1"
-                                                data-amount= 8999
-                                                data-currency="INR"
-                                                data-order_id="{{ payment.id }}"
-                                                data-buttontext= &#8377;&nbsp;4999
-                                                data-name="GYMCOUNSELOR"
-                                                data-description="{{ product.name }}"
-                                                data-image="{% static 'images/logo1.png' %}"
-                                                data-prefill.name="{{ user.name }}"
-                                                data-prefill.email="{{ user.email }}"
-                                                data-theme.color="#F02D3A"
-                                        ></script>
-                                        <input class="btn btn-default btn-lg" type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-                                    {% else %}
-                                    <form  method="POST">
-                                    {% csrf_token %}
-                                    <input hidden type="text"  name="value" value="3">
-                                    <input class="razorpay-payment-button" type="submit"  value="&#8377;&nbsp;4999">
-                                    </form>
-                                    {% endif %}
-                                    <br>
-                                </div>
-
-                            </div> -->
-                        <!-- </div> -->
-                    </div>
-                </div>
-            </div>
-        <!-- <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2 class="section__header">How it Works</h2>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="test embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src={{ product.feat_l }} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="container">
-                
-            </div>
-
-        </div>
-        <br>
-
-        {% if request.user.is_authenticated %}
-        {% else %}
-            <p style="text-align:center;"><a class="btn btn-primary btn-outline with-arrow" href="{% url 'register' %}?next={{ request.path }}">Get a Custom Plan<i class="icon-arrow-right"></i></a></p>
-        {% endif %}
-    </div> -->
+                       
     <br>
     <br>
     <br>
@@ -1237,6 +984,7 @@
         $(window).resize(function(){
             if($(window).width()<768){
                 $('.pull-right').removeClass('pull-right');
+
             }
         });
     </script>
