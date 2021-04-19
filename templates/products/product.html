@@ -420,7 +420,11 @@
             <!-- After LOGGING IN -->
             {% if value %}
             <!-- If Product one is choosen -->
-            
+            <!-- {% if discount %}
+             <h1>
+                {{discount}}
+             </h1>
+            {% endif %} -->
             <div class="container-fluid" style="background-color:#ffe4e1 !important";>
                 <!-- <i class="fa fa-arrow-left"></i> -->
                 <button class="razor-button" type="submit" form="goback" value="Submit"> Go back </button>
@@ -445,7 +449,7 @@
                             <script
                                     src="https://checkout.razorpay.com/v1/checkout.js"
                                     data-key="rzp_test_V2KMUMI2Ommcj1"
-                                    data-amount= {{product_detail.price}}00
+                                    data-amount=  {{ price }}00
                                     data-currency="INR"
                                     data-order_id="{{ payment.id }}"
                                     data-buttontext= "&nbsp;Proceed to buy " 

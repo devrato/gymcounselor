@@ -22,10 +22,6 @@ class Product(models.Model):
         return self.name
 
 
-class Coupons(models.Model):
-    coupon_code = models.CharField(max_length=50)
-
-
 class ProductDetail(models.Model):
     class Choice(models.IntegerChoices):
         one = 1

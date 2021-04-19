@@ -2,15 +2,61 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 import razorpay
 from services.models import Service
-from products.models import Product, ProductDetail, Coupons
+from products.models import Product, ProductDetail
 from dashboard.models import Order
 import random
+from django.http import HttpResponse
 # from django.template.loader import render_to_string
 from gym.settings import EMAIL_HOST_USER
+from django_simple_coupons.validations import validate_coupon
+from django_simple_coupons.models import Coupon
+
 
 
 def prod_view(request, slug):
-    if request.method == 'POST':
+    if request.method == 'POST' and "Submit Coupon" in request.POST :
+        user = request.user
+        coupon_code = request.POST.get('Offer Code', '0')
+        status = validate_coupon(coupon_code=coupon_code, user=user)
+        if status['valid']:
+            coupon = Coupon.objects.get(code=coupon_code)
+            coupon.use_coupon(user=user)
+            try:
+                service = Service.objects.get(slug=slug)
+                products = Product.objects.filter(service=service).order_by('identity')
+            except:
+                service = None
+            allService = Service.objects.all()
+            order_amount = 50000
+            order_currency = 'INR'
+            order_receipt = 'order_rcptid_11'
+            client = razorpay.Client(
+                auth=('rzp_test_V2KMUMI2Ommcj1', 'YzemijL2imRE9yxKep1c0ydD'))
+            payment = client.order.create({'amount': order_amount, 'currency': 'INR', 'payment_capture': '1'})
+            context = {
+                'title': service.name,
+                'product': service,
+                'allService': allService,
+                'users': user,
+                'products': products,
+            }
+            val = int(request.session.get('value', default='0'))
+            if request.user.is_authenticated:
+                if val != 0:
+                    try:
+                        product_detail = ProductDetail.objects.filter(service=service).get(identity=val)
+                    except:
+                        product_detail = None
+                    context['product_detail'] = product_detail
+                    context['price'] =  product_detail.price - int(coupon.discount.value)
+                    context['value'] = val
+            else:
+                request.session['value'] = 0
+            return render(request, 'products/product.html', context)
+        
+        return HttpResponse(status['message'])
+       
+    elif request.method == 'POST':
         request.session['value'] = int(request.POST.get('value', '0'))
         if request.user.is_authenticated:
             return redirect('/product/PCOS')
@@ -37,7 +83,6 @@ def prod_view(request, slug):
             'users': user,
             'products': products
         }
-        print(request.session.get('value', default='0'))
         val = int(request.session.get('value', default='0'))
         if request.user.is_authenticated:
             if val != 0:
@@ -46,6 +91,7 @@ def prod_view(request, slug):
                 except:
                     product_detail = None
                 context['product_detail'] = product_detail
+                context['price'] =  product_detail.price
                 context['value'] = val
         else:
             request.session['value'] = 0
