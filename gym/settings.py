@@ -49,10 +49,9 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'workout',
     'import_export',
-    'django_simple_coupons',
+    'django_simple_coupons'
 ]
 
-DSC_COUPON_CODE_LENGTH = 16
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [

@@ -11,6 +11,9 @@ def hash(h, key):
     except:
         return 0
 
+@register.filter
+def subtract(value, arg):
+    return value - arg
 
 @register.filter
 def div(value, div):
