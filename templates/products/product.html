@@ -467,6 +467,7 @@
                                         data-prefill.email="{{ user.email }}"
                                         data-theme.color="#F02D3A"
                                 ></script>
+                                <input type="text"  name="Coupon name" value="{% if coupon_code %}{{coupon_code}}{% else %}0{% endif %}">
                                 <input class="btn btn-default btn-lg"  type="hidden" custom="Hidden Element" name="hidden">
                             </form>
 
@@ -524,7 +525,7 @@
                                 <form  method="POST" >
                                     {% csrf_token %}
                                     <div>
-                                        <input style = "margin-bottom:10px;" class="coupon-input" name="Offer Code"
+                                        <input style = "margin-bottom:10px;" class="coupon-input" name="Promo Code"
                                                required placeholder="Offer Code">
                                     </div>
                                     <span class="coupon-span"> Have an offer code? <input class="coupon-button" type="submit"  name="Submit Coupon" value="Apply here"> </span>
@@ -536,7 +537,7 @@
                                 <script
                                         src="https://checkout.razorpay.com/v1/checkout.js"
                                         data-key="rzp_test_V2KMUMI2Ommcj1"
-                                        data-amount= {{product_detail.price}}00
+                                        data-amount= {{ price }}00
                                         data-currency="INR"
                                         data-order_id="{{ payment.id }}"
                                         data-buttontext= "&nbsp;Proceed to buy "
@@ -547,6 +548,7 @@
                                         data-prefill.email="{{ user.email }}"
                                         data-theme.color="#F02D3A"
                                 ></script>
+                                <input type="text"  name="Coupon name" value="{% if coupon_code %}{{coupon_code}}{% else %}0{% endif %}">
                                 <input class="btn btn-default btn-lg"  type="hidden" custom="Hidden Element" name="hidden">
                             </form>
                             <form  method="POST" id="goback">

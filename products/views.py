@@ -8,7 +8,6 @@ from products.models import Product, ProductDetail
 from dashboard.models import Order
 import random
 from django.http import HttpResponse
-# from django.template.loader import render_to_string
 from gym.settings import EMAIL_HOST_USER
 from django_simple_coupons.validations import validate_coupon
 from django_simple_coupons.models import Coupon
@@ -22,8 +21,8 @@ def prod_view(request, slug):
         status = validate_coupon(coupon_code=coupon_code, user=user)
         if status['valid']:
             coupon = Coupon.objects.get(code=coupon_code)
-            coupon.use_coupon(user=user)
-
+            
+            # coupon.use_coupon(user=user)
             try:
                 service = Service.objects.get(slug=slug)
                 products = Product.objects.filter(service=service).order_by('identity')
@@ -56,6 +55,7 @@ def prod_view(request, slug):
                     context['product_detail'] = product_detail
                     context['price'] = discount_value
                     context['value'] = val
+                    context['coupon_code'] = coupon_code
             else:
                 request.session['value'] = 0
             return render(request, 'products/product.html', context)
@@ -108,7 +108,12 @@ def prod_view(request, slug):
 
 def order_success(request):
     if request.method == 'POST':
-
+        coupon_code = request.POST.get('Coupon name')
+        status = validate_coupon(coupon_code=coupon_code, user=request.user)
+        print(status['valid'])
+        if status['valid']:
+            coupon = Coupon.objects.get(code=coupon_code)
+            coupon.use_coupon(user=request.user)
         # data needed
         razorpay_payment_id = request.POST['razorpay_payment_id']
         customer_email = request.user.email
@@ -130,16 +135,16 @@ def order_success(request):
         orderdata = Order(order_id=order_id, razorpay_payment_id=razorpay_payment_id,
                           service_name="PCOS", customer_email=customer_email)
         orderdata.save()
-        message = 'The order id is - ' + order_id
-        subject = 'Hey'
-        to = ['joythegoodboy@gmail.com', 'sajal.deyasi@gymcounselor.com', 'sajal.deyasi8@gmail.com']
-        send_mail(
-            subject,
-            message,
-            EMAIL_HOST_USER,
-            to,
-            fail_silently=False,
-        )
+        # message = 'The order id is - ' + order_id
+        # subject = 'Hey'
+        # to = ['joythegoodboy@gmail.com', 'sajal.deyasi@gymcounselor.com', 'sajal.deyasi8@gmail.com']
+        # send_mail(
+        #     subject,
+        #     message,
+        #     EMAIL_HOST_USER,
+        #     to,
+        #     fail_silently=False,
+        # )
         return render(request, 'products/thank.html')
     else:
         service = Service.objects.all()
